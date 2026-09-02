@@ -1,6 +1,6 @@
-# 📖 UniPlag & ICG Enterprise — User Guide / Руководство пользователя / Пайдаланушы нұсқаулығы
+# 📖 UniPlag & ICG Enterprise — User Guide / Руководство пользователя / Foydalanuvchi qo'llanmasi
 
-[🇷🇺 Русский](#-русский-ru) • [🇬🇧 English](#-english-en) • [🇰🇿 Қазақша](#-қазақша-kk)
+[🇷🇺 Русский](#-русский-ru) • [🇬🇧 English](#-english-en) • [🇺🇿 O'zbekcha](#-ozbekcha-uz)
 
 ---
 
@@ -48,22 +48,22 @@
 
 ---
 
-# 🇰🇿 Қазақша (KK)
+# 🇺🇿 O'zbekcha (UZ)
 
-## ⚡ 3 қадамнан тұратын жылдам бастау
-1. **Жүктеу**: **«Жұмысты тапсыру»** батырмасын басып, құжатты жүктеңіз (`.docx`, `.pdf`, `.rtf`, `.txt`, `.odt`).
-2. **Талдау**: Жүйе 5 секунд ішінде түпнұсқалықты, ЖИ мәтін ықтималдығын және ICG зияткерлік үлесін есептейді.
-3. **Нәтиже**: 512-биттік SHA-512 цифрлық мөрі бар ресми PDF-анықтаманы жүктеп алыңыз.
+## ⚡ 3 qadamda tezkor boshlash
+1. **Yuklash**: **«Ishni topshirish»** tugmasini bosing va faylni yuklang (`.docx`, `.pdf`, `.rtf`, `.txt`, `.odt`).
+2. **Tahlil**: Tizim 5 soniya ichida matn originalligini, AI matn ehtimolini va ICG intellektual hissa ballini hisoblaydi.
+3. **Natija**: 512-bitli SHA-512 raqamli muhriga ega rasmiy PDF-ma'lumotnomani yuklab oling.
 
-## 🎓 Студентке арналған нұсқаулық
-* **Жеке кабинет**: тапсырылған жұмыстарды бақылау және рейтингтегі орныңызды көру.
-* **Сараптама есебі**: алынған үзінділерді (қызыл) және ЖИ мәтінін (сары) түсті белгілеу арқылы көру.
-* **ICG ұсыныстары**: ғылыми мақалалар мен дипломдық жұмыстардың сапасын арттыруға арналған дайын академиялық үлгілер.
+## 🎓 Talabalar uchun qo'llanma
+* **Shaxsiy kabinet**: topshirilgan ishlarni ko'rish va universitet reytingidagi o'rningizni bilish.
+* **Ekspertiza hisoboti**: olingan parchalarni (qizil) va sun'iy intellekt matnini (sariq) rangli ajratish orqali tahlil qilish.
+* **ICG tavsiyalari**: ilmiy maqola va dissertatsiyalar sifatini oshirish uchun tayyor akademik iboralar va tavsiyalar.
 
-## 👨‍🏫 Оқытушыға арналған нұсқаулық
-* **Топтар мониторингі**: жетекшілік ететін студенттердің үлгерімін түсті лигалар арқылы қадағалау (🟢 Жоғары / 🟡 Орташа / 🔴 Тәуекел аймағы).
-* **Педагогикалық рейтинг (TeacherScore)**: ғылыми жетекшіліктің кешенді тиімділік көрсеткіші.
+## 👨‍🏫 O'qituvchilar uchun qo'llanma
+* **Guruhlar monitoringi**: talabalarning o'zlashtirishini rangli ligalar bo'yicha kuzatish (🟢 Yuqori / 🟡 O'rtacha / 🔴 Xavf guruhi).
+* **Pedagogik reyting (TeacherScore)**: ilmiy rahbarlik faoliyatining samaradorlik ko'rsatkichi.
 
-## 🤖 Ollama және ЖИ анықтау
-* Нейрожелілерді жергілікті талдау үшін [**Ollama**](https://ollama.com) бағдарламасын орнатыңыз.
-* Бірінші қосқан кезде жүйе ең қолайлы модельді (`qwen2.5:1.5b`) автоматты түрде жүктейді.
+## 🤖 Ollama va sun'iy intellekt tahlili
+* Neyrotarmoqlarni lokal tahlil qilish uchun [**Ollama**](https://ollama.com) dasturini o'rnating.
+* Tizim birinchi marta ishga tushganda eng qulay modelni (`qwen2.5:1.5b`) avtomatik ravishda yuklab oladi.
