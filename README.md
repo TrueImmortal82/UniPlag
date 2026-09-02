@@ -122,6 +122,8 @@ run_blackbox.bat
 
 ---
 
-## 🔒 Litsenziya va maxfiylik / License & Confidentiality
+## ⚖️ Лицензия / License / Litsenziya
 
-Barcha huquqlar himoyalangan. Analitik modellar, ICG mantiqiy graflari va kriptografik tekshirish mexanizmlari mualliflik mulki hisoblanadi.
+Подробные условия использования и защиты интеллектуальной собственности приведены в [**LICENSE.md**](LICENSE.md) *(Лицензионное соглашение с конечным пользователем / EULA на русском, английском и узбекском языках)*.
+
+All rights reserved. Proprietary analytical models, epistemic DAG logic, and cryptographic verification mechanisms are protected intellectual property.
