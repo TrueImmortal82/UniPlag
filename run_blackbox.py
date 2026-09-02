@@ -45,12 +45,22 @@ NONCE_SIZE = 12
 SIG_SIZE = 64
 
 # Embedded Sovereign consensus key for container decryption
-_MASTER_KEY = (
-    b"\x51\xc1\x62\x45\x4e\xe2\xeb\x96\x34\xe9\x9c\x91\x1b\x6b\x6a\xae"
-    b"\x4d\x2e\xba\xfb\x88\x12\x4f\x90\xaa\xbc\x11\x22\x33\x44\x55\x66"
-    b"\x77\x88\x99\x00\x11\x22\x33\x44\x55\x66\x77\x88\x99\xaa\xbb\xcc"
-    b"\xdd\xee\xff\x00\x11\x22\x33\x44\x55\x66\x77\x88\x99\xaa\xbb\xcc"
-)
+_EMBEDDED_KEY = bytes.fromhex("16a858089b1fe43225e08bdd9dbdae71aad33a8882031ace74033b3a6c0def4592b6a761a9dfdde9c3f83a9ca8ebe2cb04014215fbf53bbb06a10f098e94eea3")
+
+def get_decryption_key() -> bytes:
+    env_k = os.environ.get("UNIPLAG_SOVEREIGN_KEY_512")
+    if env_k:
+        try:
+            return bytes.fromhex(env_k.strip())
+        except Exception:
+            return env_k.encode()
+    local_k = Path(__file__).resolve().parent / ".security" / "sovereign_512.key"
+    if local_k.exists():
+        try:
+            return bytes.fromhex(local_k.read_text("utf-8").strip())
+        except Exception:
+            pass
+    return _EMBEDDED_KEY
 
 
 # ---------------------------------------------------------------------------
@@ -261,7 +271,7 @@ def main():
     # 3. Decrypt in RAM
     print("  [3/4] 🔐 Расшифровка AES-256-GCM в оперативную память (Zero-Disk Footprint)...")
     try:
-        decrypted_zip = decrypt_bbx_container(container_bytes, _MASTER_KEY)
+        decrypted_zip = decrypt_bbx_container(container_bytes, get_decryption_key())
         print("        ✅ Цифровая подпись SHA-512 и целостность контейнера ПОДТВЕРЖДЕНЫ!")
     except Exception as e:
         print(f"❌ [ОШИБКА ЦЕЛОСТНОСТИ] Сбой расшифровки: {e}")
@@ -278,8 +288,22 @@ def main():
     # 6. Boot FastAPI Server
     import uvicorn
     import app.main
+    import socket
 
-    server_url = f"http://{args.host}:{args.port}"
+    def is_port_free(h: str, p: int) -> bool:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.settimeout(0.5)
+            return s.connect_ex((h, p)) != 0
+
+    active_port = args.port
+    if not is_port_free(args.host, active_port):
+        for p in range(active_port + 1, active_port + 30):
+            if is_port_free(args.host, p):
+                print(f"  ⚠️  Порт {active_port} занят. Автоматически переключено на свободный порт {p}.")
+                active_port = p
+                break
+
+    server_url = f"http://{args.host}:{active_port}"
     print("\n" + "═" * 70)
     print(f"  🚀 UNIPLAG & ICG ЗАПУЩЕН ИЗ ЗАШИФРОВАННОГО BLACKBOX")
     print(f"  🌐 Адрес в браузере: {server_url}")
@@ -289,7 +313,7 @@ def main():
     if not args.no_browser:
         open_browser_delayed(server_url)
 
-    uvicorn.run(app.main.app, host=args.host, port=args.port, log_level="info")
+    uvicorn.run(app.main.app, host=args.host, port=active_port, log_level="info")
 
 
 if __name__ == "__main__":
