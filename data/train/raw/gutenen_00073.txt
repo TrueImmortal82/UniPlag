@@ -1,0 +1,385 @@
+Produced by Jon Richfield
+
+
+
+
+
+
+EXPLANATION OF TERMS USED IN ENTOMOLOGY
+
+PREPARED BY JOHN B. SMITH, Sc.D.
+Professor of Entomology in Rutgers College, &c.
+
+PUBLISHED BY THE BROOKLYN ENTOMOLOGICAL SOCIETY
+BROOKLYN, N. Y.
+1906
+
+PRESS OF THE NEW ERA PRINTING COMPANY
+LANCASTER, PA.
+
+{Scanner's note: This book is about a century old at the time of
+scanning.  I found it in the discard pile of a local university library.  I
+find the book to be of exceptional historical interest in the insights it
+gives into the development of early modern entomological science.  It
+also is of practical value as a source for terms that are obscure to
+modern users because they are no longer current.
+
+I have edited the text as well as I could and I think it is by now very
+usable, but do treat any really suspicious looking passages with
+reserve.  I have avoided the use of non-alphabetic symbols as far as I
+could, for example Greek letters and male, female and hermaphroditic
+symbols, but if you encounter difficulties you might find the
+problem there.  Also, the colour table at the end is not really much
+good for anything beyond general impressions; not only are the paper
+and ink old, but between my scanner and your screen or printer, there
+is room for too much misinterpretation of precise colour, for anyone to
+take it seriously.
+
+In any case, enjoy.  The book is a valuable product of serious workers
+in an age of exploration.}
+
+
+
+FOREWORD.
+
+When, some time since, in consequence of continuing demands, the
+Brooklyn Entomological Society resolved to publish a new edition of
+its Explanation of Terms used in Entomology, and entrusted the
+writer and two associates with the task of preparing the same, it was
+believed that a little revision of definitions, the dropping of a few
+obsolete terms and the addition of a few lately proposed, would be all
+that was necessary. It was to be a light task to fill idle time in
+summer, report to be made in fall. Two years have passed since that
+time; the associates have dropped by the way; the manuscript
+contains five times the number of terms in the original "Explanation."
+and if it is published now, it is not because I believe it to be complete;
+but because I do not believe it can be made complete except as the
+result of criticism and voluntary addition by specialists throughout
+the country.
+
+It is twenty-six years since the original list was published and nothing
+can better illustrate the advances made than a comparison between
+the old and the new Glossary. No one realizes better than I the fact
+that as students have increased in each order, each has followed an
+independent line of research, absolutely without regard to the work
+done elsewhere. In consequence, we have several terms for the same
+thing in many cases and, in an equal number, several meanings to the
+same term. As no one man can now-a-days cover the entire field of
+Entomology, it goes without saying that I was compelled to rely partly
+upon books and partly upon the good nature of correspondents to
+make the work even approximately complete.
+
+The first notable contribution came from Professor Justus W. Folsom,
+of Urbana, Illinois, who sent me over 2000 cards of terms collected by
+himself and his assistants, and these added materially at the
+beginning of the work.  A number of correspondents were good enough
+to send in lists of terms in Coleoptera, Lepidoptera, Orthoptera,
+Hemiptera and Neuroptera, and to refer me to literature where
+explanations of other special terms could be found.
+
+After the cards were so far advanced as to warrant a preliminary
+manuscript, Dr. Philip P. Calvert of the University of Pennsylvania.
+Mr. Nathan Banks of Washington, D.C., and Mr. C. W. Johnson of
+the Boston Society of Natural History went carefully over the entire
+work and by their criticisms and additions contributed materially to
+such merit as it possesses. To these gentlemen and to the many
+others not specifically mentioned I give thanks for their assistance,
+and if there have not been more co-workers it has been only because
+of the time element that seems to demand the best that is ready,
+rather than a delay to secure perfection.
+
+It would be interesting to go at length into the history of the
+correspondence to determine what sort of terms should or should not
+be included and to bring out the hopeless divergencies existing; but
+all that is important here is to state briefly what has been included
+and what omitted.
+
+Common English terms even if descriptive, when used in their
+ordinary dictionary sense, have not been included as a rule; but this
+is subject to many exceptions. Latin terms and derivatives, even if
+used in their usual sense have been generally included; but
+compounds made up of adequately defined descriptive terms are
+generally omitted. Adverbial or adjective forms have been omitted
+whenever it has been considered safe, and so have terms prefixed by
+sub-, supra- and the like, indicating degree or position. In doubtful
+cases the terms have been included and defined. All terms of venation
+are, so far as possible, reduced to the Comstock system which is the
+only one that has been satisfactorily worked out for all orders, and a
+series of figures is added to explain this system so far as seems
+necessary. It has not been considered feasible to determine the proper
+use of terms applied differently in different orders or families; that is
+scarcely within the scope of a work of this kind.
+
+Terms used in embryological and histological study have been
+included only so far as seemed necessary to an understanding of the
+general works, and no attempt has been made to cover the terms
+applied to musculature and other details of microscopic structure:
+this has seemed rather to be outside of the scope of the present essay.
+
+All color terms are reduced so far as possible to terms of the
+Windsor and Newton system of water colors which are standard in the
+English-speaking world, and the color plate shows solid blocks of
+those colors that seem necessary to explain all modifications except
+metallics, blacks and whites. {Scanner's note: color plate may be
+excluded, partly because it is in poor condition.}
+
+The figures illustrating body structures and other details have been
+drawn under my supervision by Mr. John A. Grossbeck, and are
+meant to be guides merely - else the glossary would exceed its scope.
+
+In the admission that the work is incomplete, no apology is intended
+for its publication; it is merely a statement of fact to encourage
+constructive rather than destructive criticism. It is hoped that those
+who note errors or omissions will communicate them to the writer so
+that when another edition is needed, as it will be before many years
+are past, a standard work may be possible.
+
+
+
+JOHN B. SMITH, Sc.D.
+
+New Brunswick,  N.J.  April 1906
+
+
+
+
+EXPLANATORY.
+
+Definitions of general application are as a rule given first, where
+more than one is necessary; next those of limited use, and finally
+the specific meaning in each order in which there is any notable
+difference.
+
+Where a word has more than one ending, the difference is given after a
+hyphen which represents the stem word: e.g. ametabola -ous; the
+latter in place of ametabolous, which indicates the possession of the
+characters peculiar to the ametabola. Where there is an English and a
+Latin ending, the former is usually given with the word and the other
+is added: e.g. aequilate -us, instead of aequilatus, there being no
+difference in the application. Usually the singular form of the word
+is first given, and the plural ending is added; e.g.
+
+     antenna -ae,
+
+     cenchrus -ri,
+
+     desideratum -ata;
+
+but occasionally, when the plural is more commonly used, e.g.
+epimera -eron, this is reversed and the singular ending is added: when
+the two are different in form, e.g. foot and feet, the words are given
+separately, and so when there is a difference in the application, as in
+
+     uncus and unci.
+
+In the definition of color terms the words in brackets [ ] refer to the
+equivalent color as named on the plate, or the combination needed to
+produce it.
+
+The names in parentheses ( ) are those of the writers whose definitions
+are used, or who have used the term in the sense defined. In the
+terms of venation, these parentheses occur most frequently.
+
+Most of the signs and abbreviations are those in common use
+
+     :=     equal to, or the same as;
+
+     q.v.   which see;
+
+     pl.    plural;
+
+     abb.   abbreviated.
+
+The abbreviated names are: Comst. for Comstock; Coq. for
+Coquillett; Meig. for Meigen; Nort. for Norton: O. S. for
+Osten-Sacken: and Will. for Williston.
+
+
+A
+
+A: prefix, is privative; wanting or without.
+
+Ab: off; away from.
+
+Abbreviated: cut short; not of usual length.
+
+Abdomen: the third or posterior division of the insect body: consists
+normally of nine or ten apparent segments, but actual number is a
+mooted question: bears no functional legs in the adult stage.
+
+Abdominal: belonging or pertaining to the abdomen.
+
+Abdominal feet: see pro-legs.
+
+Abdominal groove: the concave lobe of the inner margin of secondaries
+enveloping the abdomen beneath, in some butterflies.
+
+Abdominal pouch: in female Parnassiids, a sac-like ventral cavity,
+formed by material secreted during copulation.
+
+Abductor: applied to muscles that open out or extend an appendage or
+draw it away from the body: see adductor.
+
+Abductor mandibulae: the muscle that opens the mandibles.
+
+Aberrant: unusual; out of the ordinary course.
+
+Aberration: a form that departs in some striking way from the normal
+type; either single or occurring rarely, at irregular intervals.
+
+Abiogenesis: spontaneous generation.
+
+Abnormal: outside the usual range or course; not normal.
+
+Aborted: a structure developed so as to be unfit for its normal function
+obsolete or atrophied.
+
+Abraded: scraped or rubbed.
+
+Abrupt: suddenly or without gradation.
+
+Abscissus: cut off squarely, with a straight margin.
+
+Absconditus: hidden, concealed; retracted into another.
+
+Acalyptrata: those muscid flies in which alulae are absent or
+rudimentary.
+
+Acanthus: a spine, spur or prickle.
+
+Acaudal -ate: without a tail.
+
+Accessory: added, or in addition to.
+
+Accessory carinae: in Orthoptera the lateral carinae of the face.
+
+Accessory cell: a cell not commonly present in the group; in some
+orders of definite location as, e.g. in Lepidoptera, usually a small cell
+at the end of the subcosta, giving rise directly or indirectly to veins 7
+to 10:= 1st radius 2 (Comst.); = areole.
+
+Accessory glands: any glands opening into the ducts of the
+reproductive system.
+
+Accessory sac: a glandular structure of the female reproductive
+system containing a sticky secretion.
+
+Accessory subcostal vein: the vein given off from the subcosta and
+branching toward the apex of the wing in Perlidae.
+
+Aceous or aceus: suffix; similar to, or of the nature of.
+
+Acephalous: without a head.
+
+Acerata: arthropods without true antennae Arachnids and Limulus
+
+Acetabular caps: Hemiptera; the coxal cavity.
+
+Acetabuliform: like a shallow saucer with more or less incurved sides.
+
+Acetabulum: the cavity into which an appendage is articulated;
+specifically the coxal cavity, - q.v.; also applied to a
+cup-like cavity in the sucking mouth of maggots.
+
+Achreioptera: ordinal term proposed for the coleopterous family
+Platypsyllidae.
+
+Achromatic: free from color; tissue that does not stain readily.
+
+Acicular: needle-shaped; with a long, slender point.
+
+Aciculate: a surface that appears as if scratched with a needle.
+
+Acidotheca: the pupal sheath of the ovipositor.
+
+Acini: granulations, like those on a blackberry: the terminal secreting
+tubes of glands.
+
+Acinose -ous: a surface set with acini.
+
+Acone: applied to compound eyes in which the individual ocelli  have
+no crystalline cone or lens; see eucone. {Scanner's note: this is no
+longer a valid usage for the word "ocelli".  Currently the term is.  See
+"ocellus" and "ommatidium".}
+
+Acoustic nerve: connects the auditory pits or other organs of hearing
+with special ganglia.
+
+Acridophagus: preying and feeding on grasshoppers.
+
+Acrostichal bristles: Diptera; two rows of bristles on the middle of the
+dorsum; specifically, minute peculiar bristles on the dorso-central
+region of Dolichopodidae.
+
+Aculeata: Hymenoptera; the stingers, including bees and wasps.
+
+Aculeate: prickly; armed with short, sharp spines; specifically, in
+Hymenoptera furnished with a sting which is a modified ovipositor
+and connected with a poison sac.
+
+Aculeus -ei: a prickle; a small sharp point; specifically, an ovipositor,
+especially when sting-like, as in Hymenoptera; in male Tipulidae a
+slender, horny, often curved and pointed piece, projected when the
+forceps is open.
+
+Acuminate: tapering to a long point.
+
+Acupunctate: a surface with fine punctures as if made with a needle.
+
+Acutangulate: forming, or meeting in an acute angle.
+
+Acute: pointed: terminating in or forming less than a right angle.
+
+Acutilingual: with a sharp pointed tongue or mouth structure, as in
+some bees.
+
+Acutilingues: bees with a short pointed tongue: see obtusilingues.
+
+Addorsal: close to but not quite on the middle of the dorsum.
+
+Addorsal line: in caterpillars, is longitudinal, a little to one
+side of the dorsal and between it and the subdorsal line.
+
+Adductor: applied to muscles that draw an appendage to the body
+or bring parts into apposition: see abductor.
+
+Adductor mandibulae: the muscle that draws in or closes
+the mandible.
+
+Adeloceratous: with concealed antennae: see cryptocerata.
+
+Adephagous: belonging to the Adephaga: pentamerous, predatory,
+terrestrial beetles with filiform antennae and predatory habits: see
+hydradephagous.
+
+Adherent: attached or clinging to.
+
+Adipose: fat or fatty: see fat-body.
+
+Adiscota: insects that develop into adults without forming imaginal
+discs; see discota.
+
+Adminicula: supports or props: the spinous processes on the
+abdomen of boring and burrowing pupae.
+
+Adnate: adjoining; adhering or growing together: closely connected.
+
+Adpressed: laid or pressed to; contiguous.
+
+Adsperse -us: with markings of closely crowded small spots.
+
+Adsternal: situated next or close to the sternum.
+
+Adult: the stage when an insect is sexually mature and ready to
+reproduce normally.
+
+Aduncate -cus, -catus: a part gradually bent through its whole extent.
+
+Adventitious: occurring accidentally, out of the ordinary course,
+without apparent reason.
+
+Adventral line: in caterpillars, extends along the under side between
+the middle and the base of legs.
+
+Adventral tubercle: on the abdominal segments of caterpillars on the
+inner base of the leg, and correspondingly on the apodal segments;

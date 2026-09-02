@@ -1,0 +1,52 @@
+[
+  {
+    "id": "AI-NONSENSE-001",
+    "ground_truth": "ai",
+    "ai_score": 0.838,
+    "predicted": "ai",
+    "correct": true,
+    "method": "ensemble-v2",
+    "semantic_density": 0.697,
+    "quality": {
+      "logic": 8.0,
+      "value": 9.0,
+      "coherence": 9.0,
+      "comment": "Текст демонстрирует высокий уровень абстрактного мышления и мета-анализа. Логика изложения намеренно нелинейна, что является художественным приемом, а не ошибкой. Глубина раскрытия темы (философия языка, структура повествования) и связность изложения — на высоком уровне. Работа очень зрелая, но требует от читателя готовности к высокоуровневому, концептуальному тексту.",
+      "method": "ollama:gemma4:e4b",
+      "semantic_density": 0.697
+    },
+    "ensemble": {
+      "combined": 0.8378,
+      "tfidf": 0.7426,
+      "char_ngrams": 0.6777,
+      "stylometry": 0.653,
+      "density": 0.697,
+      "confidence": "high",
+      "confidence_interval": "76%–92%"
+    },
+    "features": {
+      "mean_sent_len": 18.47,
+      "median_sent_len": 17,
+      "std_sent_len": 5.48,
+      "sent_len_cv": 0.2967,
+      "mean_word_len": 6.7,
+      "ttr": 0.8055,
+      "content_ratio": 0.7994,
+      "content_ttr": 0.8821,
+      "punct_density": 0.0261,
+      "comma_ratio": 0.1254,
+      "semicolon_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0,
+      "start_repeat_ratio": 0.0526,
+      "bigram_repeat_ratio": 0.0061,
+      "structure_similarity": 0.2164,
+      "entropy": 4.5183,
+      "burstiness": 0.2967,
+      "n_sents": 19,
+      "n_words": 351
+    },
+    "time_ai": 1.4057202339172363,
+    "time_quality": 44.666220903396606
+  }
+]

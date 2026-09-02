@@ -1,0 +1,7 @@
+{
+  "backend": "sklearn",
+  "val_accuracy": 1.0,
+  "n_train": 305,
+  "n_val": 31,
+  "algo": "tfidf+logreg"
+}

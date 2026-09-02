@@ -1,0 +1,34 @@
+{
+  "algo": "ensemble-v2-tfidf+char+stylometry+meta",
+  "val_accuracy": 0.9933,
+  "val_std": 0.0133,
+  "n_train": 496,
+  "n_base": 347,
+  "n_meta": 149,
+  "feature_names": [
+    "mean_sent_len",
+    "median_sent_len",
+    "std_sent_len",
+    "sent_len_cv",
+    "mean_word_len",
+    "ttr",
+    "content_ratio",
+    "content_ttr",
+    "punct_density",
+    "comma_ratio",
+    "semicolon_ratio",
+    "exclamation_ratio",
+    "question_ratio",
+    "start_repeat_ratio",
+    "bigram_repeat_ratio",
+    "structure_similarity",
+    "entropy",
+    "burstiness"
+  ],
+  "components": [
+    "tfidf(char+word)",
+    "char_ngrams(3-6)",
+    "stylometry(18)",
+    "meta_learner"
+  ]
+}

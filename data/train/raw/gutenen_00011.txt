@@ -1,0 +1,506 @@
+</pre>
+
+
+
+Produced by Chuck Greif and the Online Distributed
+Proofreading Team at http://www.pgdp.net (This book was
+produced from scanned images of public domain material
+from the Internet Archive.)
+
+
+
+
+
+
+
+
+_PRIDE AND PREJUDICE_
+
+_A PLAY_
+
+[Illustration: "_Mr. Darcy, I have never desired your good opinion, and
+you have certainly bestowed it most unwillingly._"]
+
+
+
+
+_PRIDE AND PREJUDICE_
+
+_A PLAY_
+
+_FOUNDED ON JANE AUSTEN'S
+NOVEL_
+
+_BY_
+
+_MRS. STEELE MACKAYE_
+
+[Illustration: colophon]
+
+_NEW YORK_
+_DUFFIELD AND COMPANY_
+_1906_
+
+
+                 COPYRIGHT, 1906, BY DUFFIELD & COMPANY.
+
+                        Published September, 1906.
+
+                                  ------
+
+                         SPECIAL COPYRIGHT NOTICE.
+
+     This play is fully protected by copyright, all requirements of the
+     law having been complied with. Performances may be given only with
+     the written permission of Duffield & Company, agents for Mrs.
+     Steele Mackaye, owner of the acting rights.
+
+     Extract from the law relating to copyright:
+
+     "SEC. 4996. Any person publicly performing or representing any
+     dramatic or musical composition for which a copyright has been
+     obtained, without the consent of the proprietor of said dramatic or
+     musical composition or his heirs or assigns, shall be liable for
+     damages therefor, such damages in all cases to be assessed at such
+     sum not less than one hundred dollars for the first and fifty
+     dollars for every subsequent performance as to the Court shall
+     appear just. If the unlawful performance and representation be
+     wilful and not for profit, such person or persons shall be guilty
+     of a misdemeanor, and upon conviction be imprisoned for a period
+     not exceeding one year."
+
+
+
+
+PERSONS OF THE PLAY
+
+
+     MR. DARCY--(OF PEMBERLEY, DERBYSHIRE). "_Possessed of a fine tall
+     person, handsome features, noble mien, and ... ten thousand a year
+     ... clever ... haughty, reserved and fastidious; his manners,
+     though well-bred, were not inviting. 'Some people call him proud,'
+     said Mrs. Reynolds, the housekeeper at Pemberley, 'but I am sure I
+     never saw anything of it.... He is the best landlord and the best
+     master that ever lived.'_"
+
+     MR. BINGLEY--(OF NETHERFIELD, HERTFORDSHIRE, DARCY'S FRIEND).
+     "_Just what a young man ought to be; sensible and good-humoured,
+     lively ... such happy manners! So much ease, with such perfect good
+     breeding.... Also handsome, which a young man ought likewise to be
+     if he possibly can._"
+
+     COLONEL FITZWILLIAM--(COUSIN TO DARCY). "_About thirty, not
+     handsome, but in person and address most truly the gentleman._"
+
+     MR. BENNET--(OF LONGBOURN). "_An odd mixture of quick parts,
+     sarcastic humour, reserve and caprice. He was fond of the country
+     and of books, and from these tastes had arisen his principal
+     enjoyments._"
+
+     MR. COLLINS--(A COUSIN OF MR. BENNET, AND NEXT IN THE ENTAIL OF
+     LONGBOURN ESTATE.) "_A tall, heavy-looking young man of
+     five-and-twenty. His air was grave and stately, and his manners
+     very formal. His veneration for his patroness, Lady Catherine de
+     Bourg, mingling with a very good opinion of himself and of his
+     authority as a clergyman ... made him altogether a mixture of pride
+     and obsequiousness, self-importance and humility._"
+
+     SIR WILLIAM LUCAS--(AN INTIMATE FRIEND AND NEIGHBOUR OF THE
+     BENNETS). "_Formerly in trade in Meryton ... he had risen to the
+     honour of knighthood by an address to the King during his
+     mayoralty. The distinction had ... given him a disgust to his
+     business, and, ... quitting it, he had removed ... to Lucas Lodge,
+     where he could think with pleasure of his own importance, and ...
+     occupy himself solely in being civil to all the world._"
+
+     COLONEL FORSTER--(THE COLONEL OF THE REGIMENT STATIONED AT
+     MERYTON).
+
+     MR. WICKHAM--(AN OFFICER IN THE REGIMENT). "_Endowed with all the
+     best parts of beauty--a fine countenance, a good figure, and a very
+     pleasing address. As false and deceitful as he is insinuating._"
+
+     MR. DENNY--(ANOTHER OFFICER IN THE REGIMENT).
+
+     HARRIS--(THE BUTLER AT LONGBOURN).
+
+     MRS. BENNET--(THE WIFE OF MR. BENNET). "_A woman of mean
+     understanding, little information, and uncertain temper. When she
+     was discontented she fancied herself nervous. The business of her
+     life was to get her daughters married; its solace was visiting and
+     news._"
+
+     JANE--(ELDEST DAUGHTER OF MR. AND MRS. BENNET). "_She united with
+     great strength of feeling a composure of temper and a uniform
+     cheerfulness of manner. Her mild and steady candour always pleaded
+     allowances, and urged the possibility of mistakes._"
+
+     ELIZABETH--(THEIR SECOND DAUGHTER). "_Although not so handsome as
+     Jane, her face was rendered uncommonly intelligent by the beautiful
+     expression of her dark eyes. She had a lively, playful disposition,
+     which delighted in anything ridiculous, with more quickness of
+     observation and less pliancy of temper than her sister. There was a
+     mixture of sweetness and archness in her manner which made it
+     difficult for her to affront anybody._"
+
+     LYDIA--(THEIR YOUNGEST DAUGHTER). "_A stout, well-grown girl of
+     fifteen, with a fine complexion and a good-humoured countenance--a
+     favourite with her mother, whose affection had brought her into
+     public at an early age._"
+
+     LADY LUCAS--(THE WIFE OF SIR WILLIAM). "_Not too clever to be a
+     valuable neighbour to Mrs. Bennet._"
+
+     CHARLOTTE LUCAS--(DAUGHTER OF SIR WILLIAM AND LADY LUCAS). "_A
+     sensible, intelligent young woman, about twenty-seven, ...
+     Elizabeth's intimate friend._"
+
+     MISS BINGLEY--(SISTER OF MR. BINGLEY). "_A very fine lady ... but
+     proud and conceited._"
+
+     LADY CATHERINE DE BOURG--(AUNT OF DARCY AND PATRONESS OF MR.
+     COLLINS). "_A tall, large woman, with strongly marked features,
+     which might once have been handsome. Her air was not
+     conciliating.... Whatever she said, was spoken in so authoritative
+     a tone as marked her self-importance._"
+
+     HILL--(THE HOUSEKEEPER AT LONGBOURN).
+
+     MARTHA--(THE MAID AT MR. COLLINS'S PARSONAGE).
+
+
+
+
+ACT I
+
+THE DRAWING-ROOM AT LONGBOURN
+
+ACT II
+
+THE ORANGERY AT NETHERFIELD
+
+ONE MONTH LATER
+
+ACT III
+
+MR. COLLINS'S PARSONAGE AT HUNSFORD
+
+THREE MONTHS LATER
+
+ACT IV
+
+THE SHRUBBERY AT LONGBOURN
+
+ONE WEEK LATER
+
+PLACE: ENGLAND TIME: 1796
+
+     "In the novels of the last hundred years there are vast numbers of
+     young ladies with whom it might be a pleasure to fall in love,--but
+     to live with and to marry, I do not know that any of them can come
+     into competition with _Elizabeth Bennet_."--GEORGE SAINTSBURY.
+     Preface to the Peacock Edition of "Pride and Prejudice."
+
+
+
+
+ACT I
+
+
+
+
+PRIDE AND PREJUDICE
+
+A PLAY
+
+
+
+
+ACT I
+
+
+_The drawing-room at Longbourn. At the back, wide glass doors open upon
+a terrace which overlooks an English landscape. It is winter, and coals
+are burning in the fireplace. On each side of the glass doors are
+rounded recesses with windows. On one side of the room a door opens into
+the library. On the other side is a door to the hall--the chief entrance
+of the house. The room is handsomely furnished in eighteenth century
+style._ MR. _and_ MRS. BENNET _are discovered sitting on either side of
+the table._ MRS. BENNET _is knitting--_MR. BENNET _reading._
+
+
+MRS. BENNET.
+
+[_After a slight pause and laying down her knitting._]
+
+My dear Mr. Bennet, did not you hear me? Did you know that Netherfield
+Park is let at last?
+
+
+MR. BENNET.
+
+[_Continues reading and does not answer._]
+
+
+MRS. BENNET.
+
+[_Impatiently._] Do not you want to know who has taken it?
+
+
+MR. BENNET.
+
+[_Ceases reading and looks up at her with an amused smile._] You want to
+tell me, and I have no objection to hearing it.
+
+
+MRS. BENNET.
+
+[_With animation._] Why, my dear, you must know Lady Lucas says that
+Netherfield is taken by a young man of large fortune from the North of
+England. His name is Bingley, and he is _single_, my dear. Think of
+that, Mr. Bennet! A single man of large fortune; four or five thousand
+pounds a year. What a fine thing for our girls!
+
+
+MR. BENNET.
+
+How so? How can it affect them?
+
+
+MRS. BENNET.
+
+My dear Mr. Bennet, how can you be so tiresome! You must know that I am
+thinking of his marrying one of them.
+
+
+MR. BENNET.
+
+Is that his design in settling here?
+
+
+MRS. BENNET.
+
+Design!--Nonsense! How can you talk so? But it is very likely that he
+will fall in love with one of them, and therefore you must visit him as
+soon as you can. Consider your daughters, Mr. Bennet! Only think what an
+establishment it would be for one of them! Sir William and Lady Lucas
+are determined to go merely on that account. Indeed you must go, for it
+will be impossible for us to visit him if _you_ do not.
+
+
+MR. BENNET.
+
+[_Who has risen during this last speech and now stands with his back to
+the fire, facing_ MRS. BENNET.] You are overscrupulous, surely. I dare
+say Mr. Bingley will be very glad to see you, and I will send a few
+lines to assure him of my hearty consent to his marrying whichever he
+chooses of the girls--though I must throw in a good word for my little
+Lizzy.
+
+
+MRS. BENNET.
+
+[_Sharply._] I desire you will do no such thing! Lizzy is not a bit
+better than the others. She is not half as handsome as Jane, nor as
+good-humoured as Lydia. But you are always giving her the preference.
+
+
+MR. BENNET.
+
+Not unless she deserves it, my dear. But in this particular instance my
+poor little Lizzy is the only one who is unprovided for. Lydia and the
+others belong in the schoolroom, and you tell me that Mr. Collins has
+already spoken for Jane.
+
+
+MRS. BENNET.
+
+Oh, that odious Mr. Collins! I wish he had never come here. I wish I
+might never hear his name again!
+
+
+MR. BENNET.
+
+Mr. Collins odious! You surprise me! I thought that he had won your full
+approval.
+
+
+MRS. BENNET.
+
+[_Fretfully._] Oh, well, since he had to be your cousin, and since you
+_will_ not do anything about the entail, I suppose it will be a mercy if
+he does marry Jane. [_Half crying._] But I do think, Mr. Bennet, it is
+the hardest thing in the world that we have no son of our own, so that
+your property has to be entailed away from your own wife and children,
+so if you should die, we may all be turned out of the house whenever
+this Mr. Collins pleases. [_In bewailing tone._] He certainly does seem
+to have all the luck in the world. Here he has just got this good living
+from that grand Lady Catherine de Bourg.
+
+
+MR. BENNET.
+
+But, my dear, that will soon be _your_ luck, as well. You forget that
+your daughter is to profit by it.
+
+
+MRS. BENNET.
+
+Well, perhaps. I don't know about _that_, but, [_With renewed
+excitement._] I _do_ know that it is too monstrous that after you are
+gone I shall be forced to make way for this man and live to see him
+master in this house!
+
+
+MR. BENNET.
+
+My dear, do not give way to such gloomy thoughts. Let us hope for better
+things. Let us flatter ourselves that I may be the survivor.
+
+
+MRS. BENNET.
+
+[_This is not very consoling to_ MRS. BENNET; _and therefore, instead of
+making answer, she goes on as before._] If it was not for the entail I
+should not mind it.
+
+
+MR. BENNET.
+
+What should not you mind?
+
+
+MRS. BENNET.
+
+I should not mind anything at all.
+
+
+MR. BENNET.
+
+Let us be thankful that you are preserved from a state of such
+insensibility. But it certainly is a most iniquitous affair, and nothing
+can clear Mr. Collins from the guilt of inheriting Longbourn. However,
+you know he is doing his best to mend matters. He has not only
+handsomely apologised for his fault, but he has now assured us of his
+readiness to make every possible amends by marrying one of the girls.
+Surely, my dear, you must acknowledge that this plan is excessively
+generous on his part.
+
+
+MRS. BENNET.
+
+[_Dolefully._] Well, I suppose it might be worse.
+
+
+MR. BENNET.
+
+[_Cheerfully._] Decidedly worse. With Jane so well settled, and a single
+man like Mr. Bingley in prospect, I think you should be quite cheerful.
+
+
+MRS. BENNET.
+
+[_Excited once more._] Mr. Bingley! We shall never know Mr. Bingley. Oh,
+Mr. Bennet, you take delight in vexing me. You have no compassion on my
+poor nerves.
+
+
+MR. BENNET.
+
+You mistake, my dear. I have a high respect for your nerves. They are my
+old friends. I have heard you mention them with consideration these
+twenty years at least.
+
+
+MRS. BENNET.
+
+Ah! You do not know what I suffer.
+
+
+LYDIA.
+
+[_Bursting into the room, followed by_ JANE.] Oh, that horrid practice!
+[_Looking back at_ JANE.] Jane does so keep me at it. [_Throwing herself
+into a chair._] La, I'm tired to death.
+
+
+JANE.
+
+[_Who sees that her mother is half crying, goes and stands behind her
+chair, puts her hand affectionately on her shoulder, and bends over
+her._] Does your head ache, mamma?
+
+
+MRS. BENNET.
+
+Of course my head aches. Your father is so teasing. I cannot persuade
+him to call on Mr. Bingley at Netherfield, so I suppose we shall never
+know him.
+
+
+JANE.
+
+[_Smiling._] But you forget, mamma, that we shall meet him at the
+assemblies, and Lady Lucas has promised to introduce him.
+
+
+MRS. BENNET.
+
+I do not believe Lady Lucas will do any such thing. She has daughters of
+her own. She is a selfish, hypocritical woman, and I have no opinion of
+her.
+
+
+MR. BENNET.
+
+No more have I, and I am glad to find that you do not depend on her
+serving you.
+
+
+MRS. BENNET.
+
+I may have to depend on her after all, Mr. Bennet, since you will do
+nothing to help me. [_Fretfully to_ LYDIA, _who has been yawning and
+coughing._] Don't keep coughing, Lydia, for Heaven's sake! Have a little
+compassion on my nerves.
+
+[LYDIA _pouts and looks unutterable things._]
+
+
+MR. BENNET.
+
+Lydia has no discretion in her coughs. She times them ill.
+
+
+LYDIA.
+
+I do not cough for my own amusement, papa. Jane, when is your next ball?
+
+
+JANE.
+
+To-morrow fortnight.
+
+
+MRS. BENNET.
+
+[_Starting excitedly._] Ay, so it is--and Lady Lucas does not come back
+till the day before. So you see it will be impossible for her to
+introduce Mr. Bingley, for she will not know him herself.
+
+
+MR. BENNET.
+
+Then, my dear, you may have the advantage of your friend, and _you_ can
+introduce Mr. Bingley to _her_.
+
+
+MRS. BENNET.
+
+Impossible, Mr. Bennet, when I am not acquainted with him myself. How
+can you be so teasing?
+
+
+MR. BENNET.
+
+I honour your circumspection. A fortnight's acquaintance 

@@ -1,0 +1,429 @@
+{% extends "base.html" %}
+{% block title %}Отчёт — UniPlag{% endblock %}
+{% block content %}
+<div class="card">
+  <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 10px;">
+    <div>
+      <h2 style="margin: 0;">Отчёт: {{ doc.title }}</h2>
+      <p class="muted" style="margin: 4px 0 0 0;">
+        Автор: {{ doc.author or "—" }} · Слов: {{ (doc.text.split()|length) if doc.text else (doc.words or 0) }} ·
+        Проверен: {{ check.created_at.strftime('%d.%m.%Y %H:%M') if check.created_at else "—" }}
+      </p>
+    </div>
+    
+    {% set cur_lang = get_language(request) %}
+    <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+      <a href="/report/{{ check.id }}/pdf?lang=ru" class="btn small" style="background: #7e22ce; color: #fff; text-decoration: none; padding: 7px 12px; font-weight: 500; display: inline-flex; align-items: center; gap: 4px;" title="Скачать справку на русском языке">
+        <span>📄 PDF (RU)</span>
+      </a>
+      <a href="/report/{{ check.id }}/pdf?lang=en" class="btn small" style="background: #0284c7; color: #fff; text-decoration: none; padding: 7px 12px; font-weight: 500; display: inline-flex; align-items: center; gap: 4px;" title="Download Certificate in English">
+        <span>📄 PDF (EN)</span>
+      </a>
+      {% if check.verification_seal %}
+      <a href="/verify/{{ check.verification_seal }}" target="_blank" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: #f0fdf4; border: 1px solid #86efac; border-radius: 8px; font-size: 12px; color: #166534; font-weight: 600;">
+        <span>{{ t('report_verification_seal', cur_lang) }}</span>
+        <code style="background: transparent; color: #15803d;">{{ check.verification_seal }}</code>
+        <span>➔</span>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="scores" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="score-box">
+      <div class="big {{ 'ok' if check.plag_score < 30 else ('warn' if check.plag_score < 60 else 'bad') }}">{{ 100 - check.plag_score | round(1) }}%</div>
+      <span>{{ t('metric_originality', cur_lang) }}</span>
+    </div>
+    <div class="score-box">
+      <div class="big {{ 'ok' if check.plag_score < 30 else ('warn' if check.plag_score < 60 else 'bad') }}">{{ check.plag_score | round(1) }}%</div>
+      <span>{{ t('metric_plagiarism', cur_lang) }}</span>
+    </div>
+    <div class="score-box">
+      <div class="big {{ 'ok' if check.ai_score < 0.4 else ('warn' if check.ai_score < 0.7 else 'bad') }}">{{ (check.ai_score * 100) | round(0) | int }}%</div>
+      <span>{{ t('metric_ai', cur_lang) }} <small>({{ check.ai_method }})</small></span>
+    </div>
+    <div class="score-box">
+      <div class="big ok">{{ check.icg_score | round(1) if check.icg_score is not none else '—' }}%</div>
+      <span>{{ t('metric_icg', cur_lang) }}</span>
+    </div>
+    <div class="score-box">
+      <div class="big {{ 'ok' if check.icg_score >= 50 else ('warn' if check.icg_score >= 20 else 'bad') }}">
+        {{ check.icg_score | round(0) | int }}%
+      </div>
+      <span>интеллект. вклад (ICG v0.4)</span>
+    </div>
+  </div>
+  {% if ai.note %}<p class="alert">{{ ai.note }}</p>{% endif %}
+  {% if ai.ensemble %}
+  <div class="muted" style="margin-top:8px; font-size:0.9em;">
+    <b>Компоненты ансамбля:</b>
+    TF-IDF={{ "%.0f"|format(ai.ensemble.tfidf * 100) }}% ·
+    Стилометрия={{ "%.0f"|format(ai.ensemble.stylometry * 100) }}% ·
+    Плотность={{ "%.0f"|format(ai.ensemble.density * 100) }}%
+    {% if ai.ensemble.confidence_interval %}
+    <br><b>Интервал:</b> {{ ai.ensemble.confidence_interval }}
+    <b>Уверенность:</b> {{ ai.ensemble.confidence }}
+    {% endif %}
+  </div>
+  {% endif %}
+  {% if recommendations %}
+  <div style="margin-top: 16px; padding: 16px; background: #ffffff; border: 1px solid #cbd5e1; border-left: 5px solid #0284c7; border-radius: 8px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+      <div>
+        <h4 style="margin: 0; color: #0f172a; font-size: 15px; display: flex; align-items: center; gap: 8px;">
+          🎓 Персональные ICG-рекомендации по повышению качества работы
+        </h4>
+        <p class="muted" style="margin: 4px 0 0 0; font-size: 12px;">
+          Педагогический анализ исследовательской глубины, синтеза источников и доказательной структуры.
+        </p>
+      </div>
+      <span class="badge {{ recommendations.verdict_class }}" style="font-size: 12px; padding: 4px 8px;">
+        ICS: {{ recommendations.ics_score }}%
+      </span>
+    </div>
+
+    <!-- Главный вердикт и вектор роста -->
+    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; margin-bottom: 14px;">
+      <div style="font-size: 13px; font-weight: 600; color: #1e293b; margin-bottom: 4px;">
+        📌 Академический вердикт:
+      </div>
+      <div style="font-size: 13px; color: #334155; margin-bottom: 8px;">
+        {{ recommendations.verdict }}
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px 10px; color: #1e40af;">
+        <span>🎯 <b>Главный вектор роста:</b> {{ recommendations.top_priority }}</span>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+      <!-- Сильные стороны -->
+      <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px;">
+        <h5 style="margin: 0 0 6px 0; color: #166534; font-size: 13px; display: flex; align-items: center; gap: 6px;">
+          ✅ Сильные стороны работы:
+        </h5>
+        <ul style="margin: 0; padding-left: 18px; font-size: 12px; color: #14532d; line-height: 1.5;">
+          {% for s in recommendations.strengths %}
+            <li style="margin-bottom: 4px;">{{ s }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Чек-лист доработки -->
+      <div style="background: #fefce8; border: 1px solid #fef08a; border-radius: 8px; padding: 12px;">
+        <h5 style="margin: 0 0 6px 0; color: #854d0e; font-size: 13px; display: flex; align-items: center; gap: 6px;">
+          📋 Пошаговый чек-лист для студента:
+        </h5>
+        <ul style="margin: 0; padding-left: 18px; font-size: 12px; color: #713f12; line-height: 1.5;">
+          {% for c in recommendations.action_checklist %}
+            <li style="margin-bottom: 4px;">{{ c }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Детальные направления доработки -->
+    {% if recommendations.growth_areas %}
+    <h5 style="margin: 12px 0 8px 0; font-size: 13px; color: #334155;">🔍 Рекомендации по ключевым аспектам исследования:</h5>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      {% for g in recommendations.growth_areas %}
+      <div style="border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px 12px; background: #ffffff;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+          <b style="font-size: 12px; color: #0f172a;">{{ g.title }}</b>
+          <span class="badge {{ g.tag_class }}" style="font-size: 11px;">{{ g.tag }}</span>
+        </div>
+        <p style="margin: 0; font-size: 12px; color: #475569; line-height: 1.4;">{{ g.advice }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Примеры академических речевых конструкций -->
+    {% if recommendations.phrasing_templates %}
+    <div style="margin-top: 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px;">
+      <h5 style="margin: 0 0 8px 0; font-size: 13px; color: #334155;">💡 Готовые шаблоны академических формулировок для повышения ICG:</h5>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        {% for t in recommendations.phrasing_templates %}
+        <div style="font-size: 12px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 6px 10px;">
+          <span class="muted" style="font-weight: 600; color: #0284c7;">{{ t.goal }}:</span>
+          <div style="color: #334155; margin-top: 2px; font-style: italic;">{{ t.example }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+
+{% if quality %}
+<div class="card">
+  <h3>Оценка качества текста</h3>
+  <div class="scores">
+    <div class="score-box">
+      <div class="big {{ 'ok' if quality.logic >= 7 else ('warn' if quality.logic >= 4 else 'bad') }}">{{ quality.logic }}/10</div>
+      <span>Логика</span>
+    </div>
+    <div class="score-box">
+      <div class="big {{ 'ok' if quality.value >= 7 else ('warn' if quality.value >= 4 else 'bad') }}">{{ quality.value }}/10</div>
+      <span>Ценность</span>
+    </div>
+    <div class="score-box">
+      <div class="big {{ 'ok' if quality.coherence >= 7 else ('warn' if quality.coherence >= 4 else 'bad') }}">{{ quality.coherence }}/10</div>
+      <span>Связность</span>
+    </div>
+    {% if quality.semantic_density is defined %}
+    <div class="score-box">
+      <div class="big {{ 'ok' if quality.semantic_density >= 0.5 else ('warn' if quality.semantic_density >= 0.3 else 'bad') }}">{{ "%.0f"|format(quality.semantic_density * 100) }}%</div>
+      <span>Плотность</span>
+    </div>
+    {% endif %}
+  </div>
+  {% if quality.comment %}<p class="muted">{{ quality.comment }}</p>{% endif %}
+  <p class="muted"><small>Метод: {{ quality.method }}</small></p>
+</div>
+{% endif %}
+
+{% if icg and (icg.metrics_summary or icg.summary) %}
+{% set m = icg.metrics_summary or icg.summary %}
+<div class="card">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h3 style="margin: 0;">🛡 Граф интеллектуального вклада (ICG v0.4)</h3>
+    <span class="badge {{ 'ok' if check.icg_score >= 50 else ('warn' if check.icg_score >= 20 else 'bad') }}">
+      ICS: {{ check.icg_score | round(1) }}%
+    </span>
+  </div>
+  
+  {% if icg.disclaimer %}
+    <p class="alert" style="margin-top: 12px;">{{ icg.disclaimer }}</p>
+  {% endif %}
+
+  <p class="muted" style="margin-top: 6px;">
+    Анализ доказательной связности, авторских выводов, междисциплинарного синтеза и независимой аргументации.
+  </p>
+
+  <div class="scores" style="margin-top: 10px;">
+    <div class="score-box">
+      <div class="big {{ 'ok' if (m.intellectual_contribution_score or 0) >= 0.5 else ('warn' if (m.intellectual_contribution_score or 0) >= 0.2 else 'bad') }}">
+        {{ ((m.intellectual_contribution_score or (check.icg_score / 100.0)) * 100) | round(0) | int }}%
+      </div>
+      <span>Интеллектуальный вклад (ICS)</span>
+    </div>
+    <div class="score-box">
+      <div class="big {{ 'ok' if (m.evidence_coverage or 0) >= 0.6 else 'warn' }}">
+        {{ ((m.evidence_coverage or 0) * 100) | round(0) | int }}%
+      </div>
+      <span>Покрытие доказательствами</span>
+    </div>
+    <div class="score-box">
+      <div class="big {{ 'ok' if (m.reasoning_coherence or 0) >= 0.7 else 'warn' }}">
+        {{ ((m.reasoning_coherence or 0) * 100) | round(0) | int }}%
+      </div>
+      <span>Связность рассуждений</span>
+    </div>
+    {% if m.novelty_score is defined %}
+    <div class="score-box">
+      <div class="big {{ 'ok' if m.novelty_score >= 0.4 else 'warn' }}">
+        {{ (m.novelty_score * 100) | round(0) | int }}%
+      </div>
+      <span>Новизна структуры</span>
+    </div>
+    {% endif %}
+  </div>
+
+  <div style="margin-top: 15px; background: #f8fafc; padding: 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
+    <h4 style="margin: 0 0 10px 0; font-size: 14px;">Структура эпистемического вклада:</h4>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 13px;">
+      <span style="background: #e0f2fe; color: #0369a1; padding: 4px 10px; border-radius: 6px; font-weight: 500;">
+        💡 Авторский вывод (Inference): <b>{{ ((m.inference_ratio or 0) * 100) | round(0) | int }}%</b>
+      </span>
+      <span style="background: #f0fdf4; color: #15803d; padding: 4px 10px; border-radius: 6px; font-weight: 500;">
+        🔗 Синтез источников (Synthesis): <b>{{ (((m.synthesis_ratio or 0) + (m.source_novel_synthesis_ratio or 0) + (m.higher_order_synthesis_ratio or 0)) * 100) | round(0) | int }}%</b>
+      </span>
+      {% if (m.higher_order_synthesis_ratio or 0) > 0 %}
+      <span style="background: #faf5ff; color: #7e22ce; padding: 4px 10px; border-radius: 6px; font-weight: 500;">
+        ⚡ Высший синтез парадоксов: <b>{{ (m.higher_order_synthesis_ratio * 100) | round(0) | int }}%</b>
+      </span>
+      {% endif %}
+      {% if (m.original_contribution_ratio or 0) > 0 %}
+      <span style="background: #ecfdf5; color: #047857; padding: 4px 10px; border-radius: 6px; font-weight: 500;">
+        🌟 Оригинальное открытие: <b>{{ (m.original_contribution_ratio * 100) | round(0) | int }}%</b>
+      </span>
+      {% endif %}
+      <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 6px; font-weight: 500;">
+        📖 Воспроизведение (Reproduction): <b>{{ ((m.reproduction_ratio or 0) * 100) | round(0) | int }}%</b>
+      </span>
+      {% if (m.unsupported_ratio or 0) > 0 %}
+      <span style="background: #fef2f2; color: #b91c1c; padding: 4px 10px; border-radius: 6px; font-weight: 500;">
+        ⚠️ Без обоснования (Unsupported): <b>{{ (m.unsupported_ratio * 100) | round(0) | int }}%</b>
+      </span>
+      {% endif %}
+      {% if (m.contradictory_ratio or 0) > 0 %}
+      <span style="background: #fff1f2; color: #be123c; padding: 4px 10px; border-radius: 6px; font-weight: 500;">
+        ⚔️ Противоречия (Contradictory): <b>{{ (m.contradictory_ratio * 100) | round(0) | int }}%</b>
+      </span>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if icg.nodes %}
+  <h4 style="margin-top: 20px; font-size: 14px;">Цепочки рассуждений в документе (Reasoning DAG Nodes):</h4>
+  <table style="margin-top: 8px; font-size: 13px;">
+    <tr><th>ID</th><th>Утверждение (Claim)</th><th>Тип операции</th><th>Опоры / Ссылки</th></tr>
+    {% for n in icg.nodes %}
+    <tr>
+      <td>
+        <code>{{ n.id }}</code>
+        {% if n.is_super_anchor %}<span style="background: #7e22ce; color: #fff; font-size: 10px; padding: 1px 4px; border-radius: 3px;">SUPER-ANCHOR</span>
+        {% elif n.is_anchor %}<span style="background: #0284c7; color: #fff; font-size: 10px; padding: 1px 4px; border-radius: 3px;">ANCHOR</span>
+        {% endif %}
+      </td>
+      <td>{{ n.span.raw_text[:160] }}{% if n.span.raw_text|length > 160 %}...{% endif %}</td>
+      <td>
+        {% if n.contribution_class == 'HIGHER_ORDER_SYNTHESIS' %}
+          <b style="color: #7e22ce;">⚡ HIGHER-ORDER SYNTHESIS</b>
+        {% elif n.contribution_class == 'SOURCE_NOVEL_SYNTHESIS' %}
+          <b style="color: #047857;">🔗 NOVEL SYNTHESIS</b>
+        {% elif n.contribution_class == 'ORIGINAL_CONTRIBUTION' %}
+          <b style="color: #0d9488;">🌟 ORIGINAL DISCOVERY</b>
+        {% elif n.contribution_class == 'SYNTHESIS' %}
+          <b style="color: #16a34a;">🔗 SYNTHESIS (Синтез)</b>
+        {% elif n.contribution_class == 'INFERENCE' %}
+          <b style="color: #0284c7;">💡 INFERENCE (Вывод)</b>
+        {% elif n.contribution_class == 'REPRODUCTION' %}
+          <span style="color: #64748b;">📖 REPRODUCTION</span>
+        {% elif n.contribution_class == 'CONTRADICTORY' %}
+          <b style="color: #be123c;">⚔️ CONTRADICTORY</b>
+        {% else %}
+          <span style="color: #dc2626;">⚠️ UNSUPPORTED</span>
+        {% endif %}
+      </td>
+      <td>
+        {% if n.sources_cited %}
+          {% for s in n.sources_cited %}<span style="background: #e2e8f0; padding: 2px 5px; border-radius: 3px; font-size: 11px;">[{{ s }}]</span> {% endfor %}
+        {% else %}
+          <small class="muted">Внутренний логический узел</small>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+
+  {% if icg.conclusions %}
+  <div style="margin-top: 16px; background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 12px 14px;">
+    <h4 style="margin: 0 0 8px 0; font-size: 14px;">🧠 Выводы по интеллектуальному вкладу</h4>
+    <ul style="margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.6;">
+      {% for c in icg.conclusions %}<li>{{ c }}</li>{% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</div>
+{% endif %}
+
+<div class="card">
+  <h3>Источники заимствований</h3>
+  {% if not check.matches %}<p class="muted">Совпадений не найдено.</p>{% endif %}
+  <table>
+    <tr><th>#</th><th>Источник</th><th>Совпадение</th><th>Фрагментов</th></tr>
+    {% for m in check.matches | sort(attribute='sim', reverse=true) %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>
+        {% if m.source_doc_id %}
+          {% set sd = docs_map.get(m.source_doc_id) if docs_map else None %}
+          {% if m.source_doc_id in (docs_map or {}) and docs_map[m.source_doc_id].kind == 'web' %}
+            🌐 <a href="{{ docs_map[m.source_doc_id].url }}" target="_blank" rel="noopener">{{ m.source_label[:80] }}</a>
+          {% else %}
+            📄 {{ m.source_label[:80] }}
+          {% endif %}
+        {% else %}{{ m.source_label }}{% endif %}
+      </td>
+      <td><b>{{ m.sim | round(1) }}%</b></td>
+      <td>{{ m.fragments | length }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<div class="card">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px;">
+    <div>
+      <h3 style="margin: 0;">{{ t('report_full_text', cur_lang) }}</h3>
+      <p class="muted" style="margin: 2px 0 0 0; font-size: 13px;">
+        {{ t('report_words', cur_lang) }}: <b>{{ (doc.text.split()|length) if doc.text else (doc.words or 0) }}</b> · 
+        {{ t('report_chars', cur_lang) }}: <b>{{ doc.text|length if doc.text else 0 }}</b>
+      </p>
+    </div>
+    
+    <!-- Панель инструментов чтения -->
+    <div style="display: flex; gap: 6px; align-items: center;">
+      <button class="btn small" onclick="changeFontSize(-1)" title="A-" style="background: #f1f5f9; color: #334155; padding: 4px 10px;">A-</button>
+      <button class="btn small" onclick="changeFontSize(1)" title="A+" style="background: #f1f5f9; color: #334155; padding: 4px 10px;">A+</button>
+      <button class="btn small" onclick="copyDocumentText()" id="copy-btn" title="{{ t('report_copy_btn', cur_lang) }}" style="background: #f1f5f9; color: #334155; padding: 4px 10px;">{{ t('report_copy_btn', cur_lang) }}</button>
+      <button class="btn small" onclick="toggleFullscreenText()" id="fs-btn" title="{{ t('report_fullscreen_btn', cur_lang) }}" style="background: #0284c7; color: #fff; padding: 4px 12px;">{{ t('report_fullscreen_btn', cur_lang) }}</button>
+    </div>
+  </div>
+
+  <p class="muted legend" style="margin-bottom: 12px;">
+    <span class="frag-plag">{{ t('report_legend_plag', cur_lang) }}</span> ·
+    <span class="frag-ai">{{ t('report_legend_ai', cur_lang) }}</span>
+  </p>
+
+  {% if not has_highlights %}
+  <p class="alert" style="margin-bottom: 14px;">
+    Совпадений с корпусом и признаков ИИ-текста не обнаружено — в тексте нечего подсвечивать.
+    Заимствования ищутся только среди документов, уже добавленных в корпус.
+  </p>
+  {% endif %}
+
+  <!-- СКРОЛЛ-ОКНО ДЛЯ ЧТЕНИЯ РАБОТЫ -->
+  <div id="text-scroll-window" class="doc-text-window">
+    <div id="doc-text" class="doc-text">{{ highlighted | safe }}</div>
+  </div>
+</div>
+
+<script>
+let currentFontSize = 15;
+function changeFontSize(delta) {
+  currentFontSize = Math.max(12, Math.min(24, currentFontSize + delta));
+  const el = document.getElementById('doc-text');
+  if (el) el.style.fontSize = currentFontSize + 'px';
+}
+
+function copyDocumentText() {
+  const el = document.getElementById('doc-text');
+  if (!el) return;
+  const text = el.innerText || el.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copy-btn');
+    const old = btn.innerText;
+    btn.innerText = '✓ Скопировано!';
+    btn.style.background = '#dcfce7';
+    btn.style.color = '#15803d';
+    setTimeout(() => {
+      btn.innerText = old;
+      btn.style.background = '#f1f5f9';
+      btn.style.color = '#334155';
+    }, 2000);
+  });
+}
+
+function toggleFullscreenText() {
+  const win = document.getElementById('text-scroll-window');
+  const btn = document.getElementById('fs-btn');
+  if (!win) return;
+  win.classList.toggle('fullscreen');
+  if (win.classList.contains('fullscreen')) {
+    btn.innerText = '✕ Свернуть';
+    btn.style.background = '#dc2626';
+    btn.style.position = 'fixed';
+    btn.style.top = '10px';
+    btn.style.right = '20px';
+    btn.style.zIndex = '10000';
+  } else {
+    btn.innerText = '🔍 На весь экран';
+    btn.style.background = '#0284c7';
+    btn.style.position = 'static';
+  }
+}
+</script>
+{% endblock %}

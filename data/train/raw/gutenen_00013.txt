@@ -1,0 +1,402 @@
+E-text prepared by Thierry Alberto, Emmy, and the Project Gutenberg Online
+Distributed Proofreading Team (https://www.pgdp.net)
+
+
+
+Note: Project Gutenberg also has an HTML version of this file which
+      includes the original illustration and family trees.
+      See 22536-h.htm or 22536-h.zip:
+      (https://www.gutenberg.org/dirs/2/2/5/3/22536/22536-h/22536-h.htm)
+      or
+      (https://www.gutenberg.org/dirs/2/2/5/3/22536/22536-h.zip)
+
+
+Transcriber's note:
+
+      Obvious punctuation errors have been corrected.
+
+      The title page lists the authors as Austen-Leigh. The text
+      omits the hyphen. This was retained.
+
+      Text that was superscripted in the original is enclosed within
+      curly brackets preceded by a carat character. Example: Ser^{t,}
+
+      In the interests of maintaining the integrity of the Austen
+      letters, archaic or unusual spellings were retained as was
+      inconsistent capitalization. For example: expence,
+      acknowlegement; d'Arblay, D'Arblay.
+
+      Readers who print this text should be warned that it contains
+      family trees up to 209 characters in width.
+
+      More detailed notes, including a list of corrections, will be
+      found at the end of the text.
+
+
+
+
+
+JANE AUSTEN
+
+HER LIFE AND LETTERS
+
+A Family Record
+
+by
+
+WILLIAM AUSTEN-LEIGH
+
+and
+
+RICHARD ARTHUR AUSTEN-LEIGH
+
+With a Portrait
+
+
+
+
+
+
+
+London
+Smith, Elder & Co., 15 Waterloo Place
+1913
+[_All rights reserved_]
+
+[Illustration: J. Zoffany R. A. pinxit Emery Walker Ph. sc.
+
+Jane Austen
+
+see p. 62]
+
+
+
+
+PREFACE
+
+
+Since 1870-1, when J. E. Austen Leigh[1] published his _Memoir of Jane
+Austen_, considerable additions have been made to the stock of
+information available for her biographers. Of these fresh sources of
+knowledge the set of letters from Jane to Cassandra, edited by Lord
+Brabourne, has been by far the most important. These letters are
+invaluable as _memoires pour servir_; although they cover only the
+comparatively rare periods when the two sisters were separated, and
+although Cassandra purposely destroyed many of the letters likely to
+prove the most interesting, from a distaste for publicity.
+
+Some further correspondence, and many incidents in the careers of two of
+her brothers, may be read in _Jane Austen's Sailor Brothers_, by J. H.
+Hubback and Edith C. Hubback; while Miss Constance Hill has been able to
+add several family traditions to the interesting topographical
+information embodied in her _Jane Austen: Her Homes and Her Friends_.
+Nor ought we to forget the careful research shown in other biographies
+of the author, especially that by Mr. Oscar Fay Adams.
+
+During the last few years, we have been fortunate enough to be able to
+add to this store; and every existing MS. or tradition preserved by the
+family, of which we have any knowledge, has been placed at our disposal.
+
+It seemed, therefore, to us that the time had come when a more complete
+chronological account of the novelist's life might be laid before the
+public, whose interest in Jane Austen (as we readily acknowledge) has
+shown no signs of diminishing, either in England or in America.
+
+The _Memoir_ must always remain the one firsthand account of her,
+resting on the authority of a nephew who knew her intimately and that of
+his two sisters. We could not compete with its vivid personal
+recollections; and the last thing we should wish to do, even were it
+possible, would be to supersede it. We believe, however, that it needs
+to be supplemented, not only because so much additional material has
+been brought to light since its publication, but also because the
+account given of their aunt by her nephew and nieces could be given only
+from their own point of view, while the incidents and characters fall
+into a somewhat different perspective if the whole is seen from a
+greater distance. Their knowledge of their aunt was during the last
+portion of her life, and they knew her best of all in her last year,
+when her health was failing and she was living in much seclusion; and
+they were not likely to be the recipients of her inmost confidences on
+the events and sentiments of her youth.
+
+Hence the emotional and romantic side of her nature--a very real
+one--has not been dwelt upon. No doubt the Austens were, as a family,
+unwilling to show their deeper feelings, and the sad end of Jane's one
+romance would naturally tend to intensify this dislike of expression;
+but the feeling was there, and it finally found utterance in her latest
+work, when, through Anne Elliot, she claimed for women the right of
+'loving longest when existence or when hope is gone.'
+
+Then, again, her nephew and nieces hardly knew how much she had gone
+into society, or how much, with a certain characteristic aloofness, she
+had enjoyed it. Bath, either when she was the guest of her uncle and
+aunt or when she was a resident; London, with her brother Henry and his
+wife, and the rather miscellaneous society which they enjoyed;
+Godmersham, with her brother Edward and his county neighbours in East
+Kent;--these had all given her many opportunities of studying the
+particular types which she blended into her own creations.
+
+A third point is the uneventful nature of the author's life, which, as
+we think, has been a good deal exaggerated. Quiet it certainly was; but
+the quiet life of a member of a large family in the England of that date
+was compatible with a good deal of stirring incident, happening, if not
+to herself, at all events to those who were nearest to her, and who
+commanded her deepest sympathies.
+
+We hope therefore that our narrative, with all its imperfections and its
+inevitable repetition of much that has already been published, will at
+least be of use in removing misconceptions, in laying some new facts
+before the reader, and in placing others in a fresh light. It is
+intended as a narrative, and not as a piece of literary criticism; for
+we should not care to embark upon the latter in competition with
+biographers and essayists who have a better claim to be heard.
+
+Both in the plan and in the execution of our work we have received much
+valuable help from another member of the family, Mary A. Austen
+Leigh.[2]
+
+An arrangement courteously made by the owners of the copyright has
+procured for us a free and ample use of the Letters as edited by Lord
+Brabourne[3]; while the kindness of Mr. J. G. Nicholson of Castlefield
+House, Sturton-by-Scawby, Lincolnshire, has opened a completely new
+source of information in the letters which passed between the Austens
+and their kinsmen of the half-blood--Walters of Kent and afterwards of
+Lincolnshire. Miss Jane Austen, granddaughter of Admiral Charles Austen,
+and Miss Margaret Bellas, great-granddaughter of James Austen, are so
+good as to allow us to make a fuller use of their family documents than
+was found possible by the author of the _Memoir_; while Mr. J. H.
+Hubback permits us to draw freely upon the _Sailor Brothers_, and
+Captain E. L. Austen, R.N., upon his MSS. Finally, we owe to Admiral
+Ernest Rice kind permission to have the photograph taken, from which the
+reproduction of his Zoffany portrait is made into a frontispiece for
+this volume. We hope that any other friends who have helped us will
+accept this general expression of our gratitude.
+
+                                                        W. A. L.
+                                                        R. A. A. L.
+
+  _April 1913._
+
+
+
+In the notes to the text, the following works are referred to under the
+shortened forms here given:--
+
+          _Memoir of Jane Austen_, by her nephew, J. E.
+          Austen Leigh: quoted from second edition, 1871. As
+          _Memoir_.
+
+          _Letters of Jane Austen_, edited by Edward Lord
+          Brabourne, 1884. As _Brabourne_.
+
+          _Jane Austen's Sailor Brothers_, by J. H. Hubback
+          and Edith C. Hubback, 1906. As _Sailor Brothers_.
+
+          _Jane Austen: Her Homes and her Friends_ Constance
+          Hill, 1902. As _Miss Hill_.
+
+
+FOOTNOTES:
+
+[1] Father of one of the present writers, and grandfather of the other.
+
+[2] Daughter of the author of the _Memoir_.
+
+[3] It has not, however, been possible to consult the originals except
+in the instance of the letters from Jane to Anna Lefroy.
+
+
+
+
+CONTENTS
+
+
+CHAPTER PAGE
+
+         PREFACE                                            v
+
+         CHRONOLOGY                                      xiii
+
+      I. AUSTENS AND LEIGHS, 1600-1764                      1
+
+     II. STEVENTON, 1764-1785                              11
+
+    III. WARREN HASTINGS AND THE HANCOCKS, 1752-1794       31
+
+     IV. FAMILY LIFE, 1779-1792                            46
+
+      V. GROWTH AND CHANGE, 1792-1796                      67
+
+     VI. ROMANCE, 1795-1802                                84
+
+    VII. AUTHORSHIP AND CORRESPONDENCE, 1796-1798          95
+
+   VIII. GODMERSHAM AND STEVENTON, 1798-1799              109
+
+     IX. THE LEIGH PERROTS AND BATH, 1799-1800            126
+
+      X. CHANGE OF HOME, 1800-1801                        141
+
+     XI. BATH AGAIN, 1801-1805                            165
+
+    XII. FROM BATH TO SOUTHAMPTON, 1805-1808              189
+
+   XIII. FROM SOUTHAMPTON TO CHAWTON, 1808-1809           209
+
+    XIV. _SENSE AND SENSIBILITY_, 1809-1811               235
+
+     XV. _PRIDE AND PREJUDICE_, 1812-1814                 255
+
+    XVI. _MANSFIELD PARK_, 1812-1814                      273
+
+   XVII. _EMMA_, 1814-1815                                299
+
+  XVIII. _PERSUASION_, 1815-1816                          325
+
+    XIX. AUNT JANE, 1814-1817                             341
+
+     XX. FAILING HEALTH, 1816-1817                        369
+
+    XXI. WINCHESTER, 1817                                 388
+
+  APPENDIX: THE TEXT OF JANE AUSTEN'S NOVELS              405
+
+  BIBLIOGRAPHY                                            421
+
+  PEDIGREES                                _to face page_ 428
+      I. Austen
+     II. Leigh
+    III. Craven, Fowle, and Lloyd Families
+
+  INDEX                                                   429
+
+       *       *       *       *       *
+
+  PORTRAIT OF JANE AUSTEN                           _Frontispiece_
+
+
+
+
+CHRONOLOGY OF JANE AUSTEN'S LIFE
+
+
+  1775, Dec. 16 Birth, at Steventon.
+
+  1779, June    Charles John Austen born.
+
+  1780, July    James Austen matriculated at Oxford (St. John's).
+
+  1782          Jane and Cassandra at Oxford under care of Mrs. Cawley
+                  (sister of Dr. Cooper).
+
+  1783          Mrs. Cawley having moved to Southampton, Jane nearly
+                  died there of a fever. Mrs. Cooper (her aunt) took
+                  the infection and died (October).
+
+  1784          _The Rivals_ acted at Steventon.
+
+  1784 or 1785  Jane and Cassandra left Mrs. Latournelle's school at
+                  Reading, and returned home.
+
+  1786          Eliza Comtesse de Feuillide came to England.
+                  Birth of her son.
+
+  1787          James Austen in France.
+
+  1788, July    Henry Austen matriculated at Oxford (St. John's).
+                  Francis Austen went to sea.
+
+  1791          Edward Austen married Elizabeth Bridges.
+
+  1792, March   James Austen married Anne Mathew.
+
+  1794, Feb.    Comte de Feuillide guillotined.
+
+  1795 (?)      Cassandra engaged to Thomas Fowle.
+       May      Mrs. James Austen died.
+
+  1795-6        Mr. Tom Lefroy at Ashe.
+
+  1796          _First Impressions_ (_Pride and Prejudice_) begun.
+                Jane subscribed to _Camilla_.
+
+  1797, Jan.    James Austen married Mary Lloyd.
+
+        Feb.    Thomas Fowle died of fever in the W. Indies.
+
+        Nov.    Jane, with mother and sister, went to Bath.
+                _First Impressions_ refused by Cadell.
+                _Sense and Sensibility_ (already sketched in _Elinor and
+                 Marianne_) begun.
+
+        Dec.   enry Austen married Eliza de Feuillide.
+
+  1798, Aug.   Lady Williams (Jane Cooper) killed in a carriage accident.
+               Mrs. Knight gave up Godmersham to the Edward Austens.
+                 Jane's first visit there.
+
+  1798, Aug.    First draft of _Northanger Abbey_ begun.
+
+  1799, May     Jane at Bath with the Edward Austens.
+        Aug.    Mrs. Leigh Perrot's trouble at Bath.
+
+  1801, May     Family move from Steventon to Bath. Visit to Sidmouth.
+                  Possible date of Jane's romance in the west of England.
+
+  1802          Austens at Dawlish and Teignmouth.
+                Visit of sisters to Steventon and Manydown.
+                Jane received an offer of marriage from an old friend.
+
+  1803          _Northanger Abbey_ (called _Susan_) revised, and sold to
+                  Crosby of London.
+
+  1804          Probable date of _The Watsons_.
+        Sept.   Austens at Lyme.
+        Dec.    Mrs. Lefroy of Ashe killed by a fall from her horse.
+
+  1805, Jan.    Death of Jane's father at Bath.
+
+  1806, July    Austens left Bath for Clifton, Adlestrop, and Stoneleigh.
+
+  1806-7        Austens settled at Southampton.
+
+  1807, March   Took possession of house in Castle Square.
+
+  1808, Sept.   Cassandra at Godmersham.
+        Oct.    Mrs. Edward Austen died there after the birth of her
+                  eleventh child (John).
+
+  1809, April   Jane attempted to secure publication of _Susan_
+                  (_Northanger Abbey_).
+                Austens left Southampton.
+        July    Austens took possession of Chawton (having been at
+                  Godmersham). Jane's authorship resumed.
+
+  1811, April   Jane with Henry in London (Sloane Street) bringing out
+                  _Sense and Sensibility_.
+        Oct.    _Sense and Sensibility_ published.
+
+  1812          Death of Mrs. T. Knight. Edward Austen took the name of
+                  'Knight.'
+
+  1813, Jan.    Publication of _Pride and Prejudice_.
+        April   Death of Mrs. Henry Austen (Eliza).
+        Sept.   Jane's last visit to Godmersham.
+                Second edition of _Sense and Sensibility_.
+
+  1814, Jan.    _Emma_ begun.
+        March   Jane went to London with Henry (reading _Mansfield Park_
+                  by the way).
+        May     _Mansfield Park_ published.
+                Threat of lawsuit for Chawton.
+        Nov.    Marriage of Anna Austen to Ben Lefroy.
+
+  1815, March   _Emma_ finished.
+        Oct.    Illness of Henry.
+        Nov.    Jane shown over Carlton House by Dr. Clarke.
+        Dec.    Publication of _Emma_.
+
+  1816, March   Bankruptcy of Henry Austen (Jane's health began to break
+                  about this time).
+        May     Jane and Cassandra at Kintbury and Cheltenham.
+        July    _Persuasion_ finished.
+        Aug     End of _Per

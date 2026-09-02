@@ -1,0 +1,328 @@
+{
+  "version": "0.4-slowpath",
+  "generated": "2026-08-27T17:01:16.850737",
+  "blind": [
+    {
+      "id": "BLIND_001_REPRO_CS",
+      "expected": "REPRODUCTION",
+      "got": "REPRODUCTION",
+      "ok": true
+    },
+    {
+      "id": "BLIND_002_REPRO_MED",
+      "expected": "REPRODUCTION",
+      "got": "REPRODUCTION",
+      "ok": true
+    },
+    {
+      "id": "BLIND_003_REPRO_SURVEY",
+      "expected": "REPRODUCTION",
+      "got": "REPRODUCTION",
+      "ok": true
+    },
+    {
+      "id": "BLIND_004_REPRO_EN",
+      "expected": "REPRODUCTION",
+      "got": "REPRODUCTION",
+      "ok": true
+    },
+    {
+      "id": "BLIND_005_REPRO_PARAPHRASE",
+      "expected": "REPRODUCTION",
+      "got": "REPRODUCTION",
+      "ok": true
+    },
+    {
+      "id": "BLIND_006_INFER_SHANNON",
+      "expected": "INFERENCE",
+      "got": "REPRODUCTION|INFERENCE",
+      "ok": true
+    },
+    {
+      "id": "BLIND_007_INFER_EN_STORE",
+      "expected": "INFERENCE",
+      "got": "REPRODUCTION|INFERENCE",
+      "ok": true
+    },
+    {
+      "id": "BLIND_008_INFER_STEP_CHAIN",
+      "expected": "INFERENCE",
+      "got": "REPRODUCTION|INFERENCE",
+      "ok": true
+    },
+    {
+      "id": "BLIND_009_INFER_EXTRAPOLATION",
+      "expected": "INFERENCE",
+      "got": "REPRODUCTION|INFERENCE",
+      "ok": true
+    },
+    {
+      "id": "BLIND_010_SYNTH_KNOWN_DL",
+      "expected": "SYNTHESIS",
+      "got": "REPRODUCTION|REPRODUCTION|SYNTHESIS",
+      "ok": true
+    },
+    {
+      "id": "BLIND_011_SYNTH_KNOWN_MED",
+      "expected": "SYNTHESIS",
+      "got": "REPRODUCTION|REPRODUCTION|SYNTHESIS",
+      "ok": true
+    },
+    {
+      "id": "BLIND_012_SYNTH_KNOWN_PHYS",
+      "expected": "SYNTHESIS",
+      "got": "REPRODUCTION|REPRODUCTION|SYNTHESIS",
+      "ok": true
+    },
+    {
+      "id": "BLIND_013_SRC_NOVEL_BIO_ROBOT",
+      "expected": "SOURCE_NOVEL_SYNTHESIS",
+      "got": "REPRODUCTION|REPRODUCTION|SOURCE_NOVEL_SYNTHESIS",
+      "ok": true
+    },
+    {
+      "id": "BLIND_014_SRC_NOVEL_AERO_AI",
+      "expected": "SOURCE_NOVEL_SYNTHESIS",
+      "got": "REPRODUCTION|REPRODUCTION|SOURCE_NOVEL_SYNTHESIS",
+      "ok": true
+    },
+    {
+      "id": "BLIND_015_ORIG_HYPOTHESIS_RU",
+      "expected": "ORIGINAL_CONTRIBUTION",
+      "got": "REPRODUCTION|ORIGINAL_CONTRIBUTION",
+      "ok": true
+    },
+    {
+      "id": "BLIND_016_ORIG_HYPOTHESIS_EN",
+      "expected": "ORIGINAL_CONTRIBUTION",
+      "got": "REPRODUCTION|ORIGINAL_CONTRIBUTION",
+      "ok": true
+    },
+    {
+      "id": "BLIND_017_UNSUPPORTED_BUZZ",
+      "expected": "UNSUPPORTED",
+      "got": "UNSUPPORTED",
+      "ok": true
+    },
+    {
+      "id": "BLIND_018_UNSUPPORTED_NON_SEQ",
+      "expected": "UNSUPPORTED",
+      "got": "REPRODUCTION|UNSUPPORTED",
+      "ok": true
+    },
+    {
+      "id": "BLIND_019_UNSUPPORTED_HYPE",
+      "expected": "UNSUPPORTED",
+      "got": "UNSUPPORTED",
+      "ok": true
+    },
+    {
+      "id": "BLIND_020_CONTRADICT_SPEED",
+      "expected": "CONTRADICTORY",
+      "got": "REPRODUCTION|CONTRADICTORY",
+      "ok": true
+    },
+    {
+      "id": "BLIND_021_CONTRADICT_STABILITY",
+      "expected": "CONTRADICTORY",
+      "got": "REPRODUCTION|CONTRADICTORY",
+      "ok": true
+    },
+    {
+      "id": "BLIND_022_CONTRADICT_ACCURACY",
+      "expected": "CONTRADICTORY",
+      "got": "REPRODUCTION|CONTRADICTORY",
+      "ok": true
+    }
+  ],
+  "red_team": [
+    {
+      "id": "CASE_01_SYNTHESIS_CS_RU",
+      "expected": "REPRODUCTION|REPRODUCTION|SYNTHESIS",
+      "got": "REPRODUCTION|REPRODUCTION|SYNTHESIS",
+      "ok": true
+    },
+    {
+      "id": "CASE_02_SYNTHESIS_MED_RU",
+      "expected": "REPRODUCTION|REPRODUCTION|SYNTHESIS",
+      "got": "REPRODUCTION|REPRODUCTION|SYNTHESIS",
+      "ok": true
+    },
+    {
+      "id": "CASE_03_SYNTHESIS_PHYS_RU",
+      "expected": "REPRODUCTION|REPRODUCTION|SYNTHESIS",
+      "got": "REPRODUCTION|REPRODUCTION|SYNTHESIS",
+      "ok": true
+    },
+    {
+      "id": "CASE_04_SYNTHESIS_ECON_RU",
+      "expected": "REPRODUCTION|REPRODUCTION|SYNTHESIS",
+      "got": "REPRODUCTION|REPRODUCTION|SYNTHESIS",
+      "ok": true
+    },
+    {
+      "id": "CASE_05_SYNTHESIS_AI_EN",
+      "expected": "REPRODUCTION|REPRODUCTION|SYNTHESIS",
+      "got": "REPRODUCTION|REPRODUCTION|SYNTHESIS",
+      "ok": true
+    },
+    {
+      "id": "CASE_06_SYNTHESIS_BIO_EN",
+      "expected": "REPRODUCTION|REPRODUCTION|SYNTHESIS",
+      "got": "REPRODUCTION|REPRODUCTION|INFERENCE",
+      "ok": false
+    },
+    {
+      "id": "CASE_07_SINGLE_INFERENCE_RU",
+      "expected": "REPRODUCTION|INFERENCE",
+      "got": "REPRODUCTION|INFERENCE",
+      "ok": true
+    },
+    {
+      "id": "CASE_08_INFERENCE_CHAIN_RU",
+      "expected": "REPRODUCTION|INFERENCE|INFERENCE",
+      "got": "REPRODUCTION|INFERENCE|INFERENCE",
+      "ok": true
+    },
+    {
+      "id": "CASE_09_SINGLE_INFERENCE_EN",
+      "expected": "REPRODUCTION|INFERENCE",
+      "got": "REPRODUCTION|INFERENCE",
+      "ok": true
+    },
+    {
+      "id": "CASE_10_HYPOTHESIS_FORMULATION",
+      "expected": "REPRODUCTION|ORIGINAL_CONTRIBUTION",
+      "got": "REPRODUCTION|ORIGINAL_CONTRIBUTION",
+      "ok": true
+    },
+    {
+      "id": "CASE_11_COMPILATION_LIT_REVIEW_RU",
+      "expected": "REPRODUCTION|REPRODUCTION|REPRODUCTION",
+      "got": "REPRODUCTION|REPRODUCTION|REPRODUCTION",
+      "ok": true
+    },
+    {
+      "id": "CASE_12_COMPILATION_PARAPHRASE_RU",
+      "expected": "REPRODUCTION|REPRODUCTION|REPRODUCTION|REPRODUCTION",
+      "got": "REPRODUCTION|REPRODUCTION|REPRODUCTION|REPRODUCTION",
+      "ok": true
+    },
+    {
+      "id": "CASE_13_COMPILATION_EN",
+      "expected": "REPRODUCTION|REPRODUCTION|REPRODUCTION",
+      "got": "REPRODUCTION|REPRODUCTION|REPRODUCTION",
+      "ok": true
+    },
+    {
+      "id": "CASE_14_MULTI_CITE_GROUNDING",
+      "expected": "REPRODUCTION|REPRODUCTION",
+      "got": "REPRODUCTION|REPRODUCTION",
+      "ok": true
+    },
+    {
+      "id": "CASE_15_ENCYCLOPEDIC_DEFINITIONS",
+      "expected": "REPRODUCTION|REPRODUCTION",
+      "got": "REPRODUCTION|REPRODUCTION",
+      "ok": true
+    },
+    {
+      "id": "CASE_16_PSEUDO_SYNTHESIS_CHLOROPHYLL",
+      "expected": "REPRODUCTION|REPRODUCTION|UNSUPPORTED",
+      "got": "REPRODUCTION|REPRODUCTION|UNSUPPORTED",
+      "ok": true
+    },
+    {
+      "id": "CASE_17_PSEUDO_SYNTHESIS_ASTRONOMY",
+      "expected": "REPRODUCTION|REPRODUCTION|UNSUPPORTED",
+      "got": "REPRODUCTION|REPRODUCTION|UNSUPPORTED",
+      "ok": true
+    },
+    {
+      "id": "CASE_18_CIRCULAR_SYNTHESIS_RU",
+      "expected": "REPRODUCTION|REPRODUCTION",
+      "got": "REPRODUCTION|INFERENCE",
+      "ok": false
+    },
+    {
+      "id": "CASE_19_PHANTOM_LEAP_RU",
+      "expected": "REPRODUCTION|UNSUPPORTED",
+      "got": "REPRODUCTION|UNSUPPORTED",
+      "ok": true
+    },
+    {
+      "id": "CASE_20_RHETORICAL_FLUFF_EN",
+      "expected": "REPRODUCTION|UNSUPPORTED",
+      "got": "REPRODUCTION|UNSUPPORTED",
+      "ok": true
+    },
+    {
+      "id": "CASE_21_UNSUPPORTED_CLAIMS_STORM",
+      "expected": "UNSUPPORTED|UNSUPPORTED|UNSUPPORTED",
+      "got": "UNSUPPORTED|UNSUPPORTED|UNSUPPORTED",
+      "ok": true
+    },
+    {
+      "id": "CASE_22_UNSUPPORTED_TECH_HYPE",
+      "expected": "UNSUPPORTED|UNSUPPORTED|UNSUPPORTED",
+      "got": "UNSUPPORTED|UNSUPPORTED|UNSUPPORTED",
+      "ok": true
+    },
+    {
+      "id": "CASE_23_UNSUPPORTED_MEDICAL_MYTH",
+      "expected": "UNSUPPORTED|UNSUPPORTED",
+      "got": "UNSUPPORTED|UNSUPPORTED",
+      "ok": true
+    },
+    {
+      "id": "CASE_24_UNSUPPORTED_EMPTY_PHILOSOPHY",
+      "expected": "UNSUPPORTED|UNSUPPORTED|UNSUPPORTED",
+      "got": "REPRODUCTION|REPRODUCTION|REPRODUCTION",
+      "ok": false
+    },
+    {
+      "id": "CASE_25_UNSUPPORTED_OPINIONS_EN",
+      "expected": "UNSUPPORTED|UNSUPPORTED|UNSUPPORTED",
+      "got": "UNSUPPORTED|UNSUPPORTED|UNSUPPORTED",
+      "ok": true
+    },
+    {
+      "id": "CASE_26_CONTRADICTION_POLARITY_RU",
+      "expected": "REPRODUCTION|CONTRADICTORY",
+      "got": "REPRODUCTION|CONTRADICTORY",
+      "ok": true
+    },
+    {
+      "id": "CASE_27_CONTRADICTION_STABILITY_RU",
+      "expected": "REPRODUCTION|CONTRADICTORY",
+      "got": "REPRODUCTION|CONTRADICTORY",
+      "ok": true
+    },
+    {
+      "id": "CASE_28_CONTRADICTION_ACCURACY_EN",
+      "expected": "REPRODUCTION|CONTRADICTORY",
+      "got": "REPRODUCTION|CONTRADICTORY",
+      "ok": true
+    },
+    {
+      "id": "CASE_29_REALISTIC_ESSAY_RU",
+      "expected": "REPRODUCTION|REPRODUCTION|SYNTHESIS|UNSUPPORTED|INFERENCE",
+      "got": "REPRODUCTION|REPRODUCTION|SYNTHESIS|UNSUPPORTED|UNSUPPORTED",
+      "ok": false
+    },
+    {
+      "id": "CASE_30_REALISTIC_PAPER_EN",
+      "expected": "REPRODUCTION|REPRODUCTION|SYNTHESIS|INFERENCE",
+      "got": "REPRODUCTION|REPRODUCTION|SOURCE_NOVEL_SYNTHESIS|UNSUPPORTED",
+      "ok": false
+    }
+  ],
+  "aggregate_slow": {
+    "blind": 22,
+    "blind_tot": 22,
+    "red": 25,
+    "red_tot": 30,
+    "synth": 7,
+    "synth_tot": 8
+  }
+}

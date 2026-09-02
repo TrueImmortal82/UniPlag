@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}UniPlag{% endblock %}</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="/">{{ t('brand_title', get_language(request)) }}</a>
+  {% if user %}
+  <nav>
+    {% set cur_lang = get_language(request) %}
+    {% if user.role == 'student' %}
+      <a href="/">{{ t('nav_my_works', cur_lang) }}</a>
+      <a href="/upload">{{ t('nav_upload', cur_lang) }}</a>
+      <a href="/guide">{{ t('nav_guide', cur_lang) }}</a>
+    {% elif user.role == 'teacher' %}
+      <a href="/">{{ t('nav_all_checks', cur_lang) }}</a>
+      <a href="/upload">{{ t('nav_check_works', cur_lang) }}</a>
+      <a href="/corpus">{{ t('nav_corpus', cur_lang) }}</a>
+      <a href="/guide">{{ t('nav_guide', cur_lang) }}</a>
+    {% elif user.role == 'admin' %}
+      <a href="/">{{ t('nav_all_checks', cur_lang) }}</a>
+      <a href="/upload">{{ t('nav_check_works', cur_lang) }}</a>
+      <a href="/corpus">{{ t('nav_corpus', cur_lang) }}</a>
+      <a href="/admin/users">{{ t('nav_users', cur_lang) }}</a>
+      <a href="/admin/icg">{{ t('nav_icg', cur_lang) }}</a>
+      <a href="/admin/consensus">{{ t('nav_audit', cur_lang) }}</a>
+      <a href="/guide">{{ t('nav_guide', cur_lang) }}</a>
+    {% endif %}
+    
+    <span class="spacer"></span>
+    
+    <!-- Language Switcher -->
+    <div style="display: flex; gap: 4px; align-items: center; background: rgba(255,255,255,0.08); padding: 3px 6px; border-radius: 6px; margin-right: 8px;">
+      <a href="/set-language/ru" style="text-decoration: none; font-size: 12px; padding: 2px 6px; border-radius: 4px; {{ 'background: #0284c7; color: #fff; font-weight: bold;' if cur_lang == 'ru' else 'color: #94a3b8;' }}" title="Русский язык">🇷🇺 RU</a>
+      <a href="/set-language/en" style="text-decoration: none; font-size: 12px; padding: 2px 6px; border-radius: 4px; {{ 'background: #0284c7; color: #fff; font-weight: bold;' if cur_lang == 'en' else 'color: #94a3b8;' }}" title="English Language">🇬🇧 EN</a>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span class="who">
+        {{ user.full_name or user.username }}
+        {% if user.role == 'admin' %}
+          <span class="badge" style="background: #fdf2f8; color: #be185d; font-size: 11px; padding: 2px 6px;">{{ t('role_admin', cur_lang) }}</span>
+        {% elif user.role == 'teacher' %}
+          <span class="badge" style="background: #eff6ff; color: #1d4ed8; font-size: 11px; padding: 2px 6px;">{{ t('role_teacher', cur_lang) }}</span>
+        {% elif user.role == 'student' %}
+          <span class="badge" style="background: #f0fdf4; color: #15803d; font-size: 11px; padding: 2px 6px;">{{ t('role_student', cur_lang) }}{% if user.group_name %} · {{ user.group_name }}{% endif %}</span>
+        {% endif %}
+      </span>
+      <a href="/logout" style="color: #94a3b8; font-size: 13px; text-decoration: none;" title="{{ t('nav_logout', cur_lang) }}">{{ t('nav_logout', cur_lang) }}</a>
+    </div>
+  </nav>
+  {% endif %}
+</header>
+<main>
+{% block content %}{% endblock %}
+</main>
+</body>
+</html>

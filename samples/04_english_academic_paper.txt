@@ -1,0 +1,13 @@
+Research Paper: Epistemic Graph Synthesis in Automated Academic Verification
+
+Author: Elena Smirnova (Computer Science Dept.)
+Supervisor: Dr. Robert Vance
+
+Abstract
+Traditional plagiarism detection tools rely predominantly on surface-level syntactic n-gram matching, failing to capture higher-order argumentation structure and authentic intellectual synthesis. In this paper, we propose a Directed Acyclic Graph (DAG) approach for modeling epistemic inference transitions and authorial contributions.
+
+1. Introduction and Background
+Modern academic assessment requires distinguishing between passive information compilation and genuine intellectual synthesis. By analyzing causal semantic relations between cited background premises and novel authorial inferences, our framework quantifies the epistemological depth of scientific works.
+
+2. Empirical Evaluation
+Experiments on a peer-reviewed dataset of 120 graduate dissertations demonstrate a 24.5% improvement in identifying substantive research contribution over baseline syntactic similarity metrics.

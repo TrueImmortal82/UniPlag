@@ -1,0 +1,21 @@
+{
+  "id": "HUMAN-HUMAN-gazeta",
+  "ground_truth": "human",
+  "source": "gazeta_00050.txt",
+  "language": "ru",
+  "description": "Human news article from Gazeta",
+  "results_v3": {
+    "id": "HUMAN-HUMAN-gazeta",
+    "ground_truth": "human",
+    "predicted": "human",
+    "correct": true,
+    "ai_score": 0.071,
+    "method": "ensemble-v2",
+    "confidence": "low",
+    "confidence_interval": "0%–27%",
+    "tfidf": 0.0433,
+    "char_ngrams": 0.2252,
+    "stylometry": 0.3996,
+    "semantic_density": 0.79
+  }
+}

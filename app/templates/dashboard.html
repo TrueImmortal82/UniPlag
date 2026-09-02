@@ -1,0 +1,470 @@
+{% extends "base.html" %}
+{% block title %}Панель управления — UniPlag{% endblock %}
+{% block content %}
+{% if is_student %}
+<!-- ЛИЧНЫЙ КАБИНЕТ СТУДЕНТА: ОНБОРДИНГ И СТАТИСТИКА -->
+<div class="card" style="border-top: 4px solid #0284c7; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); margin-bottom: 0;">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+    <div>
+      <h2 style="margin: 0; font-size: 19px; color: #0f172a;">👋 Здравствуйте, {{ user.full_name or user.username }}!</h2>
+      <p class="muted" style="margin: 4px 0 0 0; font-size: 13px;">
+        Ваш личный кабинет для сдачи ВКР, проверки на плагиат, детекции ИИ и анализа исследовательского вклада ICG.
+      </p>
+    </div>
+    <div style="display: flex; gap: 8px; align-items: center;">
+      <a href="/guide" class="btn small" style="background: #e0f2fe; color: #0369a1; text-decoration: none; font-weight: 500;">
+        📖 Как работать с платформой?
+      </a>
+      <a href="/upload" class="btn small" style="background: #0284c7; color: #fff; text-decoration: none; font-weight: 500;">
+        📤 Сдать работу
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="stats" style="grid-template-columns: repeat(4, 1fr);">
+  <div class="card stat"><b>{{ stats.my_checks }}</b><span>сданных работ</span></div>
+  <div class="card stat"><b>{{ stats.avg_orig }}%</b><span>средняя оригинальность</span></div>
+  <div class="card stat"><b>{{ stats.avg_icg | round(0) | int }}%</b><span>интеллект. вклад ICG</span></div>
+  <div class="card stat"><b style="font-size: 24px; line-height: 38px;">#{{ stats.my_rank }} <small style="font-size: 14px; font-weight: normal;" class="muted">из {{ stats.total_students }}</small></b><span>место в рейтинге</span></div>
+</div>
+
+<!-- Карточка статуса студента в рейтинге -->
+<div class="card" style="background: #ffffff; border: 1px solid #cbd5e1; border-left: 5px solid {{ '#16a34a' if stats.performance_status == 'performing' else ('#dc2626' if stats.performance_status == 'at_risk' else '#eab308') }}; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+  <div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <h3 style="margin: 0; font-size: 16px;">🏆 Академический рейтинг: <b>{{ stats.rating_score }} / 100</b></h3>
+      <span class="badge {{ stats.status_badge_class }}">{{ stats.status_label }}</span>
+    </div>
+    <p class="muted" style="margin: 4px 0 0 0; font-size: 13px;">
+      Учебная группа: <b>{{ stats.group }}</b> · Категория вклада: <span class="badge {{ stats.tier_class }}">{{ stats.tier }}</span>
+    </p>
+    {% if stats.risk_reasons %}
+      <div style="margin-top: 6px; font-size: 12px; color: #b91c1c;">
+        ⚠️ <b>Зоны внимания:</b> {{ stats.risk_reasons | join(', ') }}
+      </div>
+    {% elif stats.success_highlights %}
+      <div style="margin-top: 6px; font-size: 12px; color: #15803d;">
+        ✨ <b>Сильные стороны:</b> {{ stats.success_highlights | join(', ') }}
+      </div>
+    {% endif %}
+  </div>
+  <a href="/upload" class="btn" style="text-decoration: none;">📤 Сдать новую работу</a>
+</div>
+
+<div class="card">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+    <div>
+      <h2 style="margin: 0;">📝 Мои проверенные работы</h2>
+      <p class="muted" style="margin: 4px 0 0 0;">Результаты анализа оригинальности, ИИ-текста и доказательной структуры.</p>
+    </div>
+  </div>
+
+  {% if not checks %}
+    <p class="muted" style="padding: 20px 0; text-align: center;">У вас пока нет загруженных работ. <a href="/upload">Сдайте свою первую работу на проверку</a>.</p>
+  {% else %}
+  <table>
+    <thead>
+      <tr>
+        <th>Тема / Название работы</th>
+        <th>Оригинальность</th>
+        <th>Заимствования</th>
+        <th>ИИ-текст</th>
+        <th>Интеллект. вклад (ICG)</th>
+        <th>Статус</th>
+        <th>Дата сдачи</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in checks %}
+      <tr>
+        <td>
+          <a href="/report/{{ c.id }}"><b>{{ c.document.title }}</b></a>
+          {% if c.document.filename %}<br><small class="muted">{{ c.document.filename }}</small>{% endif %}
+        </td>
+        <td>
+          {% if c.status == 'done' %}
+            <span class="badge {{ 'ok' if c.plag_score < 30 else ('warn' if c.plag_score < 60 else 'bad') }}">{{ 100 - c.plag_score | round(1) }}%</span>
+          {% else %}—{% endif %}
+        </td>
+        <td>
+          {% if c.status == 'done' %}{{ c.plag_score | round(1) }}%{% else %}—{% endif %}
+        </td>
+        <td>
+          {% if c.status == 'done' and c.ai_method and c.ai_method != 'none' %}
+            <span class="badge {{ 'ok' if c.ai_score < 0.4 else ('warn' if c.ai_score < 0.7 else 'bad') }}">{{ (c.ai_score * 100) | round(0) | int }}%</span>
+          {% else %}—{% endif %}
+        </td>
+        <td>
+          {% if c.status == 'done' and c.icg_score is defined and c.icg_score is not none %}
+            <span class="badge {{ 'ok' if c.icg_score >= 50 else ('warn' if c.icg_score >= 20 else 'bad') }}">{{ c.icg_score | round(1) }}%</span>
+          {% else %}—{% endif %}
+        </td>
+        <td>
+          {% if c.status == 'done' %}
+            <span class="badge ok">Готово</span>
+          {% elif c.status == 'error' %}
+            <span class="badge bad">Ошибка</span>
+          {% else %}
+            <span class="badge warn">{{ c.progress }}%</span>
+          {% endif %}
+        </td>
+        <td class="muted">{{ c.created_at.strftime('%d.%m.%Y %H:%M') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</div>
+
+{% else %}
+<!-- КАБИНЕТ ПРЕПОДАВАТЕЛЯ / АДМИНИСТРАТОРА -->
+<div class="stats" style="grid-template-columns: repeat(4, 1fr);">
+  <div class="card stat"><b>{{ stats.docs }}</b><span>работ в корпусе</span></div>
+  <div class="card stat"><b>{{ stats.checks }}</b><span>проверок выполнено</span></div>
+  <div class="card stat"><b>{{ stats.avg_icg | round(0) | int }}%</b><span>средний вклад ICG</span></div>
+  <div class="card stat"><b>{{ stats.students_count }}</b><span>студентов в системе</span></div>
+</div>
+
+<!-- ВКЛАДКИ РЕЙТИНГОВ: СТУДЕНТЫ vs ПРЕПОДАВАТЕЛИ -->
+<div style="display: flex; gap: 8px; margin-bottom: 14px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">
+  <a href="/?tab=students&group={{ selected_group }}&status={{ selected_status }}" class="btn" style="{{ 'background: #0284c7; color: #fff;' if selected_tab == 'students' else 'background: #f1f5f9; color: #475569;' }}">
+    🏆 Рейтинг студентов по лигам
+  </a>
+  <a href="/?tab=teachers" class="btn" style="{{ 'background: #0284c7; color: #fff;' if selected_tab == 'teachers' else 'background: #f1f5f9; color: #475569;' }}">
+    🎓 Рейтинг преподавателей ({{ stats.teachers_count }})
+  </a>
+</div>
+
+{% if selected_tab == 'teachers' %}
+<!-- ==================== РЕЙТИНГ ПРЕПОДАВАТЕЛЕЙ ==================== -->
+<div class="card" style="border-top: 4px solid #7e22ce;">
+  <div style="margin-bottom: 16px;">
+    <h2 style="margin: 0; display: flex; align-items: center; gap: 8px;">
+      🎓 Рейтинг преподавателей и научных руководителей
+    </h2>
+    <p class="muted" style="margin: 4px 0 0 0;">
+      Оценка педагогической эффективности кафедры на основе ICG-вклада, оригинальности и % успеваемости прикреплённых студентов.
+    </p>
+  </div>
+
+  {% if not teacher_ratings %}
+    <p class="muted" style="padding: 20px 0; text-align: center;">Преподаватели не найдены.</p>
+  {% else %}
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 45px;">Ранг</th>
+        <th>Преподаватель / Кафедра</th>
+        <th style="text-align: center;">Подопечных</th>
+        <th style="text-align: center;">Работ</th>
+        <th>Успеваемость (% без риска)</th>
+        <th>Ср. ICG подопечных</th>
+        <th>Ср. Оригинальность</th>
+        <th>Педагогический индекс</th>
+        <th>Категория эффективности</th>
+        <th>Лучшие студенты</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for t in teacher_ratings %}
+      <tr style="{{ 'background: #faf5ff; border-left: 4px solid #7e22ce;' if t.rank == 1 and t.assigned_count > 0 else 'background: #ffffff;' }}">
+        <td style="text-align: center;">
+          {% if t.rank == 1 and t.assigned_count > 0 %}
+            <span style="font-size: 18px;" title="1 место">🥇</span>
+          {% elif t.rank == 2 and t.assigned_count > 0 %}
+            <span style="font-size: 18px;" title="2 место">🥈</span>
+          {% elif t.rank == 3 and t.assigned_count > 0 %}
+            <span style="font-size: 18px;" title="3 место">🥉</span>
+          {% else %}
+            <b class="muted">#{{ t.rank }}</b>
+          {% endif %}
+        </td>
+        <td>
+          <b>{{ t.full_name }}</b>
+          <br><small class="muted">@{{ t.username }} · <span class="badge" style="font-size: 10px;">{{ t.role }}</span></small>
+        </td>
+        <td style="text-align: center;"><b>{{ t.assigned_count }}</b></td>
+        <td style="text-align: center;">{{ t.total_works }}</td>
+        <td>
+          {% if t.assigned_count > 0 %}
+            <span class="badge {{ 'ok' if t.success_rate >= 70 else ('warn' if t.success_rate >= 40 else 'bad') }}">
+              {{ t.success_rate }}%
+            </span>
+            <br><small class="muted" style="font-size: 10px;">🟢 {{ t.performing_count }} · 🔴 {{ t.at_risk_count }}</small>
+          {% else %}—{% endif %}
+        </td>
+        <td>
+          {% if t.assigned_count > 0 %}
+            <span class="badge {{ 'ok' if t.avg_student_icg >= 50 else ('warn' if t.avg_student_icg >= 20 else 'bad') }}">
+              {{ t.avg_student_icg }}%
+            </span>
+          {% else %}—{% endif %}
+        </td>
+        <td>
+          {% if t.assigned_count > 0 %}
+            <span class="badge {{ 'ok' if t.avg_student_orig >= 70 else ('warn' if t.avg_student_orig >= 40 else 'bad') }}">
+              {{ t.avg_student_orig }}%
+            </span>
+          {% else %}—{% endif %}
+        </td>
+        <td>
+          {% if t.assigned_count > 0 %}
+            <div style="display: flex; align-items: center; gap: 4px;">
+              <b style="font-size: 15px; color: #7e22ce;">{{ t.teacher_score }}</b>
+              <small class="muted">/100</small>
+            </div>
+          {% else %}—{% endif %}
+        </td>
+        <td>
+          <span class="badge {{ t.tier_class }}">{{ t.tier }}</span>
+        </td>
+        <td>
+          {% if t.top_students %}
+            <div style="font-size: 12px;">
+              {% for s in t.top_students %}
+                <div>⭐ <b>{{ s.full_name }}</b> (ICG: {{ s.avg_icg }}%)</div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <small class="muted">—</small>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</div>
+
+{% else %}
+<!-- ==================== ПОЛНЫЙ СТУДЕНЧЕСКИЙ РЕЙТИНГ ПО ЛИГАМ ==================== -->
+<div class="card" style="border-top: 4px solid #0284c7;">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 14px;">
+    <div>
+      <h2 style="margin: 0; display: flex; align-items: center; gap: 8px;">
+        🏆 Полный рейтинг студентов по академическим лигам
+      </h2>
+      <p class="muted" style="margin: 4px 0 0 0;">
+        Цветовая дифференциация лиг: 🟢 Высшая лига (Высокий ICG) · 🟡 Средний эшелон · 🔴 Зона академического риска.
+      </p>
+    </div>
+
+    <!-- Фильтр по учебным группам -->
+    <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap;">
+      <span class="muted" style="font-size: 13px;">Группа:</span>
+      <a href="/?tab=students&status={{ selected_status }}" class="btn small" style="{{ 'background: #0284c7; color: #fff;' if not selected_group else 'background: #f1f5f9; color: #334155;' }}">
+        Все группы
+      </a>
+      {% for g in available_groups %}
+      <a href="/?tab=students&group={{ g }}&status={{ selected_status }}" class="btn small" style="{{ 'background: #0284c7; color: #fff;' if selected_group == g else 'background: #f1f5f9; color: #334155;' }}">
+        {{ g }}
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- КАРТОЧКИ-ИНДИКАТОРЫ КАТЕГОРИЙ УСПЕВАЕМОСТИ -->
+  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px;">
+    <a href="/?tab=students&group={{ selected_group }}&status=" style="text-decoration: none; color: inherit;">
+      <div style="padding: 10px 14px; border-radius: 8px; border: 1px solid {{ '#0284c7' if not selected_status else '#e2e8f0' }}; background: {{ '#f0f9ff' if not selected_status else '#ffffff' }}; text-align: center;">
+        <div style="font-size: 20px; font-weight: bold; color: #0f172a;">{{ perf_counts.total }}</div>
+        <div style="font-size: 12px; color: #64748b;">Все студенты</div>
+      </div>
+    </a>
+    
+    <a href="/?tab=students&group={{ selected_group }}&status=my_students" style="text-decoration: none; color: inherit;">
+      <div style="padding: 10px 14px; border-radius: 8px; border: 1px solid {{ '#0284c7' if selected_status == 'my_students' else '#e2e8f0' }}; background: {{ '#f0f9ff' if selected_status == 'my_students' else '#ffffff' }}; text-align: center;">
+        <div style="font-size: 20px; font-weight: bold; color: #0284c7;">{{ perf_counts.my_students }}</div>
+        <div style="font-size: 12px; color: #0284c7; font-weight: 500;">👥 Мои студенты</div>
+      </div>
+    </a>
+
+    <a href="/?tab=students&group={{ selected_group }}&status=performing" style="text-decoration: none; color: inherit;">
+      <div style="padding: 10px 14px; border-radius: 8px; border: 1px solid {{ '#16a34a' if selected_status == 'performing' else '#bbf7d0' }}; background: {{ '#dcfce7' if selected_status == 'performing' else '#f0fdf4' }}; text-align: center;">
+        <div style="font-size: 20px; font-weight: bold; color: #15803d;">{{ perf_counts.performing }}</div>
+        <div style="font-size: 12px; color: #166534; font-weight: 500;">🟢 Успевающие (Высокий ICG)</div>
+      </div>
+    </a>
+
+    <a href="/?tab=students&group={{ selected_group }}&status=at_risk" style="text-decoration: none; color: inherit;">
+      <div style="padding: 10px 14px; border-radius: 8px; border: 1px solid {{ '#dc2626' if selected_status == 'at_risk' else '#fecaca' }}; background: {{ '#fee2e2' if selected_status == 'at_risk' else '#fff1f2' }}; text-align: center;">
+        <div style="font-size: 20px; font-weight: bold; color: #b91c1c;">{{ perf_counts.at_risk }}</div>
+        <div style="font-size: 12px; color: #991b1b; font-weight: 500;">🔴 Зона риска / Не успевают</div>
+      </div>
+    </a>
+  </div>
+
+  {% if not student_ratings %}
+    <p class="muted" style="padding: 20px 0; text-align: center;">Студенты по выбранным фильтрам не найдены. <a href="/?tab=students">Сбросить фильтры</a>.</p>
+  {% else %}
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 45px;">Ранг</th>
+        <th>Студент (ФИО / ID)</th>
+        <th>Группа / Руководитель</th>
+        <th>Лига успеваемости</th>
+        <th style="text-align: center;">Работ</th>
+        <th>Ср. Оригинальность</th>
+        <th>Ср. ИИ-текст</th>
+        <th>Ср. ICG вклад</th>
+        <th>Сводный рейтинг</th>
+        <th>Последние работы</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in student_ratings %}
+      <tr style="{{ 'background: #f0fdf4; border-left: 5px solid #16a34a;' if s.performance_status == 'performing' else ('background: #fff1f2; border-left: 5px solid #dc2626;' if s.performance_status == 'at_risk' else 'background: #ffffff; border-left: 5px solid #eab308;') }}">
+        <td style="text-align: center;">
+          {% if s.rank == 1 and s.works_count > 0 %}
+            <span style="font-size: 18px;" title="1 место в рейтинге">🥇</span>
+          {% elif s.rank == 2 and s.works_count > 0 %}
+            <span style="font-size: 18px;" title="2 место в рейтинге">🥈</span>
+          {% elif s.rank == 3 and s.works_count > 0 %}
+            <span style="font-size: 18px;" title="3 место в рейтинге">🥉</span>
+          {% else %}
+            <b class="muted">#{{ s.rank }}</b>
+          {% endif %}
+        </td>
+        <td>
+          <b>{{ s.full_name }}</b>
+          {% if s.is_assigned %}
+            <span class="badge" style="background: #e0f2fe; color: #0369a1; font-size: 10px; margin-left: 4px;">Ваш студент</span>
+          {% endif %}
+          <br><small class="muted">Student ID: <code>{{ s.student_id }}</code> · @{{ s.username }}</small>
+        </td>
+        <td>
+          <span class="badge" style="background: #f1f5f9; font-size: 12px;">{{ s.group_name }}</span>
+          {% if s.teacher_name and s.teacher_name != 'Не назначен' %}
+            <br><small class="muted" style="font-size: 11px;">Преп.: {{ s.teacher_name }}</small>
+          {% endif %}
+        </td>
+        <td>
+          <span class="badge {{ s.status_badge_class }}" style="font-size: 11px;">
+            {{ s.status_label }}
+          </span>
+          {% if s.risk_reasons %}
+            <div style="font-size: 11px; color: #b91c1c; margin-top: 3px; max-width: 170px;">
+              ⚠️ {{ s.risk_reasons[0] }}
+            </div>
+          {% elif s.success_highlights %}
+            <div style="font-size: 11px; color: #15803d; margin-top: 3px; max-width: 170px;">
+              ✨ {{ s.success_highlights[0] }}
+            </div>
+          {% endif %}
+        </td>
+        <td style="text-align: center;"><b>{{ s.works_count }}</b></td>
+        <td>
+          {% if s.works_count > 0 %}
+            <span class="badge {{ 'ok' if s.avg_orig >= 70 else ('warn' if s.avg_orig >= 40 else 'bad') }}">
+              {{ s.avg_orig }}%
+            </span>
+          {% else %}—{% endif %}
+        </td>
+        <td>
+          {% if s.works_count > 0 %}
+            <span class="badge {{ 'ok' if s.avg_ai < 30 else ('warn' if s.avg_ai < 60 else 'bad') }}">
+              {{ s.avg_ai }}%
+            </span>
+          {% else %}—{% endif %}
+        </td>
+        <td>
+          {% if s.works_count > 0 %}
+            <span class="badge {{ 'ok' if s.avg_icg >= 50 else ('warn' if s.avg_icg >= 20 else 'bad') }}">
+              {{ s.avg_icg }}%
+            </span>
+          {% else %}—{% endif %}
+        </td>
+        <td>
+          {% if s.works_count > 0 %}
+            <div style="display: flex; align-items: center; gap: 4px;">
+              <b>{{ s.rating_score }}</b>
+              <small class="muted">/100</small>
+            </div>
+          {% else %}—{% endif %}
+        </td>
+        <td>
+          {% if s.recent_works %}
+            <div style="font-size: 12px;">
+              {% for w in s.recent_works %}
+                <div>• <a href="/report/{{ w.id }}" title="Оригинальность: {{ w.orig }}%, ICG: {{ w.icg }}%">{{ w.title[:24] }}{% if w.title|length > 24 %}...{% endif %}</a></div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <small class="muted" style="color: #dc2626;">Нет сданных работ</small>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</div>
+{% endif %}
+
+<!-- СЕКЦИЯ: ВСЕ ПРОВЕРКИ -->
+<div class="card">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+    <div>
+      <h2 style="margin: 0;">📊 Все проверки студенческих работ</h2>
+      <p class="muted" style="margin: 4px 0 0 0;">Хронологический реестр проверок студенческих ВКР, курсовых и рефератов.</p>
+    </div>
+    <a href="/upload" class="btn" style="text-decoration: none;">📄 Загрузить на проверку</a>
+  </div>
+
+  {% if not checks %}
+    <p class="muted">Пока нет проверок. <a href="/upload">Загрузите работы на проверку</a>.</p>
+  {% else %}
+  <table>
+    <thead>
+      <tr>
+        <th>Работа</th>
+        <th>Автор / Студент</th>
+        <th>Оригинальность</th>
+        <th>Заимствования</th>
+        <th>ИИ-текст</th>
+        <th>Интеллект. вклад (ICG)</th>
+        <th>Дата</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in checks %}
+      <tr>
+        <td>
+          <a href="/report/{{ c.id }}"><b>{{ c.document.title }}</b></a>
+          {% if c.document.filename %}<br><small class="muted">{{ c.document.filename }}</small>{% endif %}
+        </td>
+        <td>
+          {{ c.document.author or "—" }}
+          {% if c.document.owner and c.document.owner.group_name %}
+            <br><small class="muted" style="background: #f1f5f9; padding: 1px 5px; border-radius: 3px;">{{ c.document.owner.group_name }}</small>
+          {% endif %}
+        </td>
+        <td>
+          {% if c.status == 'done' %}
+            <span class="badge {{ 'ok' if c.plag_score < 30 else ('warn' if c.plag_score < 60 else 'bad') }}">{{ 100 - c.plag_score | round(1) }}%</span>
+          {% else %}
+            <span class="badge warn">{{ c.status_msg or 'В обработке' }}</span>
+          {% endif %}
+        </td>
+        <td>{{ c.plag_score | round(1) }}%</td>
+        <td>
+          {% if c.ai_method and c.ai_method != 'none' %}
+            <span class="badge {{ 'ok' if c.ai_score < 0.4 else ('warn' if c.ai_score < 0.7 else 'bad') }}">{{ (c.ai_score * 100) | round(0) | int }}%</span>
+          {% else %}—{% endif %}
+        </td>
+        <td>
+          {% if c.icg_score is defined and c.icg_score is not none and c.status == 'done' %}
+            <span class="badge {{ 'ok' if c.icg_score >= 50 else ('warn' if c.icg_score >= 20 else 'bad') }}">{{ c.icg_score | round(1) }}%</span>
+          {% else %}—{% endif %}
+        </td>
+        <td class="muted">{{ c.created_at.strftime('%d.%m.%Y %H:%M') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</div>
+{% endif %}
+{% endblock %}

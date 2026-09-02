@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+{% block title %}Руководство пользователя — UniPlag{% endblock %}
+{% block content %}
+
+<!-- ЗАГОЛОВОК И ОНБОРДИНГ БАННЕР -->
+<div class="card" style="border-top: 4px solid #0284c7; background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+    <div>
+      <h1 style="margin: 0; font-size: 22px; display: flex; align-items: center; gap: 10px;">
+        📖 Руководство пользователя платформы UniPlag & ICG
+      </h1>
+      <p class="muted" style="margin: 6px 0 0 0; font-size: 14px;">
+        Интуитивное руководство по проверке оригинальности, детекции ИИ-текста, оценке графа ICG и экспорту сертификатов.
+      </p>
+    </div>
+    <a href="/upload" class="btn" style="text-decoration: none; padding: 9px 20px; font-size: 14px; margin: 0;">
+      📤 Сдать работу на проверку
+    </a>
+  </div>
+</div>
+
+<!-- 3 ПРОСТЫХ ШАГА (КАК ЭТО РАБОТАЕТ) -->
+<div class="card">
+  <h3 style="margin-top: 0; font-size: 16px;">⚡ Как работать с платформой за 3 простых шага:</h3>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 12px;">
+    
+    <div style="background: #fafbfc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;">
+      <div style="font-size: 24px; margin-bottom: 6px;">1. 📤</div>
+      <b style="font-size: 15px; color: #0f172a;">Загрузите файл</b>
+      <p class="muted" style="margin: 6px 0 0 0; font-size: 13px; line-height: 1.5;">
+        Перейдите на вкладку «Загрузка» и выберите файл вашей ВКР, статьи или курсовой (.docx, .pdf, .txt, .odt).
+      </p>
+    </div>
+
+    <div style="background: #fafbfc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;">
+      <div style="font-size: 24px; margin-bottom: 6px;">2. 🧠</div>
+      <b style="font-size: 15px; color: #0f172a;">Экспертиза за 5 сек</b>
+      <p class="muted" style="margin: 6px 0 0 0; font-size: 13px; line-height: 1.5;">
+        Система рассчитает оригинальность, процент ИИ-генерации и глубину научного синтеза ICG (DAG рассуждений).
+      </p>
+    </div>
+
+    <div style="background: #fafbfc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;">
+      <div style="font-size: 24px; margin-bottom: 6px;">3. 📄</div>
+      <b style="font-size: 15px; color: #0f172a;">Сертификат & Чек-лист</b>
+      <p class="muted" style="margin: 6px 0 0 0; font-size: 13px; line-height: 1.5;">
+        Скачайте официальный PDF-сертификат с цифровой печатью SHA-512 или следуйте пошаговому чек-листу доработки.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ИНТЕРАКТИВНЫЕ ВКЛАДКИ РУКОВОДСТВА -->
+<div class="card">
+  <div style="display: flex; gap: 8px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 16px; flex-wrap: wrap;">
+    <button class="btn small guide-tab-btn" onclick="openGuideTab('student')" id="tab-btn-student" style="background: #0284c7; color: #fff;">
+      🎓 Для студента
+    </button>
+    <button class="btn small guide-tab-btn" onclick="openGuideTab('teacher')" id="tab-btn-teacher" style="background: #f1f5f9; color: #475569;">
+      👨‍🏫 Для преподавателя
+    </button>
+    <button class="btn small guide-tab-btn" onclick="openGuideTab('admin')" id="tab-btn-admin" style="background: #f1f5f9; color: #475569;">
+      👑 Для администратора
+    </button>
+    <button class="btn small guide-tab-btn" onclick="openGuideTab('faq')" id="tab-btn-faq" style="background: #f1f5f9; color: #475569;">
+      ❓ Часто задаваемые вопросы (FAQ)
+    </button>
+  </div>
+
+  <!-- ВКЛАДКА: ДЛЯ СТУДЕНТА -->
+  <div id="guide-tab-student" class="guide-tab-content">
+    <h3 style="margin-top: 0; color: #0284c7;">🎓 Инструкция для студента</h3>
+    
+    <div style="line-height: 1.7; font-size: 14px; color: #334155;">
+      <h4 style="margin: 14px 0 4px 0; color: #0f172a;">1. Как читать 4 ключевые оценки в отчёте:</h4>
+      <ul>
+        <li><b>🟢 Оригинальность (норма: $\ge 70–80\%$):</b> доля уникального текста без совпадений с базой вуза.</li>
+        <li><b>🔴 Заимствования (норма: $< 20–30\%$):</b> цитаты и фрагменты, найденные в корпусе других работ или веб-архиве.</li>
+        <li><b>🟡 ИИ-генерация (норма: $< 20–30\%$):</b> оценка вероятности написания текста нейросетью (ChatGPT и др.).</li>
+        <li><b>🧠 Вклад ICG v0.4 (норма: $\ge 45–70\%$):</b> показатель научной самостоятельности. Оценивает глубину синтеза источников и наличие ваших собственных выводов.</li>
+      </ul>
+
+      <h4 style="margin: 16px 0 4px 0; color: #0f172a;">2. Пошаговый чек-лист доработки и готовые академические шаблоны:</h4>
+      <p>
+        В нижней части отчёта ([`/report/{id}`](/)) система формирует персональный план улучшения работы:
+        сильные стороны, конкретные места для доработки и готовые формулировки в научном стиле (*«Сопоставительный анализ данных позволяет заключить...»*).
+      </p>
+
+      <h4 style="margin: 16px 0 4px 0; color: #0f172a;">3. Официальный PDF-сертификат для диплома:</h4>
+      <p>
+        В правом верхнем углу отчёта нажмите кнопку <b>«📄 Скачать PDF-сертификат»</b>. Сформируется официальная справка формата А4 с реквизитами вуза и цифровой печатью подлинности SHA-512 для вклейки в диплом или курсовую работу.
+      </p>
+    </div>
+  </div>
+
+  <!-- ВКЛАДКА: ДЛЯ ПРЕПОДАВАТЕЛЯ -->
+  <div id="guide-tab-teacher" class="guide-tab-content" style="display: none;">
+    <h3 style="margin-top: 0; color: #7e22ce;">👨‍🏫 Инструкция для преподавателя и научного руководителя</h3>
+    
+    <div style="line-height: 1.7; font-size: 14px; color: #334155;">
+      <h4 style="margin: 14px 0 4px 0; color: #0f172a;">1. Мониторинг закреплённых студентов:</h4>
+      <p>
+        В панели управления преподавателю доступны 4 карточки-фильтра в 1 клик:
+        <b>«Все студенты»</b>, <b>«👥 Мои студенты»</b>, <b>«🟢 Успевающие»</b> и <b>«🔴 В зоне риска»</b>.
+      </p>
+
+      <h4 style="margin: 16px 0 4px 0; color: #0f172a;">2. Цветовая подсветка и диагностика рисков:</h4>
+      <ul>
+        <li><b>🟢 Успевает:</b> студент сдал работу с высоким ICG ($\ge 45\%$) и высокой оригинальностью ($\ge 65\%$).</li>
+        <li><b>🔴 В зоне риска:</b> студент не сдал работу к сроку, либо ICG $< 25\%$ (чистый реферат), либо плагиат $> 60\%$. Система прямо в таблице выводит причину (например, *«Критически низкий ICG (14%)»*).</li>
+      </ul>
+
+      <h4 style="margin: 16px 0 4px 0; color: #0f172a;">3. Педагогический рейтинг кафедры (TeacherScore):</h4>
+      <p>
+        Во вкладке «🎓 Рейтинг преподавателей» кафедра может видеть совокупный педагогический индекс каждого руководителя на основе средней успеваемости его подопечных и их исследовательского вклада.
+      </p>
+    </div>
+  </div>
+
+  <!-- ВКЛАДКА: ДЛЯ АДМИНИСТРАТОРА -->
+  <div id="guide-tab-admin" class="guide-tab-content" style="display: none;">
+    <h3 style="margin-top: 0; color: #0f172a;">👑 Инструкция для администратора кафедры / вуза</h3>
+    
+    <div style="line-height: 1.7; font-size: 14px; color: #334155;">
+      <h4 style="margin: 14px 0 4px 0; color: #0f172a;">1. Управление пользователями и закрепление студентов (/admin/users):</h4>
+      <p>
+        Администратор может создавать аккаунты студентов и преподавателей, объединять их в группы (например, `ИВТ-41`) и закреплять студентов за научными руководителями.
+      </p>
+
+      <h4 style="margin: 16px 0 4px 0; color: #0f172a;">2. Поиск по открытым научным базам (/corpus/search_science):</h4>
+      <p>
+        Платформа интегрирована с <b>arXiv Open API</b> и открытыми базами научных статей. Вводите тему исследования и добавляйте эталонные статьи в локальный корпус проверок в 1 клик через кнопку <b>«+ В корпус проверок»</b>.
+      </p>
+
+      <h4 style="margin: 16px 0 4px 0; color: #0f172a;">3. 512-битный криптографический аудит (/admin/consensus):</h4>
+      <p>
+        Контроль целостности исходного кода платформы через локальный мастер-ключ HMAC-SHA512 и блокчейн-реестр неизменяемости.
+      </p>
+    </div>
+  </div>
+
+  <!-- ВКЛАДКА: FAQ -->
+  <div id="guide-tab-faq" class="guide-tab-content" style="display: none;">
+    <h3 style="margin-top: 0; color: #0284c7;">❓ Часто задаваемые вопросы (FAQ)</h3>
+    
+    <div style="display: grid; gap: 12px; margin-top: 14px;">
+      <div style="background: #fafbfc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 18px;">
+        <b style="color: #0f172a;">В: На каком порту работает сервер?</b>
+        <p class="muted" style="margin: 4px 0 0 0; font-size: 13px;">
+          Сервер по умолчанию запускается на порту <b>7932</b> (<code>http://localhost:7932/</code>). Если порт занят, лаунчер автоматически переключится на следующий свободный порт (7933 и т.д.).
+        </p>
+      </div>
+
+      <div style="background: #fafbfc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 18px;">
+        <b style="color: #0f172a;">В: Считается ли корректное цитирование за плагиат?</b>
+        <p class="muted" style="margin: 4px 0 0 0; font-size: 13px;">
+          Корректно оформленные цитаты со ссылками на источники распознаются графом ICG как опорные узлы (Anchors), что увеличивает балл синтеза и повышает общую оценку работы.
+        </p>
+      </div>
+
+      <div style="background: #fafbfc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 18px;">
+        <b style="color: #0f172a;">В: Что делать, если балл ICG низкий при высокой оригинальности?</b>
+        <p class="muted" style="margin: 4px 0 0 0; font-size: 13px;">
+          Это означает, что текст написан своими словами, но представляет собой пересказ без глубокого авторского анализа. Используйте блок «Рекомендации ICG» в отчёте: сравните выводы разных авторов и добавьте собственное обоснованное заключение.
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function openGuideTab(tabName) {
+  // Hide all tabs
+  document.querySelectorAll('.guide-tab-content').forEach(el => el.style.display = 'none');
+  // Reset buttons
+  document.querySelectorAll('.guide-tab-btn').forEach(btn => {
+    btn.style.background = '#f1f5f9';
+    btn.style.color = '#475569';
+  });
+
+  // Show active tab
+  const activeContent = document.getElementById('guide-tab-' + tabName);
+  const activeBtn = document.getElementById('tab-btn-' + tabName);
+  if (activeContent) activeContent.style.display = 'block';
+  if (activeBtn) {
+    activeBtn.style.background = (tabName === 'teacher' ? '#7e22ce' : '#0284c7');
+    activeBtn.style.color = '#fff';
+  }
+}
+</script>
+{% endblock %}

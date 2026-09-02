@@ -1,0 +1,21 @@
+{
+  "id": "AI-AI-aigenen",
+  "ground_truth": "ai",
+  "source": "aigenen_00000.txt",
+  "language": "en",
+  "description": "AI-generated English text",
+  "results_v3": {
+    "id": "AI-AI-aigenen",
+    "ground_truth": "ai",
+    "predicted": "ai",
+    "correct": true,
+    "ai_score": 0.96,
+    "method": "ensemble-v2",
+    "confidence": "high",
+    "confidence_interval": "78%–100%",
+    "tfidf": 0.985,
+    "char_ngrams": 0.9294,
+    "stylometry": 0.5804,
+    "semantic_density": 0.73
+  }
+}
