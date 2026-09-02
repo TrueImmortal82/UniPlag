@@ -69,6 +69,22 @@ async def lifespan(_app: FastAPI):
             db.add(admin)
             db.commit()
             print("Создан администратор по умолчанию: admin / admin123 (смените пароль!)")
+    
+    # Ollama Local Neural Engine Status & Auto-Preparation
+    try:
+        from .ai_detector import get_ollama_status, get_ollama_model
+        ollama_stat = get_ollama_status()
+        if ollama_stat["available"]:
+            if ollama_stat["active_model"]:
+                print(f"🤖 [AI Detector] Ollama активна. Используется модель: {ollama_stat['active_model']}")
+            else:
+                print("🤖 [AI Detector] Ollama активна. Подгружаем оптимальную модель...")
+                get_ollama_model()
+        else:
+            print("ℹ️  [AI Detector] Для глубокого нейросетевого анализа требуется Ollama (https://ollama.com). Активен локальный ML-ансамбль.")
+    except Exception as e:
+        print(f"Ollama check notice: {e}")
+
     # Anti-Tamper: Boot-time code integrity check
     try:
         from .integrity import verify_code_integrity

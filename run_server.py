@@ -259,12 +259,29 @@ def main():
         logger.info(f"Machine Trust: is_trusted={is_trusted}, dev='{dev_name}'")
         logger.info(f"Code Integrity: is_valid={integrity.is_valid}")
     except Exception as e:
-        logger.warning(f"Security check exception during pre-flight: {e}")
+        logger.warning(f"Security pre-flight checks skipped: {e}")
         key_info = {"key_size_bits": 512}
         is_trusted = False
         dev_name = "Local Node"
 
-    # 4. Print Banner
+    # 4. Ollama Pre-flight & Auto-Pull Check
+    try:
+        from app.ai_detector import get_ollama_status, get_ollama_model
+        ollama_status = get_ollama_status()
+        if ollama_status["available"]:
+            if ollama_status["active_model"]:
+                print(f"{GREEN}🤖 Ollama Neural Engine:{RESET} активна, модель: {BOLD}{ollama_status['active_model']}{RESET}")
+                logger.info(f"Ollama active: {ollama_status['active_model']}")
+            else:
+                print(f"{YELLOW}🤖 Ollama Neural Engine:{RESET} модель не установлена. Автоматически загружаем оптимальную модель...")
+                logger.info("Ollama active, triggering auto-pull...")
+                get_ollama_model()
+        else:
+            print(f"{YELLOW}ℹ️  Ollama:{RESET} для локального нейросетевого анализа рекомендуется установить Ollama ({CYAN}https://ollama.com{RESET}). Сейчас активен встроенный ML-ансамбль.")
+    except Exception as e:
+        logger.warning(f"Ollama pre-flight check skipped: {e}")
+
+    # 5. Print Banner
     print_banner(args.host, args.port, key_info.get("key_size_bits", 512), is_trusted, dev_name)
 
     # 5. Open Browser in background thread

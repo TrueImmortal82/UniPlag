@@ -35,7 +35,13 @@ _sk_model = None
 _sk_meta: dict = {}
 _ollama_model: str | None = None
 _ollama_error: str = ""
-OLLAMA_PREFERRED = ("gemma4", "granite3.3", "llama3.1", "llama3.2", "qwen2.5", "mistral", "phi4")
+import threading
+
+OLLAMA_PREFERRED = ("qwen2.5", "llama3.2", "gemma4", "gemma2", "gemma", "mistral", "granite3.3", "phi4")
+DEFAULT_AUTOPULL_MODEL = "qwen2.5:1.5b"
+_pulling_lock = threading.Lock()
+_is_pulling = False
+_pull_status = ""
 
 
 def _try_sklearn():
@@ -92,6 +98,70 @@ def _pick_ollama_model(models: list[dict]) -> str | None:
     return None
 
 
+def auto_pull_optimal_model(model_name: str = DEFAULT_AUTOPULL_MODEL) -> bool:
+    """Asynchronously pulls the optimal lightweight model in Ollama if none is installed."""
+    global _is_pulling, _pull_status, _ollama_model
+    with _pulling_lock:
+        if _is_pulling:
+            return True
+        _is_pulling = True
+        _pull_status = f"Загрузка оптимальной модели {model_name}..."
+
+    def _pull_worker():
+        global _is_pulling, _pull_status, _ollama_model
+        try:
+            payload = json.dumps({"name": model_name, "stream": False}).encode("utf-8")
+            req = urllib.request.Request(
+                f"{config.OLLAMA_URL}/api/pull",
+                data=payload,
+                headers={"Content-Type": "application/json"},
+                method="POST",
+            )
+            with urllib.request.urlopen(req, timeout=300) as resp:
+                _ = resp.read()
+            _ollama_model = model_name
+            _pull_status = f"Модель {model_name} успешно загружена и готова к работе."
+            print(f"✅ [Ollama] Оптимальная модель {model_name} успешно загружена.")
+        except Exception as e:
+            _pull_status = f"Ошибка загрузки модели {model_name}: {e}"
+            print(f"⚠️ [Ollama] Не удалось загрузить модель {model_name}: {e}")
+        finally:
+            _is_pulling = False
+
+    t = threading.Thread(target=_pull_worker, daemon=True)
+    t.start()
+    return True
+
+
+def get_ollama_status() -> dict:
+    """Returns the current operational status of the Ollama service and active model."""
+    global _ollama_model, _ollama_error, _is_pulling, _pull_status
+    try:
+        with urllib.request.urlopen(f"{config.OLLAMA_URL}/api/tags", timeout=3) as r:
+            data = json.loads(r.read())
+            models = data.get("models", [])
+            active = _pick_ollama_model(models)
+            return {
+                "available": True,
+                "url": config.OLLAMA_URL,
+                "active_model": active,
+                "installed_models": [m.get("name") for m in models],
+                "is_pulling": _is_pulling,
+                "pull_status": _pull_status,
+                "status_message": f"Подключено к Ollama. Активная модель: {active}" if active else "Ollama активна, но модели не установлены. Запускается автозагрузка...",
+            }
+    except Exception as e:
+        return {
+            "available": False,
+            "url": config.OLLAMA_URL,
+            "active_model": None,
+            "installed_models": [],
+            "is_pulling": False,
+            "pull_status": "",
+            "status_message": f"Ollama не обнаружена на {config.OLLAMA_URL}. Установите Ollama с https://ollama.com",
+        }
+
+
 def get_ollama_model() -> str | None:
     global _ollama_model, _ollama_error
     if _ollama_model:
@@ -100,11 +170,13 @@ def get_ollama_model() -> str | None:
         with urllib.request.urlopen(f"{config.OLLAMA_URL}/api/tags", timeout=5) as r:
             data = json.loads(r.read())
     except Exception as e:
-        _ollama_error = f"Ollama недоступна на {config.OLLAMA_URL} ({e.__class__.__name__})"
+        _ollama_error = f"Ollama недоступна на {config.OLLAMA_URL} ({e.__class__.__name__}). Установите Ollama: https://ollama.com"
         return None
-    _ollama_model = _pick_ollama_model(data.get("models", []))
+    models = data.get("models", [])
+    _ollama_model = _pick_ollama_model(models)
     if not _ollama_model:
-        _ollama_error = "В Ollama нет подходящей текстовой модели (ollama pull gemma4)"
+        _ollama_error = f"В Ollama нет подходящей текстовой модели. Запускаем автоматическую загрузку {DEFAULT_AUTOPULL_MODEL}..."
+        auto_pull_optimal_model(DEFAULT_AUTOPULL_MODEL)
     return _ollama_model
 
 
