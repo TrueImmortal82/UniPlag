@@ -4,12 +4,12 @@
 
 ![Platform](https://img.shields.io/badge/Platform-UniPlag%20%26%20ICG%20Enterprise-blue?style=for-the-badge&logo=shield)
 ![Security](https://img.shields.io/badge/Security-512--bit%20Cryptographic%20Seal-purple?style=for-the-badge&logo=lock)
-![Languages](https://img.shields.io/badge/Languages-🇷🇺%20RU%20|%20🇬🇧%20EN%20|%20🇰🇿%20KK-green?style=for-the-badge)
+![Languages](https://img.shields.io/badge/Languages-🇷🇺%20RU%20|%20🇬🇧%20EN%20|%20🇺🇿%20UZ-green?style=for-the-badge)
 ![BlackBox](https://img.shields.io/badge/Format-BlackBox%20%28Zero--Disk%29-black?style=for-the-badge)
 
 **Next-Generation Autonomous Academic Integrity, AI Content Analysis & Intellectual Contribution Graph (ICG) Verification Platform.**
 
-[🇷🇺 Русский](#-русский-ru) • [🇬🇧 English](#-english-en) • [🇰🇿 Қазақша](#-қазақша-kk)
+[🇷🇺 Русский](#-русский-ru) • [🇬🇧 English](#-english-en) • [🇺🇿 O'zbekcha](#-ozbekcha-uz)
 
 </div>
 
@@ -79,49 +79,49 @@ run_blackbox.bat
 
 ---
 
-# 🇰🇿 Қазақша (KK)
+# 🇺🇿 O'zbekcha (UZ)
 
-## 🌟 Платформа туралы шолу
-**UniPlag & ICG** — университеттерге, диссертациялық кеңестерге және ғылыми баспаларға арналған жаңа буынның академиялық сараптама платформасы. Жүйе заманауи білім берудегі басты мәселелерді шешеді: **жасанды интеллект мәтінін (LLM) анықтау** және **авторлық ғылыми үлессіз көшіріп алуды (компиляция) бағалау**.
+## 🌟 Platforma haqida umumiy sharh
+**UniPlag & ICG** — universitetlar, dissertatsiya kengashlari va ilmiy nashriyotlar uchun mo'ljallangan yangi avlod akademik ekspertiza platformasi. Tizim zamonaviy ta'limning eng muhim muammolarini hal etadi: **sun'iy intellekt (LLM / ChatGPT) matnini aniqlash** hamda **mualliflik hissasisiz ko'chirib olish (passiv kompilyatsiya) darajasini baholash**.
 
-### 🎯 4-Метрикалық сараптама үлгісі
-1. **Мәтін түпнұсқалығы** (0–100%) — академиялық қорға қатысты авторлық мәтіннің жаңалығы.
-2. **Алынған үзінділер мен сілтемелер** (0–100%) — бастапқы дереккөздерді нақты көрсету.
-3. **ЖИ генерациясын анықтау (AI)** — нейрожелілер стилометриясын талдау.
-4. **Зияткерлік үлес графигі (ICG v0.4)** — дереккөздерді синтездеу тереңдігін (DAG) және автордың дербес ғылыми қорытындыларын бағалау.
+### 🎯 4-Metrikali akademik baholash modeli
+1. **Matn originalligi** (0–100%) — akademik bazalarga nisbatan muallif matnining yangilik darajasi.
+2. **Olingan parchalar va iqtiboslar** (0–100%) — manbalar bilan mosliklarni aniq ko'rsatish va ajratib ko'rsatish.
+3. **Sun'iy intellektni aniqlash (AI)** — neyrotarmoqlar uslubiy belgilarini aniqlash.
+4. **Intellektual hissa grafigi (ICG v0.4)** — adabiyotlar tahlili chuqurligi (DAG) va muallifning mustaqil ilmiy xulosalarini baholash.
 
-### 📜 512-биттік цифрлық мөрлі ресми PDF-анықтамалар
-* Мемлекеттік аттестаттау комиссиясы (МАК), деканат және ғылыми кеңестер үшін А4 форматындағы ресми сертификаттар.
-* **512-биттік цифрлық растау мөрі (SHA-512)** және `/verify/{seal}` арқылы онлайн тексеру.
+### 📜 512-bitli raqamli muhrga ega rasmiy PDF-ma'lumotnomalar
+* Davlat attestatsiya komissiyasi (DAK), dekanat va ilmiy kengashlar uchun A4 formatidagi rasmiy sertifikatlar.
+* **512-bitli raqamli tasdiqlash muhri (SHA-512)** va `/verify/{seal}` havolasi orqali onlayn haqiqiylikni tekshirish.
 
-### 🤖 Жергілікті Ollama контуры және модельдерді автожүктеу
-* Терең нейрожелілік талдау үшін [**Ollama**](https://ollama.com) орнатылуы қажет.
-* Алғашқы іске қосылғанда жүйе ең оңтайлы модельді (**`qwen2.5:1.5b`** / `llama3.2`) **автоматты түрде жүктеп алады**.
+### 🤖 Mahalliy Ollama neyrotizimi va modellarni avtomatik yuklash
+* Chuqur neyrotarmoq tahlili uchun [**Ollama**](https://ollama.com) dasturi o'rnatilgan bo'lishi lozim.
+* Dastur birinchi marta ishga tushganda eng qulay va tezkor modelni (**`qwen2.5:1.5b`** / `llama3.2`) **avtomatik ravishda yuklab oladi**.
 
-### 🚀 Жылдам іске қосу
+### 🚀 Tezkor ishga tushirish
 ```bash
-# 1. Тәуелділіктерді орнату
+# 1. Kerakli kutubxonalarni o'rnatish
 pip install -r requirements.txt
 
-# 2. Қорғалған BlackBox контейнерін іске қосу
+# 2. Himoyalangan BlackBox konteynerini ishga tushirish
 run_blackbox.bat
-# немесе: python run_blackbox.py --port 7932
+# yoki: python run_blackbox.py --port 7932
 ```
-* Браузерде ашу: **`http://localhost:7932`**
+* Brauzerda ochish: **`http://localhost:7932`**
 
 ---
 
-## 📁 Демонстрациялық файлдар / Sample Files / Демонстрациялық құжаттар
+## 📁 Namunaviy fayllar / Sample Files / Демонстрационные примеры
 
-| Файл | Тіл / Language | Сипаттамасы / Description | Вердикт |
+| Fayl / File | Til / Lang | Tavsif / Description | Natija / Verdict |
 |---|---|---|:---:|
-| [`samples/01_high_icg_original_research.docx`](samples/01_high_icg_original_research.docx) | 🇷🇺 RU | Научная ВКР с высоким ICG и авторским синтезом | 🟢 Рекомендовано |
-| [`samples/02_ai_generated_essay.txt`](samples/02_ai_generated_essay.txt) | 🇷🇺 RU | Эссе со стилометрическими маркерами нейросети | 🔴 Детекция ИИ |
-| [`samples/03_plagiarism_compilation_review.txt`](samples/03_plagiarism_compilation_review.txt) | 🇷🇺 RU | Реферативный обзор с заимствованиями | 🟡 Компиляция |
-| [`samples/04_english_academic_paper.pdf`](samples/04_english_academic_paper.pdf) | 🇬🇧 EN | Research Paper for International Certificate | 🟢 Recommended |
+| [`samples/01_high_icg_original_research.docx`](samples/01_high_icg_original_research.docx) | 🇷🇺 RU | Yuqori ICG va mualliflik sinteziga ega ilmiy BMI | 🟢 Tavsiya etiladi |
+| [`samples/02_ai_generated_essay.txt`](samples/02_ai_generated_essay.txt) | 🇷🇺 RU | Neyrotarmoq belgilari mavjud esse (AI deteksiya) | 🔴 AI aniqlandi |
+| [`samples/03_plagiarism_compilation_review.txt`](samples/03_plagiarism_compilation_review.txt) | 🇷🇺 RU | Matn o'zlashtirishlari mavjud referativ sharh | 🟡 Kompilyatsiya |
+| [`samples/04_english_academic_paper.pdf`](samples/04_english_academic_paper.pdf) | 🇬🇧 EN | Xalqaro sertifikat uchun ingliz tilidagi ilmiy maqola | 🟢 Recommended |
 
 ---
 
-## 🔒 Лицензия және құпиялылық / License & Confidentiality
+## 🔒 Litsenziya va maxfiylik / License & Confidentiality
 
-All rights reserved. Proprietary analytical models, epistemic DAG logic, and cryptographic verification mechanisms are protected intellectual property.
+Barcha huquqlar himoyalangan. Analitik modellar, ICG mantiqiy graflari va kriptografik tekshirish mexanizmlari mualliflik mulki hisoblanadi.
