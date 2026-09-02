@@ -1,13 +1,44 @@
-# Python
+# =============================================================================
+# UniPlag Enterprise — Git Configuration (Public Release)
+# =============================================================================
+
+# 1. Protect Application Source Code & Algorithms (Proprietary)
+app/
+scripts/
+data/
+docs/
+models/
+tests/
+.security/
+.integrity_manifest.json
+ARIS_ICG_MEMO.md
+PROJECT_REVIEW.md
+run_server.py
+run_server.bat
+UniPlag_Start.bat
+UniPlag_Server.spec
+start.bat
+
+# 2. Python Caches & Virtual Environments
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
+.venv/
+env/
+venv/
+ENV/
+
+# 3. Local Databases & Logs
+*.db
+*.db-journal
+*.sqlite3
+uploads/
+scratch/
+logs/
 build/
 develop-eggs/
-dist/
-!dist/UniPlag_Enterprise.bbx
 downloads/
 eggs/
 .eggs/
@@ -21,31 +52,14 @@ wheels/
 .installed.cfg
 *.egg
 
-# Virtual Environment
-.venv/
-env/
-venv/
-ENV/
+# 4. Distribution: Track ONLY the encrypted BlackBox container
+dist/*
+!dist/UniPlag_Enterprise.bbx
 
-# Cryptographic Keys & Local Secrets (NEVER COMMIT TO GIT)
-.security/*.key
-.security/secrets/
-.secrets/
-*.key
-*.pem
-*.secret
-
-# Local Database & Storage
-*.db
-*.db-journal
-*.sqlite3
-uploads/
-scratch/
-logs/
-
-# IDE
+# 5. IDE & OS artifacts
 .idea/
 .vscode/
 *.swp
 *.swo
 .DS_Store
+.pytest_cache/
