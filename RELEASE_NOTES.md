@@ -33,6 +33,30 @@ New **academic integrity (Cheating Guard)** module with an active learning loop.
 
 ---
 
+# 🔍 Update #51 — Source Tracing & De-Obfuscation (поиск реального источника)
+
+## 🇷🇺 Русский
+
+Новый модуль **Source Finder**: даже когда текст пересобран с подменёнными символами (хомоглифы, нулевые пробелы, soft-hyphen) и обходит шингловый антиплагиат, система находит **реальный источник**.
+
+- **Декодирование обфускации** (`canonicalize`): удаление нулевых разделителей (ZWSP/ZWNJ/ZWJ, soft-hyphen, BOM, C0-артефакты) и обратная свёртка латинских лукейликов в кириллицу.
+- **Локальный поиск**: повторный шингл-фингерпринт раскодированного текста по корпусу вуза (загруженные работы, arXiv/web-индексы). В отчёте: `raw` vs `decoded` совпадение — 0% → 87% («текст был пересобран для обхода антиплагиата!»).
+- **Веб-фолбэк**: если корпус не даёт совпадения — параллельный опрос открытых репозиториев (OpenAlex, Crossref, arXiv, DuckDuckGo, опционально свой SearXNG), скачивание кандидатов и выравнивание.
+- **Настройки админа** (`/settings`): вкл/выкл локального и веб-поиска, пороги срабатываний, провайдеры, лимиты, таймауты.
+- **UI**: блок «🔍 Декодированный источник» в отчёте с таблицей найденного (название, автор, % совпадения, ссылка) и раскодированным фрагментом для ручного поиска.
+
+## 🇬🇧 English
+
+New **Source Finder** module traces the *real origin* of a document even when the text was re-assembled with substituted symbols that bypass shingle-based plagiarism checks.
+
+- **De-obfuscation** (`canonicalize`): removes zero-width separators (ZWSP/ZWNJ/ZWJ, soft-hyphen, BOM, C0 artifacts) and folds Latin look-alikes back into Cyrillic.
+- **Local search**: re-fingerprints the decoded text against the university corpus (uploaded works, arXiv/web indexes). Report shows `raw` vs `decoded` similarity — e.g. 0% → 87% (flagged «text was re-assembled to bypass plagiarism checks!»).
+- **Web fallback**: when the corpus yields no hit — parallel queries to open repositories (OpenAlex, Crossref, arXiv, DuckDuckGo, optional self-hosted SearXNG), candidate page fetching and alignment.
+- **Admin settings** (`/settings`): toggles, thresholds, providers, limits, timeouts.
+- **UI**: «🔍 Decoded Source» block in the report with a hits table (title, author, similarity, link) and a decoded fragment for manual lookup.
+
+---
+
 ## 🇷🇺 Русский
 
 Официальный обновлённый релиз университетской платформы **UniPlag & ICG Enterprise v0.4.1**.
