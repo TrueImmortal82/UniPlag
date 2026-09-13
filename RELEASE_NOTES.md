@@ -7,6 +7,32 @@
 
 ---
 
+# 🔐 Update #50 — Adaptive Heuristic Cheating Detector & Active Learning Loop
+
+## 🇷🇺 Русский
+
+Новый модуль **академической честности (Cheating Guard)** с контуром активного обучения.
+
+- **Детекция обфускации текста**: хомоглифы (кириллица/латиница: `а/a`, `с/c`, `е/e`, `о/o`, `р/p`, `х/x`, `у/y`), невидимые разделители нулевой ширины (ZWSP/ZWNJ/ZWJ, soft-hyphen, BOM).
+- **Аудит структуры DOCX (OpenXML)**: скрытый текст (`w:vanish`), микрошрифты `<=3pt`, белый текст на белом фоне.
+- **Adaptive Weighted Model**: индекс риска `0–100%`; hard rules — мгновенный `flagged` при скрытом тексте или `>=6` слов с хомоглифами.
+- **Active Learning**: подтверждённые преподавателем прецеденты сохраняются в `cheating_signatures` и пересчитывают чувствительность `learn_from_feedback()`.
+- **Интеграция**: 5-я метрика в отчёте «Читинг / Обход», блок улик при риске `>=30%`, красный бейдж в дашборде, эндпоинт `POST /report/{id}/cheating/confirm` (учитель/админ).
+- Заверено Блоком #50 в Sovereign Ledger (HMAC-SHA512).
+
+## 🇬🇧 English
+
+New **academic integrity (Cheating Guard)** module with an active learning loop.
+
+- **Obfuscation detection**: homoglyphs (Cyrillic/Latin pairs), zero-width separators (ZWSP/ZWNJ/ZWJ, soft-hyphen, BOM).
+- **DOCX (OpenXML) audit**: hidden text (`w:vanish`), micro-fonts `<=3pt`, white-on-white text.
+- **Adaptive Weighted Model**: risk index `0–100%`; hard rules instantly flag hidden text or `>=6` homoglyph words.
+- **Active Learning**: teacher-confirmed precedents persist into `cheating_signatures` and retune sensitivity via `learn_from_feedback()`.
+- **Integration**: 5th report metric «Cheating Guard», evidence block at risk `>=30%`, red dashboard badge, `POST /report/{id}/cheating/confirm` (teacher/admin).
+- Sealed in Sovereign Ledger **Block #50** (HMAC-SHA512).
+
+---
+
 ## 🇷🇺 Русский
 
 Официальный обновлённый релиз университетской платформы **UniPlag & ICG Enterprise v0.4.1**.
