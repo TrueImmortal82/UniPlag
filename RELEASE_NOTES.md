@@ -7,6 +7,58 @@
 
 ---
 
+# 🔐 Update #50 — Adaptive Heuristic Cheating Detector & Active Learning Loop
+
+## 🇷🇺 Русский
+
+Новый модуль **академической честности (Cheating Guard)** с контуром активного обучения.
+
+- **Детекция обфускации текста**: хомоглифы (кириллица/латиница: `а/a`, `с/c`, `е/e`, `о/o`, `р/p`, `х/x`, `у/y`), невидимые разделители нулевой ширины (ZWSP/ZWNJ/ZWJ, soft-hyphen, BOM).
+- **Аудит структуры DOCX (OpenXML)**: скрытый текст (`w:vanish`), микрошрифты `<=3pt`, белый текст на белом фоне.
+- **Adaptive Weighted Model**: индекс риска `0–100%`; hard rules — мгновенный `flagged` при скрытом тексте или `>=6` слов с хомоглифами.
+- **Active Learning**: подтверждённые преподавателем прецеденты сохраняются в `cheating_signatures` и пересчитывают чувствительность `learn_from_feedback()`.
+- **Интеграция**: 5-я метрика в отчёте «Читинг / Обход», блок улик при риске `>=30%`, красный бейдж в дашборде, эндпоинт `POST /report/{id}/cheating/confirm` (учитель/админ).
+- Заверено Блоком #50 в Sovereign Ledger (HMAC-SHA512).
+
+## 🇬🇧 English
+
+New **academic integrity (Cheating Guard)** module with an active learning loop.
+
+- **Obfuscation detection**: homoglyphs (Cyrillic/Latin pairs), zero-width separators (ZWSP/ZWNJ/ZWJ, soft-hyphen, BOM).
+- **DOCX (OpenXML) audit**: hidden text (`w:vanish`), micro-fonts `<=3pt`, white-on-white text.
+- **Adaptive Weighted Model**: risk index `0–100%`; hard rules instantly flag hidden text or `>=6` homoglyph words.
+- **Active Learning**: teacher-confirmed precedents persist into `cheating_signatures` and retune sensitivity via `learn_from_feedback()`.
+- **Integration**: 5th report metric «Cheating Guard», evidence block at risk `>=30%`, red dashboard badge, `POST /report/{id}/cheating/confirm` (teacher/admin).
+- Sealed in Sovereign Ledger **Block #50** (HMAC-SHA512).
+
+---
+
+# 🔍 Update #51 — Source Tracing & De-Obfuscation (поиск реального источника)
+
+## 🇷🇺 Русский
+
+Новый модуль **Source Finder**: даже когда текст пересобран с подменёнными символами (хомоглифы, нулевые пробелы, soft-hyphen) и обходит шингловый антиплагиат, система находит **реальный источник**.
+
+- **Декодирование обфускации** (`canonicalize`): удаление нулевых разделителей (ZWSP/ZWNJ/ZWJ, soft-hyphen, BOM, C0-артефакты) и обратная свёртка латинских лукейликов в кириллицу.
+- **Локальный поиск**: повторный шингл-фингерпринт раскодированного текста по корпусу вуза (загруженные работы, arXiv/web-индексы). В отчёте: `raw` vs `decoded` совпадение — 0% → 87% («текст был пересобран для обхода антиплагиата!»).
+- **Веб-фолбэк**: если корпус не даёт совпадения — параллельный опрос открытых репозиториев (OpenAlex, Crossref, arXiv, DuckDuckGo, опционально свой SearXNG), скачивание кандидатов и выравнивание.
+- **Настройки админа** (`/settings`): вкл/выкл локального и веб-поиска, пороги срабатываний, провайдеры, лимиты, таймауты.
+- **UI**: блок «🔍 Декодированный источник» в отчёте с таблицей найденного (название, автор, % совпадения, ссылка) и раскодированным фрагментом для ручного поиска.
+- **Качество ICG-отчёта**: фильтр «мусорных» claim-узлов из списка литературы — одиночные инициалы («V.», «P.», «С.», «Е.»), сокращения («ст.», «мед.», «журн.»), номера/диапазоны страниц («224 с.», «V. 43», «Р. 45–53») и именные фрагменты записей («Maher J.J.», «Сторожаков, Е.И.») больше не становятся узлами REPRODUCTION. Для настоящих предложений (от 3 токенов) фильтр неактивен. Также расширено распознавание заголовка секции литературы («Рекомендуемая литература», «Литература», «Источники»). На реальной статье: 490 → 377 узлов.
+
+## 🇬🇧 English
+
+New **Source Finder** module traces the *real origin* of a document even when the text was re-assembled with substituted symbols that bypass shingle-based plagiarism checks.
+
+- **De-obfuscation** (`canonicalize`): removes zero-width separators (ZWSP/ZWNJ/ZWJ, soft-hyphen, BOM, C0 artifacts) and folds Latin look-alikes back into Cyrillic.
+- **Local search**: re-fingerprints the decoded text against the university corpus (uploaded works, arXiv/web indexes). Report shows `raw` vs `decoded` similarity — e.g. 0% → 87% (flagged «text was re-assembled to bypass plagiarism checks!»).
+- **Web fallback**: when the corpus yields no hit — parallel queries to open repositories (OpenAlex, Crossref, arXiv, DuckDuckGo, optional self-hosted SearXNG), candidate page fetching and alignment.
+- **Admin settings** (`/settings`): toggles, thresholds, providers, limits, timeouts.
+- **UI**: «🔍 Decoded Source» block in the report with a hits table (title, author, similarity, link) and a decoded fragment for manual lookup.
+- **ICG report quality**: noise claim-node filter for bibliography tokens — single initials («V.», «P.»), abbreviations («ст.», «мед.», «журн.»), page numbers/ranges («224 с.», «V. 43», «Р. 45–53») and author-name fragments («Maher J.J.», «Сторожаков, Е.И.») no longer become REPRODUCTION nodes. Real sentences (≥3 tokens) are unaffected. Broadened literature-section header detection («Рекомендуемая литература», «Литература», «Источники»). On a real article: 490 → 377 nodes.
+
+---
+
 ## 🇷🇺 Русский
 
 Официальный обновлённый релиз университетской платформы **UniPlag & ICG Enterprise v0.4.1**.
