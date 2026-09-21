@@ -101,7 +101,29 @@ Official updated release of the **UniPlag & ICG Enterprise v0.4.1** academic ver
 
 ---
 
-### 🚀 Инструкция по запуску / Quick Start / Ishga tushirish:
+# 🛠️ Update #52 — MVP Hardening: Persistent Sessions & Clean Requirements
+
+## 🇷🇺 Русский
+
+Этап доведения платформы до полностью рабочего MVP.
+
+- **Персистентные сессии в БД**: сессии больше не хранятся in-memory — токены живут в таблице `user_sessions` и переживают рестарт сервера (TTL 7 дней, user-agent/IP в базе, фоновый `prune_expired_sessions`). Сессия удаляется при `logout`.
+- **Смена пароля + защита от дефолтных паролей**: новый экран `/account/password` (проверка текущего пароля, минимум 6 символов); если пользователь работает с паролем по умолчанию (`admin123`/`teacher123`/`student123`) — в шапке виден красный баннер с требованием сменить пароль.
+- **Корректная работа со временем**: все вызовы `datetime.utcnow()` (deprecated) заменены на timezone-aware UTC по всему коду; в `checker.py` устранён скрытый `NameError` (неимпортированный `datetime`).
+- **Таймауты HTTP**: проверка Ollama `timeout=5`, скоринг — конфигурируемый `OLLAMA_TIMEOUT_SEC` (по умолчанию 300 s, env `UNIPLAG_OLLAMA_TIMEOUT_SEC`); все веб-провайдеры (OpenAlex/Crossref/arXiv/SearXNG/DDG) — таймаут 8 s с ограничением пула потоков.
+- **Чистые зависимости**: `requirements.txt` актуализирован (scikit-learn/joblib/numpy/httpx и др.); тестовая утилита выделена в `requirements-dev.txt` (`pytest>=8.0`).
+
+## 🇬🇧 English
+
+Stage of hardening the platform into a fully workable MVP.
+
+- **Persistent DB-backed sessions**: session tokens now live in the `user_sessions` table and survive server restarts (7-day TTL, user-agent/IP stored, `prune_expired_sessions` housekeeping). Logout removes the row.
+- **Password change + default-password guard**: new `/account/password` screen (current password check, 6+ chars); a red top banner forces a change when a default password (`admin123`/`teacher123`/`student123`) is still in use.
+- **Timezone-correct code**: all deprecated `datetime.utcnow()` calls replaced with timezone-aware UTC app-wide; fixed a hidden `NameError` in `checker.py`.
+- **HTTP timeouts**: Ollama discovery `timeout=5`, scoring uses configurable `OLLAMA_TIMEOUT_SEC` (default 300 s, env `UNIPLAG_OLLAMA_TIMEOUT_SEC`); all web providers (OpenAlex/Crossref/arXiv/SearXNG/DDG) bounded at 8 s with limited thread pool.
+- **Clean requirements**: `requirements.txt` refreshed (scikit-learn/joblib/numpy/httpx, etc.); test tooling split into `requirements-dev.txt` (`pytest>=8.0`).
+
+---
 1. Скачайте репозиторий или прикреплённые файлы релиза.
 2. Установите зависимости:
    ```bash
