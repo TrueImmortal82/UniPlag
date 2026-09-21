@@ -1,3 +1,6 @@
+# --- UniPlag & ICG Enterprise : runtime dependencies ---
+# Install with:  python -m pip install -r requirements.txt
+
 fastapi>=0.110
 uvicorn[standard]>=0.29
 jinja2>=3.1
@@ -7,7 +10,11 @@ python-docx>=1.1
 pymupdf>=1.24
 charset_normalizer>=3.3
 cryptography>=42.0
+scikit-learn>=1.4
+joblib>=1.3
+numpy>=1.26
+httpx>=0.27
 
-# --- опционально, раскомментируйте при необходимости ---
-# psycopg2-binary>=2.9   # PostgreSQL вместо SQLite
-# torch transformers     # локальная ML-модель ИИ-детектора
+# --- Optional runtimes (add only if needed) ---
+# psycopg2-binary>=2.9   # PostgreSQL backend instead of SQLite
+# torch transformers     # heavy gradient / transformer-based ML model
