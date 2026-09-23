@@ -101,6 +101,42 @@ Official updated release of the **UniPlag & ICG Enterprise v0.4.1** academic ver
 
 ---
 
+# 🌍 Update #53 — Full Trilingual Localization Near-Zero & Uzbek PDF Certificate
+
+## 🇷🇺 Русский
+
+Релиз закрывает аудит полного перевода интерфейса на три языка (RU / EN / UZ) и добавляет узбекский академический сертификат.
+
+- **Исправлен критический баг локализации `loc()`**: вызов с 3 аргументами `loc(ru, en, uz)` всегда возвращал русский текст, так как третий аргумент интерпретировался как пользовательский текст. Баннер смены пароля (`base.html`) и страница `/account/password` переведены на корректную форму `loc(ru, en, uz, cur_lang)`.
+- **Динамический `<html lang>`**: атрибут языка страницы больше не захардкожен как `ru`, а следует за выбранным языком сессии.
+- **Узбекский PDF-сертификат**: добавлена кнопка **📄 PDF (UZ)** в отчёт проверки (`/report/{id}/pdf?lang=uz`); генератор сертификатов уже содержал полную узбекскую локализацию (заголовки, метаданные, вердикты, печать).
+- **Руководство пользователя**: добавлены разделы FAQ (RU / EN / UZ).
+- **Тесты**: набор `test_multilingual.py` расширен до трёх языков (CASE 4: генерация UZ-PDF, роут `?lang=uz`, наличие кнопки) — 18/18 PASS; `test_user_guide.py` 14/14 PASS; pytest 8/8 PASS.
+- **Аппаратный аудит перевода**: все ключи словаря i18n покрыты на всех трёх языках (категории A/B — пустые ключи отсутствуют), UZ-интерфейс проверен рендерингом (Barcha tekshiruvlar, Originallik, Qo'llanma).
+- **Реестр**: блок #53, манифест 75 файлов переподписан 512-битным ключом.
+
+## 🇬🇧 English
+
+This release completes a full trilingual (RU / EN / UZ) interface translation audit and ships the Uzbek academic PDF certificate.
+
+- **Critical `loc()` localization bug fixed**: `loc(ru, en, uz)` with 3 arguments always returned Russian, because the 3rd argument was treated as custom text. The password-change banner (`base.html`) and the `/account/password` page now use the correct `loc(ru, en, uz, cur_lang)` form.
+- **Dynamic `<html lang>`**: page language attribute follows the active session language instead of being hardcoded to `ru`.
+- **Uzbek PDF certificate**: new **📄 PDF (UZ)** button on the check report (`/report/{id}/pdf?lang=uz`); the certificate generator already shipped full Uzbek strings (headers, metadata, verdicts, seal).
+- **User guide**: FAQ sections added (RU / EN / UZ).
+- **Tests**: `test_multilingual.py` extended to three languages (CASE 4: UZ PDF generation, `?lang=uz` route, button presence) — 18/18 PASS; `test_user_guide.py` 14/14 PASS; pytest 8/8 PASS.
+- **Full translation audit**: every i18n key is present in all three languages (categories A/B clean), UZ UI verified by rendering.
+- **Ledger**: block #53, 75-file manifest re-signed with the 512-bit sovereign key.
+
+## 🇺🇿 O'zbekcha
+
+- **`loc()` lokalizatsiya xatosi tuzatildi**: `loc(ru, en, uz)` 3 argument bilan doim rus tilini qaytarardi; banner va `/account/password` sahifasi `loc(ru, en, uz, cur_lang)` shakliga o'tkazildi.
+- **Dinamik `<html lang>`**: sahifa tili sessiya tiliga bog'lanadi.
+- **O'zbek PDF-sertifikati**: hisobotga **📄 PDF (UZ)** tugmasi qo'shildi (`/report/{id}/pdf?lang=uz`).
+- **Qo'llanma**: FAQ bo'limlari qo'shildi (RU / EN / UZ).
+- **Testlar**: `test_multilingual.py` 18/18 PASS, `test_user_guide.py` 14/14 PASS, pytest 8/8 PASS.
+
+---
+
 # 🛠️ Update #52 — MVP Hardening: Persistent Sessions & Clean Requirements
 
 ## 🇷🇺 Русский
