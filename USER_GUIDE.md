@@ -24,6 +24,11 @@
 * Для локальной детекции нейросетей установите [**Ollama**](https://ollama.com).
 * При первом запуске система автоматически подгружает оптимальную модель (`qwen2.5:1.5b`).
 
+## ❓ Часто задаваемые вопросы
+* **Как получить сертификат?** Откройте отчёт проверки и нажмите **«Скачать PDF»** — сертификат подписан SHA-512 и проверяется на `/verify/{seal}`.
+* **Почему сессия не сбрасывается после перезапуска?** Сессии хранятся в базе (`user_sessions`, срок действия 7 дней) и переживают рестарт сервера.
+* **Победа баннера «пароль по умолчанию»?** Смените пароль в `/account/password` — баннер исчезнет после смены.
+
 ---
 
 # 🇬🇧 English (EN)
@@ -46,6 +51,11 @@
 * Install [**Ollama**](https://ollama.com) for deep semantic analysis.
 * UniPlag automatically pulls the optimal lightweight model (`qwen2.5:1.5b`) on initial launch.
 
+## ❓ Frequently Asked Questions
+* **How do I get the certificate?** Open the check report and press **"Download PDF"** — the document is sealed with SHA-512 and verified at `/verify/{seal}`.
+* **Why does my session survive a server restart?** Sessions are stored in the database (`user_sessions`, 7-day TTL) and persist across restarts.
+* **How do I get rid of the "default password" banner?** Change your password at `/account/password` — the banner disappears after the change.
+
 ---
 
 # 🇺🇿 O'zbekcha (UZ)
@@ -67,3 +77,8 @@
 ## 🤖 Ollama va sun'iy intellekt tahlili
 * Neyrotarmoqlarni lokal tahlil qilish uchun [**Ollama**](https://ollama.com) dasturini o'rnating.
 * Tizim birinchi marta ishga tushganda eng qulay modelni (`qwen2.5:1.5b`) avtomatik ravishda yuklab oladi.
+
+## ❓ Ko'p so'raladigan savollar
+* **Ma'lumotnomani qanday olish mumkin?** Tekshiruv hisobotini ochib, **«PDF yuklab olish»** tugmasini bosing — hujjat SHA-512 bilan muhirlanadi va `/verify/{seal}` manzilida tekshiriladi.
+* **Nega seans qayta ishga tushirishdan keyin ham saqlanib qoladi?** Seanslar bazada (`user_sessions`, 7 kunlik muddat) saqlanadi va qayta ishga tushirishdan omon qoladi.
+* **«Standart parol» banneridan qanday qutulish mumkin?** `/account/password` manzilida parolni o'zgartiring — o'zgartirishdan so'ng banner yo'qoladi.

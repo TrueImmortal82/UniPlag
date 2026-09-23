@@ -101,7 +101,65 @@ Official updated release of the **UniPlag & ICG Enterprise v0.4.1** academic ver
 
 ---
 
-### 🚀 Инструкция по запуску / Quick Start / Ishga tushirish:
+# 🌍 Update #53 — Full Trilingual Localization Near-Zero & Uzbek PDF Certificate
+
+## 🇷🇺 Русский
+
+Релиз закрывает аудит полного перевода интерфейса на три языка (RU / EN / UZ) и добавляет узбекский академический сертификат.
+
+- **Исправлен критический баг локализации `loc()`**: вызов с 3 аргументами `loc(ru, en, uz)` всегда возвращал русский текст, так как третий аргумент интерпретировался как пользовательский текст. Баннер смены пароля (`base.html`) и страница `/account/password` переведены на корректную форму `loc(ru, en, uz, cur_lang)`.
+- **Динамический `<html lang>`**: атрибут языка страницы больше не захардкожен как `ru`, а следует за выбранным языком сессии.
+- **Узбекский PDF-сертификат**: добавлена кнопка **📄 PDF (UZ)** в отчёт проверки (`/report/{id}/pdf?lang=uz`); генератор сертификатов уже содержал полную узбекскую локализацию (заголовки, метаданные, вердикты, печать).
+- **Руководство пользователя**: добавлены разделы FAQ (RU / EN / UZ).
+- **Тесты**: набор `test_multilingual.py` расширен до трёх языков (CASE 4: генерация UZ-PDF, роут `?lang=uz`, наличие кнопки) — 18/18 PASS; `test_user_guide.py` 14/14 PASS; pytest 8/8 PASS.
+- **Аппаратный аудит перевода**: все ключи словаря i18n покрыты на всех трёх языках (категории A/B — пустые ключи отсутствуют), UZ-интерфейс проверен рендерингом (Barcha tekshiruvlar, Originallik, Qo'llanma).
+- **Реестр**: блок #53, манифест 75 файлов переподписан 512-битным ключом.
+
+## 🇬🇧 English
+
+This release completes a full trilingual (RU / EN / UZ) interface translation audit and ships the Uzbek academic PDF certificate.
+
+- **Critical `loc()` localization bug fixed**: `loc(ru, en, uz)` with 3 arguments always returned Russian, because the 3rd argument was treated as custom text. The password-change banner (`base.html`) and the `/account/password` page now use the correct `loc(ru, en, uz, cur_lang)` form.
+- **Dynamic `<html lang>`**: page language attribute follows the active session language instead of being hardcoded to `ru`.
+- **Uzbek PDF certificate**: new **📄 PDF (UZ)** button on the check report (`/report/{id}/pdf?lang=uz`); the certificate generator already shipped full Uzbek strings (headers, metadata, verdicts, seal).
+- **User guide**: FAQ sections added (RU / EN / UZ).
+- **Tests**: `test_multilingual.py` extended to three languages (CASE 4: UZ PDF generation, `?lang=uz` route, button presence) — 18/18 PASS; `test_user_guide.py` 14/14 PASS; pytest 8/8 PASS.
+- **Full translation audit**: every i18n key is present in all three languages (categories A/B clean), UZ UI verified by rendering.
+- **Ledger**: block #53, 75-file manifest re-signed with the 512-bit sovereign key.
+
+## 🇺🇿 O'zbekcha
+
+- **`loc()` lokalizatsiya xatosi tuzatildi**: `loc(ru, en, uz)` 3 argument bilan doim rus tilini qaytarardi; banner va `/account/password` sahifasi `loc(ru, en, uz, cur_lang)` shakliga o'tkazildi.
+- **Dinamik `<html lang>`**: sahifa tili sessiya tiliga bog'lanadi.
+- **O'zbek PDF-sertifikati**: hisobotga **📄 PDF (UZ)** tugmasi qo'shildi (`/report/{id}/pdf?lang=uz`).
+- **Qo'llanma**: FAQ bo'limlari qo'shildi (RU / EN / UZ).
+- **Testlar**: `test_multilingual.py` 18/18 PASS, `test_user_guide.py` 14/14 PASS, pytest 8/8 PASS.
+
+---
+
+# 🛠️ Update #52 — MVP Hardening: Persistent Sessions & Clean Requirements
+
+## 🇷🇺 Русский
+
+Этап доведения платформы до полностью рабочего MVP.
+
+- **Персистентные сессии в БД**: сессии больше не хранятся in-memory — токены живут в таблице `user_sessions` и переживают рестарт сервера (TTL 7 дней, user-agent/IP в базе, фоновый `prune_expired_sessions`). Сессия удаляется при `logout`.
+- **Смена пароля + защита от дефолтных паролей**: новый экран `/account/password` (проверка текущего пароля, минимум 6 символов); если пользователь работает с паролем по умолчанию (`admin123`/`teacher123`/`student123`) — в шапке виден красный баннер с требованием сменить пароль.
+- **Корректная работа со временем**: все вызовы `datetime.utcnow()` (deprecated) заменены на timezone-aware UTC по всему коду; в `checker.py` устранён скрытый `NameError` (неимпортированный `datetime`).
+- **Таймауты HTTP**: проверка Ollama `timeout=5`, скоринг — конфигурируемый `OLLAMA_TIMEOUT_SEC` (по умолчанию 300 s, env `UNIPLAG_OLLAMA_TIMEOUT_SEC`); все веб-провайдеры (OpenAlex/Crossref/arXiv/SearXNG/DDG) — таймаут 8 s с ограничением пула потоков.
+- **Чистые зависимости**: `requirements.txt` актуализирован (scikit-learn/joblib/numpy/httpx и др.); тестовая утилита выделена в `requirements-dev.txt` (`pytest>=8.0`).
+
+## 🇬🇧 English
+
+Stage of hardening the platform into a fully workable MVP.
+
+- **Persistent DB-backed sessions**: session tokens now live in the `user_sessions` table and survive server restarts (7-day TTL, user-agent/IP stored, `prune_expired_sessions` housekeeping). Logout removes the row.
+- **Password change + default-password guard**: new `/account/password` screen (current password check, 6+ chars); a red top banner forces a change when a default password (`admin123`/`teacher123`/`student123`) is still in use.
+- **Timezone-correct code**: all deprecated `datetime.utcnow()` calls replaced with timezone-aware UTC app-wide; fixed a hidden `NameError` in `checker.py`.
+- **HTTP timeouts**: Ollama discovery `timeout=5`, scoring uses configurable `OLLAMA_TIMEOUT_SEC` (default 300 s, env `UNIPLAG_OLLAMA_TIMEOUT_SEC`); all web providers (OpenAlex/Crossref/arXiv/SearXNG/DDG) bounded at 8 s with limited thread pool.
+- **Clean requirements**: `requirements.txt` refreshed (scikit-learn/joblib/numpy/httpx, etc.); test tooling split into `requirements-dev.txt` (`pytest>=8.0`).
+
+---
 1. Скачайте репозиторий или прикреплённые файлы релиза.
 2. Установите зависимости:
    ```bash
