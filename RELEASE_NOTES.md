@@ -101,6 +101,47 @@ Official updated release of the **UniPlag & ICG Enterprise v0.4.1** academic ver
 
 ---
 
+# 🔐 Update #54 — BlackBox v2: цифровая подпись Ed25519 вместо универсального мастер-секрета
+
+## 🇷🇺 Русский
+
+Security-релиз по итогам внешнего аудита публичного репозитория (публичный мастер-ключ, HMAC ≠ цифровая подпись, «100% анти-декомпиляция»).
+
+- **Отозван скомпрометированный 512-битный ключ** (отпечаток `51C162454EE2EB96`, совпадал с зашитым в публичный лаунчер `_EMBEDDED_KEY`; ранее доказуемо расшифровывал опубликованный `.bbx`). Бэкап — `.security/revoked/`. Действующий ключ: `D6202F1B8F330A9A`.
+- **Fail-closed**: из лаунчеров удалены `_EMBEDDED_KEY` и все fallback-секреты. Мастер-ключ — только `UNIPLAG_SOVEREIGN_KEY_512` или `.security/sovereign_512.key`; без него контейнер не открывается (провижининг/активация лицензии).
+- **Настоящая подпись релиза — Ed25519 (.bbx v2)**: контейнер подписывается приватным ключом издателя, публичный ключ встроен в лаунчер (безопасно публиковать). Подделка невозможна, авторство проверяет любой: `python run_blackbox.py --verify-only`.
+- **Конфиденциальность**: случайный per-build AES-256-GCM ключ заворачивается на мастер-секрет; в Git нет ни одного секрета, способного расшифровать существующий или подписать новый контейнер.
+- **Привязка к машине — Windows DPAPI**: `--bind-machine` связывает ключ данных с машиной после первого открытия (CryptProtectData). Копия `.bbx` на другой машине без мастер-ключа и без DPAPI-кэша не запускается.
+- **Терминология исправлена**: HMAC-SHA512 — это MAC с общим секретом (внутренние пломбы/реестр), а *не* цифровая подпись; претензия «100% Anti-Decompilation» снята — заявлена честная модель «аттестация + целостность + привязка к установке».
+- **Перевыпуск**: печати проверок пересчитаны под новым ключом (28 шт.), манифест 75 файлов переподписан, реестр — блок **#56** (56 блоков VALID).
+- **Тесты**: `test_blackbox.py` переписан под v2 — 24/24 PASS (аттестация, подделка, тампер, wrong-key, DPAPI, отсутствие встроенных секретов).
+
+## 🇬🇧 English
+
+Security release addressing the external audit of the public repo (published master secret, HMAC ≠ digital signature, «100% anti-decompilation» claim).
+
+- **Compromised 512-bit key revoked** (fingerprint `51C162454EE2EB96`, matched the `_EMBEDDED_KEY` inside the public launcher and demonstrably decrypted the published `.bbx`). Backup at `.security/revoked/`. Active key: `D6202F1B8F330A9A`.
+- **Fail-closed**: `_EMBEDDED_KEY` and all fallback secrets removed from launchers. Master key comes only from `UNIPLAG_SOVEREIGN_KEY_512` or `.security/sovereign_512.key`; without it a container cannot be opened (provisioning/activation).
+- **Real release signature — Ed25519 (.bbx v2)**: containers are signed with the publisher's private key; the public key is embedded in the launcher (safe to publish). Forgery is impossible and anyone can verify authorship: `python run_blackbox.py --verify-only`.
+- **Confidentiality**: a random per-build AES-256-GCM data key is wrapped to the master secret; no secret capable of decrypting existing or signing new containers lives in Git.
+- **Machine binding — Windows DPAPI**: `--bind-machine` binds the data key to the machine after first open (CryptProtectData). A `.bbx` copy on another machine without the master key and without the DPAPI cache will not run.
+- **Terminology fixed**: HMAC-SHA512 is a MAC with a shared secret (internal seals/ledger), not a digital signature; the «100% Anti-Decompilation» claim was dropped in favor of an honest «attestation + integrity + install binding» model.
+- **Re-issue**: check seals recomputed under the new key (28), 75-file manifest re-signed, ledger block **#56** (56 blocks VALID).
+- **Tests**: `test_blackbox.py` rewritten for v2 — 24/24 PASS (attestation, forgery, tamper, wrong key, DPAPI, no embedded secrets).
+
+## 🇺🇿 O'zbekcha
+
+Ochiq repoga tashqi audit xulosalari bo'yicha xavfsizlik relizi.
+
+- **Buzilgan 512-bitli kalit bekor qilindi** (`51C162454EE2EB96` — ochiq launcher'dagi `_EMBEDDED_KEY` bilan mos bo'lib, nashr etilgan `.bbx`ni ochib bergan). Zaxira: `.security/revoked/`. Amaldagi kalit: `D6202F1B8F330A9A`.
+- **Fail-closed**: launcher'lardan `_EMBEDDED_KEY` va barcha yashirin kalitlar olib tashlandi; kalit faqat `UNIPLAG_SOVEREIGN_KEY_512` yoki `.security/sovereign_512.key` orqali (aktivatsiya).
+- **Haqiqiy raqamli imzo — Ed25519 (.bbx v2)**: konteyner nashriyotning maxfiy kaliti bilan imzolanadi, ochiq kalit launcher'ga o'rnatilgan. Soxtalashtirish mumkin emas: `python run_blackbox.py --verify-only`.
+- **DPAPI bilan mashinaga bog'lash**: `--bind-machine` ma'lumot kalitini mashinaga bog'laydi; boshqa mashinada `.bbx` master-kalitsiz ishga tushmaydi.
+- **Atama tuzatildi**: HMAC-SHA512 — umumiy sirga asoslangan MAC, raqamli imzo emas.
+- **Qayta chiqarish**: muhriar yangi kalit ostida qayta hisoblandi (28), manifest 75 fayl qayta imzolandi, reyestr blok **#56** (56 blok VALID).
+
+---
+
 # 🌍 Update #53 — Full Trilingual Localization Near-Zero & Uzbek PDF Certificate
 
 ## 🇷🇺 Русский
