@@ -115,6 +115,7 @@ Security-релиз по итогам внешнего аудита публич
 - **Терминология исправлена**: HMAC-SHA512 — это MAC с общим секретом (внутренние пломбы/реестр), а *не* цифровая подпись; претензия «100% Anti-Decompilation» снята — заявлена честная модель «аттестация + целостность + привязка к установке».
 - **Перевыпуск**: печати проверок пересчитаны под новым ключом (28 шт.), манифест 75 файлов переподписан, реестр — блок **#56** (56 блоков VALID).
 - **Тесты**: `test_blackbox.py` переписан под v2 — 24/24 PASS (аттестация, подделка, тампер, wrong-key, DPAPI, отсутствие встроенных секретов).
+- **Очистка истории git**: перезаписаны все ветки и тег `v0.4.1-enterprise` — удалены коммиты, содержавшие старый мастер-ключ и контейнеры, шифрованные отозванным ключом (в старом лаунчере остался только нейтральный маркер `REDACTED`).
 
 ## 🇬🇧 English
 
@@ -128,6 +129,7 @@ Security release addressing the external audit of the public repo (published mas
 - **Terminology fixed**: HMAC-SHA512 is a MAC with a shared secret (internal seals/ledger), not a digital signature; the «100% Anti-Decompilation» claim was dropped in favor of an honest «attestation + integrity + install binding» model.
 - **Re-issue**: check seals recomputed under the new key (28), 75-file manifest re-signed, ledger block **#56** (56 blocks VALID).
 - **Tests**: `test_blackbox.py` rewritten for v2 — 24/24 PASS (attestation, forgery, tamper, wrong key, DPAPI, no embedded secrets).
+- **Git history purged**: every branch and the `v0.4.1-enterprise` tag were rewritten — commits carrying the old master key and the containers encrypted with the revoked key were removed (only a neutral `REDACTED` marker remains in the pre-#54 launcher).
 
 ## 🇺🇿 O'zbekcha
 
