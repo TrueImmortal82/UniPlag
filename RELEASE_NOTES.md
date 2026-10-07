@@ -7,6 +7,58 @@
 
 ---
 
+# 🔐 Update #50 — Adaptive Heuristic Cheating Detector & Active Learning Loop
+
+## 🇷🇺 Русский
+
+Новый модуль **академической честности (Cheating Guard)** с контуром активного обучения.
+
+- **Детекция обфускации текста**: хомоглифы (кириллица/латиница: `а/a`, `с/c`, `е/e`, `о/o`, `р/p`, `х/x`, `у/y`), невидимые разделители нулевой ширины (ZWSP/ZWNJ/ZWJ, soft-hyphen, BOM).
+- **Аудит структуры DOCX (OpenXML)**: скрытый текст (`w:vanish`), микрошрифты `<=3pt`, белый текст на белом фоне.
+- **Adaptive Weighted Model**: индекс риска `0–100%`; hard rules — мгновенный `flagged` при скрытом тексте или `>=6` слов с хомоглифами.
+- **Active Learning**: подтверждённые преподавателем прецеденты сохраняются в `cheating_signatures` и пересчитывают чувствительность `learn_from_feedback()`.
+- **Интеграция**: 5-я метрика в отчёте «Читинг / Обход», блок улик при риске `>=30%`, красный бейдж в дашборде, эндпоинт `POST /report/{id}/cheating/confirm` (учитель/админ).
+- Заверено Блоком #50 в Sovereign Ledger (HMAC-SHA512).
+
+## 🇬🇧 English
+
+New **academic integrity (Cheating Guard)** module with an active learning loop.
+
+- **Obfuscation detection**: homoglyphs (Cyrillic/Latin pairs), zero-width separators (ZWSP/ZWNJ/ZWJ, soft-hyphen, BOM).
+- **DOCX (OpenXML) audit**: hidden text (`w:vanish`), micro-fonts `<=3pt`, white-on-white text.
+- **Adaptive Weighted Model**: risk index `0–100%`; hard rules instantly flag hidden text or `>=6` homoglyph words.
+- **Active Learning**: teacher-confirmed precedents persist into `cheating_signatures` and retune sensitivity via `learn_from_feedback()`.
+- **Integration**: 5th report metric «Cheating Guard», evidence block at risk `>=30%`, red dashboard badge, `POST /report/{id}/cheating/confirm` (teacher/admin).
+- Sealed in Sovereign Ledger **Block #50** (HMAC-SHA512).
+
+---
+
+# 🔍 Update #51 — Source Tracing & De-Obfuscation (поиск реального источника)
+
+## 🇷🇺 Русский
+
+Новый модуль **Source Finder**: даже когда текст пересобран с подменёнными символами (хомоглифы, нулевые пробелы, soft-hyphen) и обходит шингловый антиплагиат, система находит **реальный источник**.
+
+- **Декодирование обфускации** (`canonicalize`): удаление нулевых разделителей (ZWSP/ZWNJ/ZWJ, soft-hyphen, BOM, C0-артефакты) и обратная свёртка латинских лукейликов в кириллицу.
+- **Локальный поиск**: повторный шингл-фингерпринт раскодированного текста по корпусу вуза (загруженные работы, arXiv/web-индексы). В отчёте: `raw` vs `decoded` совпадение — 0% → 87% («текст был пересобран для обхода антиплагиата!»).
+- **Веб-фолбэк**: если корпус не даёт совпадения — параллельный опрос открытых репозиториев (OpenAlex, Crossref, arXiv, DuckDuckGo, опционально свой SearXNG), скачивание кандидатов и выравнивание.
+- **Настройки админа** (`/settings`): вкл/выкл локального и веб-поиска, пороги срабатываний, провайдеры, лимиты, таймауты.
+- **UI**: блок «🔍 Декодированный источник» в отчёте с таблицей найденного (название, автор, % совпадения, ссылка) и раскодированным фрагментом для ручного поиска.
+- **Качество ICG-отчёта**: фильтр «мусорных» claim-узлов из списка литературы — одиночные инициалы («V.», «P.», «С.», «Е.»), сокращения («ст.», «мед.», «журн.»), номера/диапазоны страниц («224 с.», «V. 43», «Р. 45–53») и именные фрагменты записей («Maher J.J.», «Сторожаков, Е.И.») больше не становятся узлами REPRODUCTION. Для настоящих предложений (от 3 токенов) фильтр неактивен. Также расширено распознавание заголовка секции литературы («Рекомендуемая литература», «Литература», «Источники»). На реальной статье: 490 → 377 узлов.
+
+## 🇬🇧 English
+
+New **Source Finder** module traces the *real origin* of a document even when the text was re-assembled with substituted symbols that bypass shingle-based plagiarism checks.
+
+- **De-obfuscation** (`canonicalize`): removes zero-width separators (ZWSP/ZWNJ/ZWJ, soft-hyphen, BOM, C0 artifacts) and folds Latin look-alikes back into Cyrillic.
+- **Local search**: re-fingerprints the decoded text against the university corpus (uploaded works, arXiv/web indexes). Report shows `raw` vs `decoded` similarity — e.g. 0% → 87% (flagged «text was re-assembled to bypass plagiarism checks!»).
+- **Web fallback**: when the corpus yields no hit — parallel queries to open repositories (OpenAlex, Crossref, arXiv, DuckDuckGo, optional self-hosted SearXNG), candidate page fetching and alignment.
+- **Admin settings** (`/settings`): toggles, thresholds, providers, limits, timeouts.
+- **UI**: «🔍 Decoded Source» block in the report with a hits table (title, author, similarity, link) and a decoded fragment for manual lookup.
+- **ICG report quality**: noise claim-node filter for bibliography tokens — single initials («V.», «P.»), abbreviations («ст.», «мед.», «журн.»), page numbers/ranges («224 с.», «V. 43», «Р. 45–53») and author-name fragments («Maher J.J.», «Сторожаков, Е.И.») no longer become REPRODUCTION nodes. Real sentences (≥3 tokens) are unaffected. Broadened literature-section header detection («Рекомендуемая литература», «Литература», «Источники»). On a real article: 490 → 377 nodes.
+
+---
+
 ## 🇷🇺 Русский
 
 Официальный обновлённый релиз университетской платформы **UniPlag & ICG Enterprise v0.4.1**.
@@ -49,7 +101,108 @@ Official updated release of the **UniPlag & ICG Enterprise v0.4.1** academic ver
 
 ---
 
-### 🚀 Инструкция по запуску / Quick Start / Ishga tushirish:
+# 🔐 Update #54 — BlackBox v2: цифровая подпись Ed25519 вместо универсального мастер-секрета
+
+## 🇷🇺 Русский
+
+Security-релиз по итогам внешнего аудита публичного репозитория (публичный мастер-ключ, HMAC ≠ цифровая подпись, «100% анти-декомпиляция»).
+
+- **Отозван скомпрометированный 512-битный ключ** (отпечаток `51C162454EE2EB96`, совпадал с зашитым в публичный лаунчер `_EMBEDDED_KEY`; ранее доказуемо расшифровывал опубликованный `.bbx`). Бэкап — `.security/revoked/`. Действующий ключ: `D6202F1B8F330A9A`.
+- **Fail-closed**: из лаунчеров удалены `_EMBEDDED_KEY` и все fallback-секреты. Мастер-ключ — только `UNIPLAG_SOVEREIGN_KEY_512` или `.security/sovereign_512.key`; без него контейнер не открывается (провижининг/активация лицензии).
+- **Настоящая подпись релиза — Ed25519 (.bbx v2)**: контейнер подписывается приватным ключом издателя, публичный ключ встроен в лаунчер (безопасно публиковать). Подделка невозможна, авторство проверяет любой: `python run_blackbox.py --verify-only`.
+- **Конфиденциальность**: случайный per-build AES-256-GCM ключ заворачивается на мастер-секрет; в Git нет ни одного секрета, способного расшифровать существующий или подписать новый контейнер.
+- **Привязка к машине — Windows DPAPI**: `--bind-machine` связывает ключ данных с машиной после первого открытия (CryptProtectData). Копия `.bbx` на другой машине без мастер-ключа и без DPAPI-кэша не запускается.
+- **Терминология исправлена**: HMAC-SHA512 — это MAC с общим секретом (внутренние пломбы/реестр), а *не* цифровая подпись; претензия «100% Anti-Decompilation» снята — заявлена честная модель «аттестация + целостность + привязка к установке».
+- **Перевыпуск**: печати проверок пересчитаны под новым ключом (28 шт.), манифест 75 файлов переподписан, реестр — блок **#56** (56 блоков VALID).
+- **Тесты**: `test_blackbox.py` переписан под v2 — 24/24 PASS (аттестация, подделка, тампер, wrong-key, DPAPI, отсутствие встроенных секретов).
+- **Очистка истории git**: перезаписаны все ветки и тег `v0.4.1-enterprise` — удалены из истории старый мастер-ключ, контейнеры, шифрованные отозванным ключом, и **полное закрытое дерево исходников (`app/`, `scripts/`, `tests/`, `data/`, `models/`, `docs/`, `.security/`)** (в старом лаунчере остался только нейтральный маркер `REDACTED`).
+
+## 🇬🇧 English
+
+Security release addressing the external audit of the public repo (published master secret, HMAC ≠ digital signature, «100% anti-decompilation» claim).
+
+- **Compromised 512-bit key revoked** (fingerprint `51C162454EE2EB96`, matched the `_EMBEDDED_KEY` inside the public launcher and demonstrably decrypted the published `.bbx`). Backup at `.security/revoked/`. Active key: `D6202F1B8F330A9A`.
+- **Fail-closed**: `_EMBEDDED_KEY` and all fallback secrets removed from launchers. Master key comes only from `UNIPLAG_SOVEREIGN_KEY_512` or `.security/sovereign_512.key`; without it a container cannot be opened (provisioning/activation).
+- **Real release signature — Ed25519 (.bbx v2)**: containers are signed with the publisher's private key; the public key is embedded in the launcher (safe to publish). Forgery is impossible and anyone can verify authorship: `python run_blackbox.py --verify-only`.
+- **Confidentiality**: a random per-build AES-256-GCM data key is wrapped to the master secret; no secret capable of decrypting existing or signing new containers lives in Git.
+- **Machine binding — Windows DPAPI**: `--bind-machine` binds the data key to the machine after first open (CryptProtectData). A `.bbx` copy on another machine without the master key and without the DPAPI cache will not run.
+- **Terminology fixed**: HMAC-SHA512 is a MAC with a shared secret (internal seals/ledger), not a digital signature; the «100% Anti-Decompilation» claim was dropped in favor of an honest «attestation + integrity + install binding» model.
+- **Re-issue**: check seals recomputed under the new key (28), 75-file manifest re-signed, ledger block **#56** (56 blocks VALID).
+- **Tests**: `test_blackbox.py` rewritten for v2 — 24/24 PASS (attestation, forgery, tamper, wrong key, DPAPI, no embedded secrets).
+- **Git history purged**: every branch and the `v0.4.1-enterprise` tag were rewritten — commits carrying the old master key, the containers encrypted with the revoked key, and the **full proprietary source tree (`app/`, `scripts/`, `tests/`, `data/`, `models/`, `docs/`, `.security/`)** were removed from history (only a neutral `REDACTED` marker remains in the pre-#54 launcher).
+
+## 🇺🇿 O'zbekcha
+
+Ochiq repoga tashqi audit xulosalari bo'yicha xavfsizlik relizi.
+
+- **Buzilgan 512-bitli kalit bekor qilindi** (`51C162454EE2EB96` — ochiq launcher'dagi `_EMBEDDED_KEY` bilan mos bo'lib, nashr etilgan `.bbx`ni ochib bergan). Zaxira: `.security/revoked/`. Amaldagi kalit: `D6202F1B8F330A9A`.
+- **Fail-closed**: launcher'lardan `_EMBEDDED_KEY` va barcha yashirin kalitlar olib tashlandi; kalit faqat `UNIPLAG_SOVEREIGN_KEY_512` yoki `.security/sovereign_512.key` orqali (aktivatsiya).
+- **Haqiqiy raqamli imzo — Ed25519 (.bbx v2)**: konteyner nashriyotning maxfiy kaliti bilan imzolanadi, ochiq kalit launcher'ga o'rnatilgan. Soxtalashtirish mumkin emas: `python run_blackbox.py --verify-only`.
+- **DPAPI bilan mashinaga bog'lash**: `--bind-machine` ma'lumot kalitini mashinaga bog'laydi; boshqa mashinada `.bbx` master-kalitsiz ishga tushmaydi.
+- **Atama tuzatildi**: HMAC-SHA512 — umumiy sirga asoslangan MAC, raqamli imzo emas.
+- **Qayta chiqarish**: muhriar yangi kalit ostida qayta hisoblandi (28), manifest 75 fayl qayta imzolandi, reyestr blok **#56** (56 blok VALID).
+
+---
+
+# 🌍 Update #53 — Full Trilingual Localization Near-Zero & Uzbek PDF Certificate
+
+## 🇷🇺 Русский
+
+Релиз закрывает аудит полного перевода интерфейса на три языка (RU / EN / UZ) и добавляет узбекский академический сертификат.
+
+- **Исправлен критический баг локализации `loc()`**: вызов с 3 аргументами `loc(ru, en, uz)` всегда возвращал русский текст, так как третий аргумент интерпретировался как пользовательский текст. Баннер смены пароля (`base.html`) и страница `/account/password` переведены на корректную форму `loc(ru, en, uz, cur_lang)`.
+- **Динамический `<html lang>`**: атрибут языка страницы больше не захардкожен как `ru`, а следует за выбранным языком сессии.
+- **Узбекский PDF-сертификат**: добавлена кнопка **📄 PDF (UZ)** в отчёт проверки (`/report/{id}/pdf?lang=uz`); генератор сертификатов уже содержал полную узбекскую локализацию (заголовки, метаданные, вердикты, печать).
+- **Руководство пользователя**: добавлены разделы FAQ (RU / EN / UZ).
+- **Тесты**: набор `test_multilingual.py` расширен до трёх языков (CASE 4: генерация UZ-PDF, роут `?lang=uz`, наличие кнопки) — 18/18 PASS; `test_user_guide.py` 14/14 PASS; pytest 8/8 PASS.
+- **Аппаратный аудит перевода**: все ключи словаря i18n покрыты на всех трёх языках (категории A/B — пустые ключи отсутствуют), UZ-интерфейс проверен рендерингом (Barcha tekshiruvlar, Originallik, Qo'llanma).
+- **Реестр**: блок #53, манифест 75 файлов переподписан 512-битным ключом.
+
+## 🇬🇧 English
+
+This release completes a full trilingual (RU / EN / UZ) interface translation audit and ships the Uzbek academic PDF certificate.
+
+- **Critical `loc()` localization bug fixed**: `loc(ru, en, uz)` with 3 arguments always returned Russian, because the 3rd argument was treated as custom text. The password-change banner (`base.html`) and the `/account/password` page now use the correct `loc(ru, en, uz, cur_lang)` form.
+- **Dynamic `<html lang>`**: page language attribute follows the active session language instead of being hardcoded to `ru`.
+- **Uzbek PDF certificate**: new **📄 PDF (UZ)** button on the check report (`/report/{id}/pdf?lang=uz`); the certificate generator already shipped full Uzbek strings (headers, metadata, verdicts, seal).
+- **User guide**: FAQ sections added (RU / EN / UZ).
+- **Tests**: `test_multilingual.py` extended to three languages (CASE 4: UZ PDF generation, `?lang=uz` route, button presence) — 18/18 PASS; `test_user_guide.py` 14/14 PASS; pytest 8/8 PASS.
+- **Full translation audit**: every i18n key is present in all three languages (categories A/B clean), UZ UI verified by rendering.
+- **Ledger**: block #53, 75-file manifest re-signed with the 512-bit sovereign key.
+
+## 🇺🇿 O'zbekcha
+
+- **`loc()` lokalizatsiya xatosi tuzatildi**: `loc(ru, en, uz)` 3 argument bilan doim rus tilini qaytarardi; banner va `/account/password` sahifasi `loc(ru, en, uz, cur_lang)` shakliga o'tkazildi.
+- **Dinamik `<html lang>`**: sahifa tili sessiya tiliga bog'lanadi.
+- **O'zbek PDF-sertifikati**: hisobotga **📄 PDF (UZ)** tugmasi qo'shildi (`/report/{id}/pdf?lang=uz`).
+- **Qo'llanma**: FAQ bo'limlari qo'shildi (RU / EN / UZ).
+- **Testlar**: `test_multilingual.py` 18/18 PASS, `test_user_guide.py` 14/14 PASS, pytest 8/8 PASS.
+
+---
+
+# 🛠️ Update #52 — MVP Hardening: Persistent Sessions & Clean Requirements
+
+## 🇷🇺 Русский
+
+Этап доведения платформы до полностью рабочего MVP.
+
+- **Персистентные сессии в БД**: сессии больше не хранятся in-memory — токены живут в таблице `user_sessions` и переживают рестарт сервера (TTL 7 дней, user-agent/IP в базе, фоновый `prune_expired_sessions`). Сессия удаляется при `logout`.
+- **Смена пароля + защита от дефолтных паролей**: новый экран `/account/password` (проверка текущего пароля, минимум 6 символов); если пользователь работает с паролем по умолчанию (`admin123`/`teacher123`/`student123`) — в шапке виден красный баннер с требованием сменить пароль.
+- **Корректная работа со временем**: все вызовы `datetime.utcnow()` (deprecated) заменены на timezone-aware UTC по всему коду; в `checker.py` устранён скрытый `NameError` (неимпортированный `datetime`).
+- **Таймауты HTTP**: проверка Ollama `timeout=5`, скоринг — конфигурируемый `OLLAMA_TIMEOUT_SEC` (по умолчанию 300 s, env `UNIPLAG_OLLAMA_TIMEOUT_SEC`); все веб-провайдеры (OpenAlex/Crossref/arXiv/SearXNG/DDG) — таймаут 8 s с ограничением пула потоков.
+- **Чистые зависимости**: `requirements.txt` актуализирован (scikit-learn/joblib/numpy/httpx и др.); тестовая утилита выделена в `requirements-dev.txt` (`pytest>=8.0`).
+
+## 🇬🇧 English
+
+Stage of hardening the platform into a fully workable MVP.
+
+- **Persistent DB-backed sessions**: session tokens now live in the `user_sessions` table and survive server restarts (7-day TTL, user-agent/IP stored, `prune_expired_sessions` housekeeping). Logout removes the row.
+- **Password change + default-password guard**: new `/account/password` screen (current password check, 6+ chars); a red top banner forces a change when a default password (`admin123`/`teacher123`/`student123`) is still in use.
+- **Timezone-correct code**: all deprecated `datetime.utcnow()` calls replaced with timezone-aware UTC app-wide; fixed a hidden `NameError` in `checker.py`.
+- **HTTP timeouts**: Ollama discovery `timeout=5`, scoring uses configurable `OLLAMA_TIMEOUT_SEC` (default 300 s, env `UNIPLAG_OLLAMA_TIMEOUT_SEC`); all web providers (OpenAlex/Crossref/arXiv/SearXNG/DDG) bounded at 8 s with limited thread pool.
+- **Clean requirements**: `requirements.txt` refreshed (scikit-learn/joblib/numpy/httpx, etc.); test tooling split into `requirements-dev.txt` (`pytest>=8.0`).
+
+---
 1. Скачайте репозиторий или прикреплённые файлы релиза.
 2. Установите зависимости:
    ```bash
